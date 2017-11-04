@@ -1,0 +1,5 @@
+#ifndef _CHAT_SERVER_SESSION_H_
+#define _CHAT_SERVER_SESSION_H_
+
+
+#endif // _CHAT_SERVER_CONFIG_H_

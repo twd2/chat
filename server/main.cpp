@@ -1,11 +1,19 @@
 #include <cstdlib>
 #include <cstring>
+
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <signal.h>
+
+#include <iostream>
 #include <thread>
 #include <vector>
 #include <memory>
+
+#include "config.h"
+#include "handle.h"
 
 void error_and_exit(const char *msg)
 {
@@ -13,33 +21,34 @@ void error_and_exit(const char *msg)
     exit(1);
 }
 
-void handle(int sock, sockaddr_in sin)
+void ctrl_c_handler(int)
 {
-    const char *buffer = "hello, world\n";
-    send(sock, buffer, strlen(buffer), 0);
-    // shutdown(sock, SHUT_RDWR);
-    char buff[1024];
-    recv(sock, buff, 1024, 0);
-    buff[1023] = '\0';
+    std::cout << "Exiting..." << std::endl;
+    exit(0);
 }
 
 int main()
 {
-    const int on = 1;
+    signal(SIGINT, ctrl_c_handler);
+
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (server_sock < 0)
     {
         error_and_exit("create server socket");
     }
+
+    const int on = 1;
     setsockopt(server_sock, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
-    sockaddr_in sin;
-    sin.sin_family = AF_INET;
-    sin.sin_port = htons(1025);
-    sin.sin_addr.s_addr = inet_addr("0.0.0.0");
-    if (::bind(server_sock, (sockaddr *)&sin, sizeof(sin)) < 0)
+
+    sockaddr_in listen_sin;
+    listen_sin.sin_family = AF_INET;
+    listen_sin.sin_addr.s_addr = inet_addr(LISTEN_ADDR);
+    listen_sin.sin_port = htons(LISTEN_PORT);
+    if (::bind(server_sock, (sockaddr *)&listen_sin, sizeof(listen_sin)) < 0)
     {
         error_and_exit("bind");
     }
+
     if (listen(server_sock, 100) < 0)
     {
         error_and_exit("listen");
@@ -55,6 +64,19 @@ int main()
         {
             error_and_exit("accept");
         }
+
+        int keepIdle = 5;
+        int keepInterval = 5;
+        int keepCount = 9;
+        setsockopt(client_sock, SOL_SOCKET, SO_KEEPALIVE, &on, sizeof(on));
+        setsockopt(client_sock, SOL_TCP, TCP_KEEPIDLE, &keepIdle, sizeof(keepIdle));
+        setsockopt(client_sock, SOL_TCP, TCP_KEEPINTVL, &keepInterval, sizeof(keepInterval));
+        setsockopt(client_sock, SOL_TCP, TCP_KEEPCNT, &keepCount, sizeof(keepCount));
+
+        char remote_addr[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET, &(client_sin.sin_addr), remote_addr, sizeof(remote_addr));
+        unsigned short remote_port = ntohs(client_sin.sin_port);
+        std::cout << std::dec << "[main] Accept " << remote_addr << ":" << remote_port << std::endl;
         threads.push_back(std::make_shared<std::thread>(handle, client_sock, client_sin));
     }
     return 0;
