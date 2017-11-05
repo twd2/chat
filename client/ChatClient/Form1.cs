@@ -39,8 +39,11 @@ namespace ChatClient
             TcpClient client = new TcpClient();
             client.Connect("192.168.1.105", 1025);
             NetworkStream stream = client.GetStream();
-            Packet.Hello obj = (Packet.Hello)Packet.Read(stream);
+            int type;
+            Packet.Hello obj = (Packet.Hello)Packet.Read(stream, out type);
             Packet.NetworkToHost(obj);
+            Packet.HostToNetwork(obj);
+            Packet.Write(stream, obj);
             MessageBox.Show(obj.message);
         }
     }

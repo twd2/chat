@@ -54,10 +54,9 @@ namespace ChatClient
             return read;
         }
 
-        public static int SafeWrite(Stream stream, byte[] buffer, int offset, int length)
+        public static void SafeWrite(Stream stream, byte[] buffer, int offset, int length)
         {
             stream.Write(buffer, offset, length);
-            return buffer.Length;
         }
     }
 }

@@ -30,9 +30,8 @@ namespace ChatClient
             public ushort type;
 
             public Head()
+                : this((ushort)Marshal.SizeOf(typeof(Head)), 0)
             {
-                size = (ushort)Marshal.SizeOf(typeof(Head));
-                type = 0;
             }
 
             public Head(ushort size, ushort type)
@@ -166,39 +165,72 @@ namespace ChatClient
             }
         }
 
-        public static object Read(Stream stream)
+        public static object Read(Stream stream, out int type)
         {
+            type = 0;
             byte[] sizeBuffer = new byte[sizeof(ushort)];
             if (Util.SafeRead(stream, sizeBuffer, 0, sizeBuffer.Length) <= 0)
             {
                 return null;
             }
             ushort size = (ushort)((sizeBuffer[0] << 8) + sizeBuffer[1]);
+
             byte[] buffer = new byte[size];
             if (Util.SafeRead(stream, buffer, sizeBuffer.Length, buffer.Length - sizeBuffer.Length) <= 0)
             {
                 return null;
             }
-            // Array.Copy(sizeBuffer, buffer, sizeBuffer.Length);
+
             Head head = Util.ByteArrayToStructure<Head>(buffer);
-            int offset = 0;
-            switch (IPAddress.NetworkToHostOrder(head.type))
+            type = IPAddress.NetworkToHostOrder(head.type);
+            switch (type)
             {
                 case TYPE_HELLO:
+                {
                     Hello packet = Util.ByteArrayToStructure<Hello>(buffer);
                     packet.h.size = (ushort)IPAddress.HostToNetworkOrder((short)size); // fix size
                     // fix message
-                    offset = Marshal.SizeOf(typeof(Hello)) - PLACEHOLDER_SIZE;
+                    int offset = Marshal.SizeOf(typeof(Hello)) - PLACEHOLDER_SIZE;
                     packet.message = Encoding.UTF8.GetString(buffer, offset, buffer.Length - offset - 1);
                     return packet;
+                }
                 case TYPE_LOGIN_REQ:
-                    break;
+                {
+                    LoginRequest packet = Util.ByteArrayToStructure<LoginRequest>(buffer);
+                    packet.h.size = (ushort)IPAddress.HostToNetworkOrder((short)size); // fix size
+                    return packet;
+                }
                 case TYPE_LOGIN_RES:
-                    break;
+                {
+                    LoginResponse packet = Util.ByteArrayToStructure<LoginResponse>(buffer);
+                    packet.h.size = (ushort)IPAddress.HostToNetworkOrder((short)size); // fix size
+                    return packet;
+                }
                 default:
                     break;
             }
             return null;
+        }
+
+        public static void Write<T>(Stream stream, T obj)
+        {
+            byte[] buffer = Util.StructureToByteArray(obj);
+            Util.SafeWrite(stream, buffer, 0, buffer.Length);
+        }
+
+        public static void Write(Stream stream, Hello obj)
+        {
+            byte[] buffer = new byte[(uint)IPAddress.NetworkToHostOrder((short)obj.h.size)];
+
+            byte[] fixedPart = Util.StructureToByteArray(obj);
+            Array.Copy(fixedPart, buffer, fixedPart.Length - PLACEHOLDER_SIZE);
+
+            byte[] varPart = Encoding.UTF8.GetBytes(obj.message);
+            Array.Copy(varPart, 0, buffer, fixedPart.Length - PLACEHOLDER_SIZE, varPart.Length);
+
+            Debug.Assert(fixedPart.Length - PLACEHOLDER_SIZE + varPart.Length + 1 == buffer.Length);
+            buffer[buffer.Length - 1] = 0;
+            Util.SafeWrite(stream, buffer, 0, buffer.Length);
         }
     }
 }
