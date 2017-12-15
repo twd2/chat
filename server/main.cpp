@@ -14,6 +14,7 @@
 
 #include "config.h"
 #include "handle.h"
+#include "chat.pb.h"
 
 void error_and_exit(const char *msg)
 {
@@ -29,6 +30,7 @@ void ctrl_c_handler(int)
 
 int main()
 {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
     signal(SIGINT, ctrl_c_handler);
 
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);
