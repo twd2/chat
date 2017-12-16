@@ -37,6 +37,13 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     }
     
     log() << "received a packet sized " << std::dec << size << "bytes, type=" << (int)type << ", reading payload..." << std::endl;
+    
+    // FIXME: ugly!
+    if (type != PACKET_LOGIN && type != PACKET_REGISTER && type != PACKET_LIST_USER &&
+        type != PACKET_MESSAGE && type != PACKET_RAW && type != PACKET_RESET)
+    {
+        return "dummy";
+    }
 
     // read payload
     std::string buffer;

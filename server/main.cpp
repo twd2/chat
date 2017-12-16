@@ -11,7 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
-#include <vector>
+#include <list>
 #include <memory>
 
 #include "config.h"
@@ -92,7 +92,7 @@ int main()
         error_and_exit("listen");
     }
 
-    std::vector<std::shared_ptr<std::thread> > threads;
+    std::list<std::shared_ptr<std::thread> > threads;
     while (true)
     {
         sockaddr_in client_sin;
@@ -116,6 +116,8 @@ int main()
         inet_ntop(AF_INET, &(client_sin.sin_addr), remote_addr, sizeof(remote_addr));
         unsigned short remote_port = ntohs(client_sin.sin_port);
         std::cout << std::dec << "[main] Accept " << remote_addr << ":" << remote_port << std::endl;
+        
+        // TODO: clean dummy threads
         threads.push_back(std::make_shared<std::thread>(handle, client_sock, client_sin));
     }
     return 0;
