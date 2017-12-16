@@ -66,7 +66,7 @@ void test_user_database()
 int main()
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-    test_user_database();
+    // test_user_database();
     signal(SIGINT, ctrl_c_handler);
 
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -103,6 +103,7 @@ int main()
             error_and_exit("accept");
         }
 
+        // set keepalive
         int keepIdle = 5;
         int keepInterval = 5;
         int keepCount = 9;

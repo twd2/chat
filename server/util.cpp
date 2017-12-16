@@ -2,7 +2,9 @@
 
 #include <sys/socket.h>
 
+#include <iostream>
 #include <algorithm>
+#include <thread>
 
 ssize_t safe_recv(int sock, void *buf, std::size_t len)
 {
@@ -34,3 +36,7 @@ ssize_t safe_send(int sock, const void *buf, std::size_t len)
     return sent;
 }
 
+std::ostream &log()
+{
+    return std::cout << "[thread 0x" << std::hex << std::this_thread::get_id() << "] ";
+}

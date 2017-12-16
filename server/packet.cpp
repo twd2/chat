@@ -2,87 +2,73 @@
 #include "util.h"
 
 #include <cstdlib>
+#include <string>
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-namespace packet
+std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
 {
-    void ntoh(head *p)
-    {
-        p->size = ntohs(p->size);
-        p->type = ntohs(p->type);
-    }
+    uint32_t size = 0;
 
-    void ntoh(hello *p)
+    // read and check size
+    ssize_t result = safe_recv(sock, &size, sizeof(size));
+    if (result <= 0)
     {
-        ntoh(&(p->h));
-    }
-
-    void ntoh(login_req *p)
-    {
-        ntoh(&(p->h));
-    }
-
-    void ntoh(login_res *p)
-    {
-        ntoh(&(p->h));
-        p->code = ntohs(p->code);
-    }
-
-    void hton(head *p)
-    {
-        p->size = htons(p->size);
-        p->type = htons(p->type);
-    }
-
-    void hton(hello *p)
-    {
-        hton(&(p->h));
-    }
-
-    void hton(login_req *p)
-    {
-        hton(&(p->h));
-    }
-
-    void hton(login_res *p)
-    {
-        hton(&(p->h));
-        p->code = htons(p->code);
-    }
-
-    void *recv(int sock, ssize_t *err)
-    {
-        uint16_t size = 0;
-        int result = safe_recv(sock, &size, sizeof(size));
-        if (result <= 0)
+        if (err)
         {
-            if (err)
-            {
-                *err = result;
-            }
-            return nullptr;
+            *err = result;
         }
-        size = ntohs(size);
-        void *p = malloc(size);
-        ((head *)p)->size = htons(size);
-        result = safe_recv(sock, (uint8_t *)p + sizeof(size), size - sizeof(size));
-        if (result <= 0)
-        {
-            if (err)
-            {
-                *err = result;
-            }
-            free(p);
-            return nullptr;
-        }
-        return p;
+        return "";
     }
-
-    ssize_t send(int sock, void *p)
+    size = ntohl(size);
+    // TODO: check if size is too big
+    
+    // read type
+    // assert sizeof(type) == 1
+    result = safe_recv(sock, &type, sizeof(type));
+    if (result <= 0)
     {
-        return safe_send(sock, p, ntohs(((head *)p)->size));
+        if (err)
+        {
+            *err = result;
+        }
+        return "";
     }
+    
+    log() << "received a packet sized " << std::dec << size << "bytes, type=" << (int)type << ", reading payload..." << std::endl;
+
+    // read payload
+    std::string buffer;
+    buffer.resize(size);
+    result = safe_recv(sock, &buffer[0u], size);
+    if (result <= 0)
+    {
+        if (err)
+        {
+            *err = result;
+        }
+        return "";
+    }
+    return buffer;
+}
+
+ssize_t send_packet(int sock, const std::string &buffer, packet_type_t type)
+{
+    // send size
+    uint32_t size = buffer.size();
+    size = htonl(size);
+    ssize_t result = safe_send(sock, &size, sizeof(size));
+    if (result <= 0)
+    {
+        return result;
+    }
+    
+    // send type
+    // assert sizeof(type) == 1
+    safe_send(sock, &type, sizeof(type));
+
+    // send payload
+    return safe_send(sock, buffer.data(), buffer.size());
 }
 

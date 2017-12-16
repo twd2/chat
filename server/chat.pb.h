@@ -37,12 +37,14 @@ namespace protobuf_chat_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[11];
+  static const ::google::protobuf::internal::ParseTable schema[12];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
 void AddDescriptors();
+void InitDefaultsPacketImpl();
+void InitDefaultsPacket();
 void InitDefaultsLoginRequestImpl();
 void InitDefaultsLoginRequest();
 void InitDefaultsLoginResponseImpl();
@@ -66,6 +68,7 @@ void InitDefaultsUserDatabase_User();
 void InitDefaultsUserDatabaseImpl();
 void InitDefaultsUserDatabase();
 inline void InitDefaults() {
+  InitDefaultsPacket();
   InitDefaultsLoginRequest();
   InitDefaultsLoginResponse();
   InitDefaultsRegisterRequest();
@@ -97,6 +100,9 @@ extern LoginResponseDefaultTypeInternal _LoginResponse_default_instance_;
 class Message;
 class MessageDefaultTypeInternal;
 extern MessageDefaultTypeInternal _Message_default_instance_;
+class Packet;
+class PacketDefaultTypeInternal;
+extern PacketDefaultTypeInternal _Packet_default_instance_;
 class RegisterRequest;
 class RegisterRequestDefaultTypeInternal;
 extern RegisterRequestDefaultTypeInternal _RegisterRequest_default_instance_;
@@ -113,6 +119,30 @@ class UserDatabase_User;
 class UserDatabase_UserDefaultTypeInternal;
 extern UserDatabase_UserDefaultTypeInternal _UserDatabase_User_default_instance_;
 
+enum Packet_Type {
+  Packet_Type_LOGIN = 0,
+  Packet_Type_REGISTER = 1,
+  Packet_Type_LIST_USER = 2,
+  Packet_Type_MESSAGE = 3,
+  Packet_Type_RESET = 4,
+  Packet_Type_Packet_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  Packet_Type_Packet_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool Packet_Type_IsValid(int value);
+const Packet_Type Packet_Type_Type_MIN = Packet_Type_LOGIN;
+const Packet_Type Packet_Type_Type_MAX = Packet_Type_RESET;
+const int Packet_Type_Type_ARRAYSIZE = Packet_Type_Type_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Packet_Type_descriptor();
+inline const ::std::string& Packet_Type_Name(Packet_Type value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Packet_Type_descriptor(), value);
+}
+inline bool Packet_Type_Parse(
+    const ::std::string& name, Packet_Type* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Packet_Type>(
+    Packet_Type_descriptor(), name, value);
+}
 enum LoginResponse_Code {
   LoginResponse_Code_SUCCESS = 0,
   LoginResponse_Code_USER_NOT_FOUND = 1,
@@ -179,6 +209,152 @@ inline bool Reset_Code_Parse(
 }
 // ===================================================================
 
+class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Packet) */ {
+ public:
+  Packet();
+  virtual ~Packet();
+
+  Packet(const Packet& from);
+
+  inline Packet& operator=(const Packet& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Packet(Packet&& from) noexcept
+    : Packet() {
+    *this = ::std::move(from);
+  }
+
+  inline Packet& operator=(Packet&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Packet& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Packet* internal_default_instance() {
+    return reinterpret_cast<const Packet*>(
+               &_Packet_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(Packet* other);
+  friend void swap(Packet& a, Packet& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Packet* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Packet* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Packet& from);
+  void MergeFrom(const Packet& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Packet* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef Packet_Type Type;
+  static const Type LOGIN =
+    Packet_Type_LOGIN;
+  static const Type REGISTER =
+    Packet_Type_REGISTER;
+  static const Type LIST_USER =
+    Packet_Type_LIST_USER;
+  static const Type MESSAGE =
+    Packet_Type_MESSAGE;
+  static const Type RESET =
+    Packet_Type_RESET;
+  static inline bool Type_IsValid(int value) {
+    return Packet_Type_IsValid(value);
+  }
+  static const Type Type_MIN =
+    Packet_Type_Type_MIN;
+  static const Type Type_MAX =
+    Packet_Type_Type_MAX;
+  static const int Type_ARRAYSIZE =
+    Packet_Type_Type_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Type_descriptor() {
+    return Packet_Type_descriptor();
+  }
+  static inline const ::std::string& Type_Name(Type value) {
+    return Packet_Type_Name(value);
+  }
+  static inline bool Type_Parse(const ::std::string& name,
+      Type* value) {
+    return Packet_Type_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // bytes payload = 2;
+  void clear_payload();
+  static const int kPayloadFieldNumber = 2;
+  const ::std::string& payload() const;
+  void set_payload(const ::std::string& value);
+  #if LANG_CXX11
+  void set_payload(::std::string&& value);
+  #endif
+  void set_payload(const char* value);
+  void set_payload(const void* value, size_t size);
+  ::std::string* mutable_payload();
+  ::std::string* release_payload();
+  void set_allocated_payload(::std::string* payload);
+
+  // .Packet.Type type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::Packet_Type type() const;
+  void set_type(::Packet_Type value);
+
+  // @@protoc_insertion_point(class_scope:Packet)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr payload_;
+  int type_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsPacketImpl();
+};
+// -------------------------------------------------------------------
+
 class LoginRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:LoginRequest) */ {
  public:
   LoginRequest();
@@ -214,7 +390,7 @@ class LoginRequest : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_LoginRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(LoginRequest* other);
   friend void swap(LoginRequest& a, LoginRequest& b) {
@@ -336,7 +512,7 @@ class LoginResponse : public ::google::protobuf::Message /* @@protoc_insertion_p
                &_LoginResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(LoginResponse* other);
   friend void swap(LoginResponse& a, LoginResponse& b) {
@@ -470,7 +646,7 @@ class RegisterRequest : public ::google::protobuf::Message /* @@protoc_insertion
                &_RegisterRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(RegisterRequest* other);
   friend void swap(RegisterRequest& a, RegisterRequest& b) {
@@ -592,7 +768,7 @@ class RegisterResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_RegisterResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(RegisterResponse* other);
   friend void swap(RegisterResponse& a, RegisterResponse& b) {
@@ -724,7 +900,7 @@ class ListUserRequest : public ::google::protobuf::Message /* @@protoc_insertion
                &_ListUserRequest_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(ListUserRequest* other);
   friend void swap(ListUserRequest& a, ListUserRequest& b) {
@@ -816,7 +992,7 @@ class ListUserResponse_User : public ::google::protobuf::Message /* @@protoc_ins
                &_ListUserResponse_User_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    5;
+    6;
 
   void Swap(ListUserResponse_User* other);
   friend void swap(ListUserResponse_User& a, ListUserResponse_User& b) {
@@ -930,7 +1106,7 @@ class ListUserResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_ListUserResponse_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    6;
+    7;
 
   void Swap(ListUserResponse* other);
   friend void swap(ListUserResponse& a, ListUserResponse& b) {
@@ -1037,7 +1213,7 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
                &_Message_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    8;
 
   void Swap(Message* other);
   friend void swap(Message& a, Message& b) {
@@ -1084,9 +1260,9 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // string msg = 3;
+  // string msg = 2;
   void clear_msg();
-  static const int kMsgFieldNumber = 3;
+  static const int kMsgFieldNumber = 2;
   const ::std::string& msg() const;
   void set_msg(const ::std::string& value);
   #if LANG_CXX11
@@ -1098,9 +1274,9 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_msg();
   void set_allocated_msg(::std::string* msg);
 
-  // bytes data = 4;
+  // bytes data = 3;
   void clear_data();
-  static const int kDataFieldNumber = 4;
+  static const int kDataFieldNumber = 3;
   const ::std::string& data() const;
   void set_data(const ::std::string& value);
   #if LANG_CXX11
@@ -1112,17 +1288,11 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_data();
   void set_allocated_data(::std::string* data);
 
-  // uint32 src_uid = 1;
-  void clear_src_uid();
-  static const int kSrcUidFieldNumber = 1;
-  ::google::protobuf::uint32 src_uid() const;
-  void set_src_uid(::google::protobuf::uint32 value);
-
-  // uint32 dest_uid = 2;
-  void clear_dest_uid();
-  static const int kDestUidFieldNumber = 2;
-  ::google::protobuf::uint32 dest_uid() const;
-  void set_dest_uid(::google::protobuf::uint32 value);
+  // uint32 uid = 1;
+  void clear_uid();
+  static const int kUidFieldNumber = 1;
+  ::google::protobuf::uint32 uid() const;
+  void set_uid(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:Message)
  private:
@@ -1130,8 +1300,7 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr msg_;
   ::google::protobuf::internal::ArenaStringPtr data_;
-  ::google::protobuf::uint32 src_uid_;
-  ::google::protobuf::uint32 dest_uid_;
+  ::google::protobuf::uint32 uid_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
   friend void ::protobuf_chat_2eproto::InitDefaultsMessageImpl();
@@ -1173,7 +1342,7 @@ class Reset : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
                &_Reset_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    8;
+    9;
 
   void Swap(Reset* other);
   friend void swap(Reset& a, Reset& b) {
@@ -1313,7 +1482,7 @@ class UserDatabase_User : public ::google::protobuf::Message /* @@protoc_inserti
                &_UserDatabase_User_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    9;
+    10;
 
   void Swap(UserDatabase_User* other);
   friend void swap(UserDatabase_User& a, UserDatabase_User& b) {
@@ -1442,7 +1611,7 @@ class UserDatabase : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_UserDatabase_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    10;
+    11;
 
   void Swap(UserDatabase* other);
   friend void swap(UserDatabase& a, UserDatabase& b) {
@@ -1521,6 +1690,77 @@ class UserDatabase : public ::google::protobuf::Message /* @@protoc_insertion_po
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Packet
+
+// .Packet.Type type = 1;
+inline void Packet::clear_type() {
+  type_ = 0;
+}
+inline ::Packet_Type Packet::type() const {
+  // @@protoc_insertion_point(field_get:Packet.type)
+  return static_cast< ::Packet_Type >(type_);
+}
+inline void Packet::set_type(::Packet_Type value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:Packet.type)
+}
+
+// bytes payload = 2;
+inline void Packet::clear_payload() {
+  payload_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Packet::payload() const {
+  // @@protoc_insertion_point(field_get:Packet.payload)
+  return payload_.GetNoArena();
+}
+inline void Packet::set_payload(const ::std::string& value) {
+  
+  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Packet.payload)
+}
+#if LANG_CXX11
+inline void Packet::set_payload(::std::string&& value) {
+  
+  payload_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Packet.payload)
+}
+#endif
+inline void Packet::set_payload(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Packet.payload)
+}
+inline void Packet::set_payload(const void* value, size_t size) {
+  
+  payload_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Packet.payload)
+}
+inline ::std::string* Packet::mutable_payload() {
+  
+  // @@protoc_insertion_point(field_mutable:Packet.payload)
+  return payload_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Packet::release_payload() {
+  // @@protoc_insertion_point(field_release:Packet.payload)
+  
+  return payload_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Packet::set_allocated_payload(::std::string* payload) {
+  if (payload != NULL) {
+    
+  } else {
+    
+  }
+  payload_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), payload);
+  // @@protoc_insertion_point(field_set_allocated:Packet.payload)
+}
+
+// -------------------------------------------------------------------
+
 // LoginRequest
 
 // string username = 1;
@@ -1916,35 +2156,21 @@ ListUserResponse::users() const {
 
 // Message
 
-// uint32 src_uid = 1;
-inline void Message::clear_src_uid() {
-  src_uid_ = 0u;
+// uint32 uid = 1;
+inline void Message::clear_uid() {
+  uid_ = 0u;
 }
-inline ::google::protobuf::uint32 Message::src_uid() const {
-  // @@protoc_insertion_point(field_get:Message.src_uid)
-  return src_uid_;
+inline ::google::protobuf::uint32 Message::uid() const {
+  // @@protoc_insertion_point(field_get:Message.uid)
+  return uid_;
 }
-inline void Message::set_src_uid(::google::protobuf::uint32 value) {
+inline void Message::set_uid(::google::protobuf::uint32 value) {
   
-  src_uid_ = value;
-  // @@protoc_insertion_point(field_set:Message.src_uid)
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:Message.uid)
 }
 
-// uint32 dest_uid = 2;
-inline void Message::clear_dest_uid() {
-  dest_uid_ = 0u;
-}
-inline ::google::protobuf::uint32 Message::dest_uid() const {
-  // @@protoc_insertion_point(field_get:Message.dest_uid)
-  return dest_uid_;
-}
-inline void Message::set_dest_uid(::google::protobuf::uint32 value) {
-  
-  dest_uid_ = value;
-  // @@protoc_insertion_point(field_set:Message.dest_uid)
-}
-
-// string msg = 3;
+// string msg = 2;
 inline void Message::clear_msg() {
   msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1997,7 +2223,7 @@ inline void Message::set_allocated_msg(::std::string* msg) {
   // @@protoc_insertion_point(field_set_allocated:Message.msg)
 }
 
-// bytes data = 4;
+// bytes data = 3;
 inline void Message::clear_data() {
   data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2302,6 +2528,8 @@ UserDatabase::users() const {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -2309,6 +2537,11 @@ UserDatabase::users() const {
 namespace google {
 namespace protobuf {
 
+template <> struct is_proto_enum< ::Packet_Type> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Packet_Type>() {
+  return ::Packet_Type_descriptor();
+}
 template <> struct is_proto_enum< ::LoginResponse_Code> : ::google::protobuf::internal::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::LoginResponse_Code>() {
