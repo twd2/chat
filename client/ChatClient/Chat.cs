@@ -20,33 +20,37 @@ public static partial class ChatReflection {
   static ChatReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgpjaGF0LnByb3RvIjIKDExvZ2luUmVxdWVzdBIQCgh1c2VybmFtZRgBIAEo",
-          "CRIQCghwYXNzd29yZBgCIAEoCSJ8Cg1Mb2dpblJlc3BvbnNlEiEKBGNvZGUY",
-          "ASABKA4yEy5Mb2dpblJlc3BvbnNlLkNvZGUSCwoDdWlkGAIgASgNIjsKBENv",
-          "ZGUSCwoHU1VDQ0VTUxAAEhIKDlVTRVJfTk9UX0ZPVU5EEAESEgoOUEFTU1dP",
-          "UkRfRVJST1IQAiI1Cg9SZWdpc3RlclJlcXVlc3QSEAoIdXNlcm5hbWUYASAB",
-          "KAkSEAoIcGFzc3dvcmQYAiABKAkiawoQUmVnaXN0ZXJSZXNwb25zZRIkCgRj",
-          "b2RlGAEgASgOMhYuUmVnaXN0ZXJSZXNwb25zZS5Db2RlEgsKA3VpZBgCIAEo",
-          "DSIkCgRDb2RlEgsKB1NVQ0NFU1MQABIPCgtVU0VSX0VYSVNUUxABIhEKD0xp",
-          "c3RVc2VyUmVxdWVzdCJgChBMaXN0VXNlclJlc3BvbnNlEiUKBXVzZXJzGAEg",
-          "AygLMhYuTGlzdFVzZXJSZXNwb25zZS5Vc2VyGiUKBFVzZXISCwoDdWlkGAEg",
-          "ASgNEhAKCHVzZXJuYW1lGAIgASgJIkcKB01lc3NhZ2USDwoHc3JjX3VpZBgB",
-          "IAEoDRIQCghkZXN0X3VpZBgCIAEoDRILCgNtc2cYAyABKAkSDAoEZGF0YRgE",
-          "IAEoDCJhCgVSZXNldBIZCgRjb2RlGAEgASgOMgsuUmVzZXQuQ29kZRILCgNt",
-          "c2cYAiABKAkiMAoEQ29kZRIRCg1VTktOT1dOX0VSUk9SEAASFQoRUFJPVE9D",
-          "T0xfTUlTTUFUQ0gQASJqCgxVc2VyRGF0YWJhc2USIQoFdXNlcnMYASADKAsy",
-          "Ei5Vc2VyRGF0YWJhc2UuVXNlcho3CgRVc2VyEgsKA3VpZBgBIAEoDRIQCgh1",
-          "c2VybmFtZRgCIAEoCRIQCghwYXNzd29yZBgDIAEoCWIGcHJvdG8z"));
+          "CgpjaGF0LnByb3RvIn0KBlBhY2tldBIaCgR0eXBlGAEgASgOMgwuUGFja2V0",
+          "LlR5cGUSDwoHcGF5bG9hZBgCIAEoDCJGCgRUeXBlEgkKBUxPR0lOEAASDAoI",
+          "UkVHSVNURVIQARINCglMSVNUX1VTRVIQAhILCgdNRVNTQUdFEAMSCQoFUkVT",
+          "RVQQBCIyCgxMb2dpblJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFz",
+          "c3dvcmQYAiABKAkifAoNTG9naW5SZXNwb25zZRIhCgRjb2RlGAEgASgOMhMu",
+          "TG9naW5SZXNwb25zZS5Db2RlEgsKA3VpZBgCIAEoDSI7CgRDb2RlEgsKB1NV",
+          "Q0NFU1MQABISCg5VU0VSX05PVF9GT1VORBABEhIKDlBBU1NXT1JEX0VSUk9S",
+          "EAIiNQoPUmVnaXN0ZXJSZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBh",
+          "c3N3b3JkGAIgASgJImsKEFJlZ2lzdGVyUmVzcG9uc2USJAoEY29kZRgBIAEo",
+          "DjIWLlJlZ2lzdGVyUmVzcG9uc2UuQ29kZRILCgN1aWQYAiABKA0iJAoEQ29k",
+          "ZRILCgdTVUNDRVNTEAASDwoLVVNFUl9FWElTVFMQASIRCg9MaXN0VXNlclJl",
+          "cXVlc3QiYAoQTGlzdFVzZXJSZXNwb25zZRIlCgV1c2VycxgBIAMoCzIWLkxp",
+          "c3RVc2VyUmVzcG9uc2UuVXNlcholCgRVc2VyEgsKA3VpZBgBIAEoDRIQCgh1",
+          "c2VybmFtZRgCIAEoCSIxCgdNZXNzYWdlEgsKA3VpZBgBIAEoDRILCgNtc2cY",
+          "AiABKAkSDAoEZGF0YRgDIAEoDCJhCgVSZXNldBIZCgRjb2RlGAEgASgOMgsu",
+          "UmVzZXQuQ29kZRILCgNtc2cYAiABKAkiMAoEQ29kZRIRCg1VTktOT1dOX0VS",
+          "Uk9SEAASFQoRUFJPVE9DT0xfTUlTTUFUQ0gQASJqCgxVc2VyRGF0YWJhc2US",
+          "IQoFdXNlcnMYASADKAsyEi5Vc2VyRGF0YWJhc2UuVXNlcho3CgRVc2VyEgsK",
+          "A3VpZBgBIAEoDRIQCgh1c2VybmFtZRgCIAEoCRIQCghwYXNzd29yZBgDIAEo",
+          "CWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(typeof(global::Packet), global::Packet.Parser, new[]{ "Type", "Payload" }, null, new[]{ typeof(global::Packet.Types.Type) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginRequest), global::LoginRequest.Parser, new[]{ "Username", "Password" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginResponse), global::LoginResponse.Parser, new[]{ "Code", "Uid" }, null, new[]{ typeof(global::LoginResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterRequest), global::RegisterRequest.Parser, new[]{ "Username", "Password" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Code", "Uid" }, null, new[]{ typeof(global::RegisterResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListUserRequest), global::ListUserRequest.Parser, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse), global::ListUserResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse.Types.User), global::ListUserResponse.Types.User.Parser, new[]{ "Uid", "Username" }, null, null, null)}),
-          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "SrcUid", "DestUid", "Msg", "Data" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Msg", "Data" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Reset), global::Reset.Parser, new[]{ "Code", "Msg" }, null, new[]{ typeof(global::Reset.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase), global::UserDatabase.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase.Types.User), global::UserDatabase.Types.User.Parser, new[]{ "Uid", "Username", "Password" }, null, null, null)})
         }));
@@ -55,6 +59,170 @@ public static partial class ChatReflection {
 
 }
 #region Messages
+public sealed partial class Packet : pb::IMessage<Packet> {
+  private static readonly pb::MessageParser<Packet> _parser = new pb::MessageParser<Packet>(() => new Packet());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<Packet> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[0]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Packet() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Packet(Packet other) : this() {
+    type_ = other.type_;
+    payload_ = other.payload_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Packet Clone() {
+    return new Packet(this);
+  }
+
+  /// <summary>Field number for the "type" field.</summary>
+  public const int TypeFieldNumber = 1;
+  private global::Packet.Types.Type type_ = 0;
+  /// <summary>
+  /// response for messages from server to client;
+  /// request uid for messages from client to server
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Packet.Types.Type Type {
+    get { return type_; }
+    set {
+      type_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "payload" field.</summary>
+  public const int PayloadFieldNumber = 2;
+  private pb::ByteString payload_ = pb::ByteString.Empty;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb::ByteString Payload {
+    get { return payload_; }
+    set {
+      payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as Packet);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(Packet other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Type != other.Type) return false;
+    if (Payload != other.Payload) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Type != 0) hash ^= Type.GetHashCode();
+    if (Payload.Length != 0) hash ^= Payload.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Type != 0) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Type);
+    }
+    if (Payload.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteBytes(Payload);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Type != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+    }
+    if (Payload.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(Payload);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(Packet other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Type != 0) {
+      Type = other.Type;
+    }
+    if (other.Payload.Length != 0) {
+      Payload = other.Payload;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          type_ = (global::Packet.Types.Type) input.ReadEnum();
+          break;
+        }
+        case 18: {
+          Payload = input.ReadBytes();
+          break;
+        }
+      }
+    }
+  }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the Packet message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public enum Type {
+      [pbr::OriginalName("LOGIN")] Login = 0,
+      [pbr::OriginalName("REGISTER")] Register = 1,
+      [pbr::OriginalName("LIST_USER")] ListUser = 2,
+      [pbr::OriginalName("MESSAGE")] Message = 3,
+      [pbr::OriginalName("RESET")] Reset = 4,
+    }
+
+  }
+  #endregion
+
+}
+
 public sealed partial class LoginRequest : pb::IMessage<LoginRequest> {
   private static readonly pb::MessageParser<LoginRequest> _parser = new pb::MessageParser<LoginRequest>(() => new LoginRequest());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -62,7 +230,7 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[0]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -207,7 +375,7 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[1]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -365,7 +533,7 @@ public sealed partial class RegisterRequest : pb::IMessage<RegisterRequest> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[2]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -510,7 +678,7 @@ public sealed partial class RegisterResponse : pb::IMessage<RegisterResponse> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[3]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -667,7 +835,7 @@ public sealed partial class ListUserRequest : pb::IMessage<ListUserRequest> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[4]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -756,7 +924,7 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[5]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1017,7 +1185,7 @@ public sealed partial class Message : pb::IMessage<Message> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[6]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1034,8 +1202,7 @@ public sealed partial class Message : pb::IMessage<Message> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public Message(Message other) : this() {
-    srcUid_ = other.srcUid_;
-    destUid_ = other.destUid_;
+    uid_ = other.uid_;
     msg_ = other.msg_;
     data_ = other.data_;
   }
@@ -1045,33 +1212,25 @@ public sealed partial class Message : pb::IMessage<Message> {
     return new Message(this);
   }
 
-  /// <summary>Field number for the "src_uid" field.</summary>
-  public const int SrcUidFieldNumber = 1;
-  private uint srcUid_;
+  /// <summary>Field number for the "uid" field.</summary>
+  public const int UidFieldNumber = 1;
+  private uint uid_;
+  /// <summary>
+  /// source uid for messages from server to client;
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public uint SrcUid {
-    get { return srcUid_; }
+  public uint Uid {
+    get { return uid_; }
     set {
-      srcUid_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "dest_uid" field.</summary>
-  public const int DestUidFieldNumber = 2;
-  private uint destUid_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public uint DestUid {
-    get { return destUid_; }
-    set {
-      destUid_ = value;
+      uid_ = value;
     }
   }
 
   /// <summary>Field number for the "msg" field.</summary>
-  public const int MsgFieldNumber = 3;
+  public const int MsgFieldNumber = 2;
   private string msg_ = "";
   /// <summary>
-  /// if data exists, msg means file name.
+  /// destination uid for messages from client to server
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public string Msg {
@@ -1082,7 +1241,7 @@ public sealed partial class Message : pb::IMessage<Message> {
   }
 
   /// <summary>Field number for the "data" field.</summary>
-  public const int DataFieldNumber = 4;
+  public const int DataFieldNumber = 3;
   private pb::ByteString data_ = pb::ByteString.Empty;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public pb::ByteString Data {
@@ -1105,8 +1264,7 @@ public sealed partial class Message : pb::IMessage<Message> {
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (SrcUid != other.SrcUid) return false;
-    if (DestUid != other.DestUid) return false;
+    if (Uid != other.Uid) return false;
     if (Msg != other.Msg) return false;
     if (Data != other.Data) return false;
     return true;
@@ -1115,8 +1273,7 @@ public sealed partial class Message : pb::IMessage<Message> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    if (SrcUid != 0) hash ^= SrcUid.GetHashCode();
-    if (DestUid != 0) hash ^= DestUid.GetHashCode();
+    if (Uid != 0) hash ^= Uid.GetHashCode();
     if (Msg.Length != 0) hash ^= Msg.GetHashCode();
     if (Data.Length != 0) hash ^= Data.GetHashCode();
     return hash;
@@ -1129,20 +1286,16 @@ public sealed partial class Message : pb::IMessage<Message> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    if (SrcUid != 0) {
+    if (Uid != 0) {
       output.WriteRawTag(8);
-      output.WriteUInt32(SrcUid);
-    }
-    if (DestUid != 0) {
-      output.WriteRawTag(16);
-      output.WriteUInt32(DestUid);
+      output.WriteUInt32(Uid);
     }
     if (Msg.Length != 0) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(18);
       output.WriteString(Msg);
     }
     if (Data.Length != 0) {
-      output.WriteRawTag(34);
+      output.WriteRawTag(26);
       output.WriteBytes(Data);
     }
   }
@@ -1150,11 +1303,8 @@ public sealed partial class Message : pb::IMessage<Message> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    if (SrcUid != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SrcUid);
-    }
-    if (DestUid != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DestUid);
+    if (Uid != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Uid);
     }
     if (Msg.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Msg);
@@ -1170,11 +1320,8 @@ public sealed partial class Message : pb::IMessage<Message> {
     if (other == null) {
       return;
     }
-    if (other.SrcUid != 0) {
-      SrcUid = other.SrcUid;
-    }
-    if (other.DestUid != 0) {
-      DestUid = other.DestUid;
+    if (other.Uid != 0) {
+      Uid = other.Uid;
     }
     if (other.Msg.Length != 0) {
       Msg = other.Msg;
@@ -1193,18 +1340,14 @@ public sealed partial class Message : pb::IMessage<Message> {
           input.SkipLastField();
           break;
         case 8: {
-          SrcUid = input.ReadUInt32();
+          Uid = input.ReadUInt32();
           break;
         }
-        case 16: {
-          DestUid = input.ReadUInt32();
-          break;
-        }
-        case 26: {
+        case 18: {
           Msg = input.ReadString();
           break;
         }
-        case 34: {
+        case 26: {
           Data = input.ReadBytes();
           break;
         }
@@ -1221,7 +1364,7 @@ public sealed partial class Reset : pb::IMessage<Reset> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[7]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1381,7 +1524,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[8]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
