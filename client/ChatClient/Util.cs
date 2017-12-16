@@ -11,34 +11,6 @@ namespace ChatClient
     {
         public const uint CHUNK_SIZE = 4096;
 
-        public static T ByteArrayToStructure<T>(byte[] bytes)
-        {
-            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            try
-            {
-                return (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
-            }
-            finally
-            {
-                handle.Free();
-            }
-        }
-
-        public static byte[] StructureToByteArray<T>(T obj)
-        {
-            byte[] bytes = new byte[Marshal.SizeOf(typeof(T))];
-            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            try
-            {
-                Marshal.StructureToPtr(obj, handle.AddrOfPinnedObject(), false);
-                return bytes;
-            }
-            finally
-            {
-                handle.Free();
-            }
-        }
-
         public static int SafeRead(Stream stream, byte[] buffer, int offset, int length)
         {
             int read = 0;
