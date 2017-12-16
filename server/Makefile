@@ -40,7 +40,7 @@ endif
 all: main
 	
 
-main: main.o $(OBJECTS)
+main: main.o chat.pb.o $(OBJECTS)
 	$(LD) $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
 
 main.o: main.cpp $(HEADERS)

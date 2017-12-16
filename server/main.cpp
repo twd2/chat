@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 
+#include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
@@ -8,6 +9,7 @@
 #include <signal.h>
 
 #include <iostream>
+#include <fstream>
 #include <thread>
 #include <vector>
 #include <memory>
@@ -28,9 +30,43 @@ void ctrl_c_handler(int)
     exit(0);
 }
 
+void test_user_database()
+{
+    UserDatabase userdb;
+
+    {
+        std::fstream in_file(USER_DATABASE_FILE, std::ios::in | std::ios::binary);
+        if (!userdb.ParseFromIstream(&in_file))
+        {
+            std::cerr << "Failed to parse user database." << std::endl;
+            // exit(1);
+        }
+    }
+    
+     for (int i = 0; i < userdb.users_size(); i++)
+     {
+         const UserDatabase::User &user = userdb.users(i);
+         std::cout << "UID: " << user.uid() << std::endl;
+         std::cout << "  username: " << user.username() << std::endl;
+         std::cout << "  password: *" << std::endl;
+     }
+     
+     {
+         UserDatabase::User &new_user = *userdb.add_users();
+         new_user.set_uid(getpid());
+         new_user.set_username("twd2");
+         new_user.set_password("123456");
+         
+         std::fstream out_file(USER_DATABASE_FILE, std::ios::out | std::ios::trunc | std::ios::binary);
+         userdb.SerializeToOstream(&out_file);
+     }
+     exit(0);
+}
+
 int main()
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
+    test_user_database();
     signal(SIGINT, ctrl_c_handler);
 
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);

@@ -527,3 +527,4 @@ FakesAssemblies/
 
 # Targets
 main
+*.bin
