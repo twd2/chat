@@ -1,6 +1,7 @@
 #include "handle.h"
 #include "global.h"
 #include "session.h"
+#include "util.h"
 
 #include <list>
 #include <iterator>
@@ -25,5 +26,6 @@ void handle(int sock, sockaddr_in sin)
         std::unique_lock<std::mutex> lock(global::sessions_mtx);
         global::sessions.erase(iter);
     }
+    log() << "global::sessions.erase(iter)" << std::endl;
 }
 

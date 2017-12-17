@@ -19,11 +19,6 @@
 #include "third_party/protobuf/version.h"
 #endif
 // @@protoc_insertion_point(includes)
-class PacketDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<Packet>
-      _instance;
-} _Packet_default_instance_;
 class LoginRequestDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<LoginRequest>
@@ -80,27 +75,6 @@ class UserDatabaseDefaultTypeInternal {
       _instance;
 } _UserDatabase_default_instance_;
 namespace protobuf_chat_2eproto {
-void InitDefaultsPacketImpl() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  {
-    void* ptr = &::_Packet_default_instance_;
-    new (ptr) ::Packet();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::Packet::InitAsDefaultInstance();
-}
-
-void InitDefaultsPacket() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsPacketImpl);
-}
-
 void InitDefaultsLoginRequestImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -334,17 +308,10 @@ void InitDefaultsUserDatabase() {
   ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsUserDatabaseImpl);
 }
 
-::google::protobuf::Metadata file_level_metadata[12];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
+::google::protobuf::Metadata file_level_metadata[11];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[3];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Packet, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Packet, type_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::Packet, payload_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::LoginRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -419,25 +386,24 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::UserDatabase, maxuid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::UserDatabase, users_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::Packet)},
-  { 7, -1, sizeof(::LoginRequest)},
-  { 14, -1, sizeof(::LoginResponse)},
-  { 21, -1, sizeof(::RegisterRequest)},
-  { 28, -1, sizeof(::RegisterResponse)},
-  { 35, -1, sizeof(::ListUserRequest)},
-  { 40, -1, sizeof(::ListUserResponse_User)},
-  { 47, -1, sizeof(::ListUserResponse)},
-  { 53, -1, sizeof(::Message)},
-  { 61, -1, sizeof(::Reset)},
-  { 68, -1, sizeof(::UserDatabase_User)},
-  { 76, -1, sizeof(::UserDatabase)},
+  { 0, -1, sizeof(::LoginRequest)},
+  { 7, -1, sizeof(::LoginResponse)},
+  { 14, -1, sizeof(::RegisterRequest)},
+  { 21, -1, sizeof(::RegisterResponse)},
+  { 28, -1, sizeof(::ListUserRequest)},
+  { 33, -1, sizeof(::ListUserResponse_User)},
+  { 40, -1, sizeof(::ListUserResponse)},
+  { 46, -1, sizeof(::Message)},
+  { 54, -1, sizeof(::Reset)},
+  { 61, -1, sizeof(::UserDatabase_User)},
+  { 69, -1, sizeof(::UserDatabase)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_Packet_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_LoginRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_LoginResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_RegisterRequest_default_instance_),
@@ -467,37 +433,34 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 12);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 11);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\nchat.proto\"}\n\006Packet\022\032\n\004type\030\001 \001(\0162\014.P"
-      "acket.Type\022\017\n\007payload\030\002 \001(\014\"F\n\004Type\022\t\n\005L"
-      "OGIN\020\000\022\014\n\010REGISTER\020\001\022\r\n\tLIST_USER\020\002\022\013\n\007M"
-      "ESSAGE\020\003\022\t\n\005RESET\020\004\"2\n\014LoginRequest\022\020\n\010u"
-      "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"|\n\rLogin"
-      "Response\022!\n\004code\030\001 \001(\0162\023.LoginResponse.C"
-      "ode\022\013\n\003uid\030\002 \001(\r\";\n\004Code\022\013\n\007SUCCESS\020\000\022\022\n"
-      "\016USER_NOT_FOUND\020\001\022\022\n\016PASSWORD_ERROR\020\002\"5\n"
-      "\017RegisterRequest\022\020\n\010username\030\001 \001(\t\022\020\n\010pa"
-      "ssword\030\002 \001(\t\"k\n\020RegisterResponse\022$\n\004code"
-      "\030\001 \001(\0162\026.RegisterResponse.Code\022\013\n\003uid\030\002 "
-      "\001(\r\"$\n\004Code\022\013\n\007SUCCESS\020\000\022\017\n\013USER_EXISTS\020"
-      "\001\"\021\n\017ListUserRequest\"`\n\020ListUserResponse"
-      "\022%\n\005users\030\001 \003(\0132\026.ListUserResponse.User\032"
-      "%\n\004User\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\"1"
-      "\n\007Message\022\013\n\003uid\030\001 \001(\r\022\013\n\003msg\030\002 \001(\t\022\014\n\004d"
-      "ata\030\003 \001(\014\"a\n\005Reset\022\031\n\004code\030\001 \001(\0162\013.Reset"
-      ".Code\022\013\n\003msg\030\002 \001(\t\"0\n\004Code\022\021\n\rUNKNOWN_ER"
-      "ROR\020\000\022\025\n\021PROTOCOL_MISMATCH\020\001\"j\n\014UserData"
-      "base\022!\n\005users\030\001 \003(\0132\022.UserDatabase.User\032"
-      "7\n\004User\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020"
-      "\n\010password\030\003 \001(\tb\006proto3"
+      "\n\nchat.proto\"2\n\014LoginRequest\022\020\n\010username"
+      "\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"|\n\rLoginRespons"
+      "e\022!\n\004code\030\001 \001(\0162\023.LoginResponse.Code\022\013\n\003"
+      "uid\030\002 \001(\r\";\n\004Code\022\013\n\007SUCCESS\020\000\022\022\n\016USER_N"
+      "OT_FOUND\020\001\022\022\n\016PASSWORD_ERROR\020\002\"5\n\017Regist"
+      "erRequest\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030"
+      "\002 \001(\t\"k\n\020RegisterResponse\022$\n\004code\030\001 \001(\0162"
+      "\026.RegisterResponse.Code\022\013\n\003uid\030\002 \001(\r\"$\n\004"
+      "Code\022\013\n\007SUCCESS\020\000\022\017\n\013USER_EXISTS\020\001\"\021\n\017Li"
+      "stUserRequest\"`\n\020ListUserResponse\022%\n\005use"
+      "rs\030\001 \003(\0132\026.ListUserResponse.User\032%\n\004User"
+      "\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\"1\n\007Messa"
+      "ge\022\013\n\003uid\030\001 \001(\r\022\013\n\003msg\030\002 \001(\t\022\014\n\004data\030\003 \001"
+      "(\014\"a\n\005Reset\022\031\n\004code\030\001 \001(\0162\013.Reset.Code\022\013"
+      "\n\003msg\030\002 \001(\t\"0\n\004Code\022\021\n\rUNKNOWN_ERROR\020\000\022\025"
+      "\n\021PROTOCOL_MISMATCH\020\001\"z\n\014UserDatabase\022\016\n"
+      "\006maxUid\030\001 \001(\r\022!\n\005users\030\002 \003(\0132\022.UserDatab"
+      "ase.User\0327\n\004User\022\013\n\003uid\030\001 \001(\r\022\020\n\010usernam"
+      "e\030\002 \001(\t\022\020\n\010password\030\003 \001(\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 864);
+      descriptor, 753);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "chat.proto", &protobuf_RegisterTypes);
 }
@@ -513,36 +476,9 @@ struct StaticDescriptorInitializer {
   }
 } static_descriptor_initializer;
 }  // namespace protobuf_chat_2eproto
-const ::google::protobuf::EnumDescriptor* Packet_Type_descriptor() {
-  protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_chat_2eproto::file_level_enum_descriptors[0];
-}
-bool Packet_Type_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const Packet_Type Packet::LOGIN;
-const Packet_Type Packet::REGISTER;
-const Packet_Type Packet::LIST_USER;
-const Packet_Type Packet::MESSAGE;
-const Packet_Type Packet::RESET;
-const Packet_Type Packet::Type_MIN;
-const Packet_Type Packet::Type_MAX;
-const int Packet::Type_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 const ::google::protobuf::EnumDescriptor* LoginResponse_Code_descriptor() {
   protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_chat_2eproto::file_level_enum_descriptors[1];
+  return protobuf_chat_2eproto::file_level_enum_descriptors[0];
 }
 bool LoginResponse_Code_IsValid(int value) {
   switch (value) {
@@ -565,7 +501,7 @@ const int LoginResponse::Code_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 const ::google::protobuf::EnumDescriptor* RegisterResponse_Code_descriptor() {
   protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_chat_2eproto::file_level_enum_descriptors[2];
+  return protobuf_chat_2eproto::file_level_enum_descriptors[1];
 }
 bool RegisterResponse_Code_IsValid(int value) {
   switch (value) {
@@ -586,7 +522,7 @@ const int RegisterResponse::Code_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 const ::google::protobuf::EnumDescriptor* Reset_Code_descriptor() {
   protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_chat_2eproto::file_level_enum_descriptors[3];
+  return protobuf_chat_2eproto::file_level_enum_descriptors[2];
 }
 bool Reset_Code_IsValid(int value) {
   switch (value) {
@@ -605,291 +541,6 @@ const Reset_Code Reset::Code_MIN;
 const Reset_Code Reset::Code_MAX;
 const int Reset::Code_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-// ===================================================================
-
-void Packet::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Packet::kTypeFieldNumber;
-const int Packet::kPayloadFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-Packet::Packet()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_chat_2eproto::InitDefaultsPacket();
-  }
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:Packet)
-}
-Packet::Packet(const Packet& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  payload_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.payload().size() > 0) {
-    payload_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.payload_);
-  }
-  type_ = from.type_;
-  // @@protoc_insertion_point(copy_constructor:Packet)
-}
-
-void Packet::SharedCtor() {
-  payload_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  type_ = 0;
-  _cached_size_ = 0;
-}
-
-Packet::~Packet() {
-  // @@protoc_insertion_point(destructor:Packet)
-  SharedDtor();
-}
-
-void Packet::SharedDtor() {
-  payload_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-
-void Packet::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* Packet::descriptor() {
-  ::protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_chat_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
-const Packet& Packet::default_instance() {
-  ::protobuf_chat_2eproto::InitDefaultsPacket();
-  return *internal_default_instance();
-}
-
-Packet* Packet::New(::google::protobuf::Arena* arena) const {
-  Packet* n = new Packet;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
-
-void Packet::Clear() {
-// @@protoc_insertion_point(message_clear_start:Packet)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  payload_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  type_ = 0;
-  _internal_metadata_.Clear();
-}
-
-bool Packet::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Packet)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .Packet.Type type = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_type(static_cast< ::Packet_Type >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // bytes payload = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_payload()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:Packet)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:Packet)
-  return false;
-#undef DO_
-}
-
-void Packet::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Packet)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .Packet.Type type = 1;
-  if (this->type() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      1, this->type(), output);
-  }
-
-  // bytes payload = 2;
-  if (this->payload().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      2, this->payload(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:Packet)
-}
-
-::google::protobuf::uint8* Packet::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:Packet)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .Packet.Type type = 1;
-  if (this->type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      1, this->type(), target);
-  }
-
-  // bytes payload = 2;
-  if (this->payload().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->payload(), target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:Packet)
-  return target;
-}
-
-size_t Packet::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Packet)
-  size_t total_size = 0;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  // bytes payload = 2;
-  if (this->payload().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->payload());
-  }
-
-  // .Packet.Type type = 1;
-  if (this->type() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void Packet::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Packet)
-  GOOGLE_DCHECK_NE(&from, this);
-  const Packet* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const Packet>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Packet)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Packet)
-    MergeFrom(*source);
-  }
-}
-
-void Packet::MergeFrom(const Packet& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Packet)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.payload().size() > 0) {
-
-    payload_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.payload_);
-  }
-  if (from.type() != 0) {
-    set_type(from.type());
-  }
-}
-
-void Packet::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Packet)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Packet::CopyFrom(const Packet& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Packet)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Packet::IsInitialized() const {
-  return true;
-}
-
-void Packet::Swap(Packet* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void Packet::InternalSwap(Packet* other) {
-  using std::swap;
-  payload_.Swap(&other->payload_);
-  swap(type_, other->type_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
-}
-
-::google::protobuf::Metadata Packet::GetMetadata() const {
-  protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_chat_2eproto::file_level_metadata[kIndexInFileMessages];
-}
-
 
 // ===================================================================
 
@@ -3805,6 +3456,7 @@ void UserDatabase_User::InternalSwap(UserDatabase_User* other) {
 void UserDatabase::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int UserDatabase::kMaxUidFieldNumber;
 const int UserDatabase::kUsersFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -3822,10 +3474,12 @@ UserDatabase::UserDatabase(const UserDatabase& from)
       users_(from.users_),
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  maxuid_ = from.maxuid_;
   // @@protoc_insertion_point(copy_constructor:UserDatabase)
 }
 
 void UserDatabase::SharedCtor() {
+  maxuid_ = 0u;
   _cached_size_ = 0;
 }
 
@@ -3867,6 +3521,7 @@ void UserDatabase::Clear() {
   (void) cached_has_bits;
 
   users_.Clear();
+  maxuid_ = 0u;
   _internal_metadata_.Clear();
 }
 
@@ -3880,10 +3535,24 @@ bool UserDatabase::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .UserDatabase.User users = 1;
+      // uint32 maxUid = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &maxuid_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .UserDatabase.User users = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(input, add_users()));
         } else {
           goto handle_unusual;
@@ -3917,11 +3586,16 @@ void UserDatabase::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .UserDatabase.User users = 1;
+  // uint32 maxUid = 1;
+  if (this->maxuid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->maxuid(), output);
+  }
+
+  // repeated .UserDatabase.User users = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->users_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->users(static_cast<int>(i)), output);
+      2, this->users(static_cast<int>(i)), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3938,12 +3612,17 @@ void UserDatabase::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .UserDatabase.User users = 1;
+  // uint32 maxUid = 1;
+  if (this->maxuid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->maxuid(), target);
+  }
+
+  // repeated .UserDatabase.User users = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->users_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        1, this->users(static_cast<int>(i)), deterministic, target);
+        2, this->users(static_cast<int>(i)), deterministic, target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3963,7 +3642,7 @@ size_t UserDatabase::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .UserDatabase.User users = 1;
+  // repeated .UserDatabase.User users = 2;
   {
     unsigned int count = static_cast<unsigned int>(this->users_size());
     total_size += 1UL * count;
@@ -3972,6 +3651,13 @@ size_t UserDatabase::ByteSizeLong() const {
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->users(static_cast<int>(i)));
     }
+  }
+
+  // uint32 maxUid = 1;
+  if (this->maxuid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->maxuid());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -4004,6 +3690,9 @@ void UserDatabase::MergeFrom(const UserDatabase& from) {
   (void) cached_has_bits;
 
   users_.MergeFrom(from.users_);
+  if (from.maxuid() != 0) {
+    set_maxuid(from.maxuid());
+  }
 }
 
 void UserDatabase::CopyFrom(const ::google::protobuf::Message& from) {
@@ -4031,6 +3720,7 @@ void UserDatabase::Swap(UserDatabase* other) {
 void UserDatabase::InternalSwap(UserDatabase* other) {
   using std::swap;
   users_.InternalSwap(&other->users_);
+  swap(maxuid_, other->maxuid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }

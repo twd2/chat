@@ -24,16 +24,14 @@ void session::handle()
 
     std::string msg = "This is a chat server. Hello, ";
     msg = msg + remote_addr + "!";
-    Reset rst;
-    rst.set_code(Reset::UNKNOWN_ERROR);
-    rst.set_msg(msg);
-    send_packet(sock, rst);
+    send_packet(sock, msg, PACKET_RAW);
 
     while (is_alive)
     {
+        ssize_t result = 1;
         packet_type_t type;
-        std::string buffer = recv_packet(sock, type);
-        if (buffer.empty())
+        std::string buffer = recv_packet(sock, type, &result);
+        if (result <= 0)
         {
             log() << "broken" << std::endl;
             break;
@@ -91,16 +89,40 @@ void session::handle_login(LoginRequest &q)
     }
 
     LoginResponse r;
-    if (q.username() == "twd2" && q.password() == "123456")
+    
+    uint32_t new_uid = 0;
+    
     {
-        r.set_code(LoginResponse::SUCCESS);
-        r.set_uid(1);
+        std::unique_lock<std::mutex> lock(global::users_mtx);
+        bool found = false;
+        for (const UserDatabase::User &u : global::users.users())
+        {
+            if (q.username() == u.username())
+            {
+                if (q.password() == u.password())
+                {
+                    r.set_code(LoginResponse::SUCCESS);
+                    r.set_uid(u.uid());
+                    new_uid = u.uid();
+                }
+                else
+                {
+                    r.set_code(LoginResponse::PASSWORD_ERROR);
+                    r.set_uid(0);
+                }
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            r.set_code(LoginResponse::USER_NOT_FOUND);
+            r.set_uid(0);
+        }
     }
-    else
-    {
-        r.set_code(LoginResponse::PASSWORD_ERROR);
-        r.set_uid(0);
-    }
+    
+    set_uid(new_uid);
+
     send_packet(sock, r);
 }
 
@@ -114,8 +136,34 @@ void session::handle_register(RegisterRequest &q)
     }
     
     RegisterResponse r;
-    r.set_code(RegisterResponse::USER_EXISTS);
-    r.set_uid(0);
+
+    {
+        std::unique_lock<std::mutex> lock(global::users_mtx);
+        bool found = false;
+        for (const UserDatabase::User &u : global::users.users())
+        {
+            if (q.username() == u.username())
+            {
+                r.set_code(RegisterResponse::USER_EXISTS);
+                r.set_uid(0);
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            uint32_t new_uid = global::users.maxuid() + 1;
+            global::users.set_maxuid(new_uid);
+            UserDatabase::User &new_user = *global::users.add_users();
+            new_user.set_uid(new_uid);
+            new_user.set_username(q.username());
+            new_user.set_password(q.password());
+            global::save_users();
+            r.set_code(RegisterResponse::SUCCESS);
+            r.set_uid(new_uid);
+        }
+    }
+
     send_packet(sock, r);
 }
 
@@ -129,6 +177,17 @@ void session::handle_list_user(ListUserRequest &q)
     }
 
     ListUserResponse r;
+    
+    {
+        std::unique_lock<std::mutex> lock(global::users_mtx);
+        for (const UserDatabase::User &u : global::users.users())
+        {
+            ListUserResponse::User &ru = *r.add_users();
+            ru.set_uid(u.uid());
+            ru.set_username(u.username());
+        }
+    }
+    
     send_packet(sock, r);
 }
 

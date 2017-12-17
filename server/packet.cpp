@@ -42,7 +42,12 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     if (type != PACKET_LOGIN && type != PACKET_REGISTER && type != PACKET_LIST_USER &&
         type != PACKET_MESSAGE && type != PACKET_RAW && type != PACKET_RESET)
     {
-        return "dummy";
+        return "";
+    }
+    
+    if (size == 0)
+    {
+        return "";
     }
 
     // read payload

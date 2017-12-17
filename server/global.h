@@ -20,6 +20,10 @@ public:
     static std::mutex user_sessions_mtx;
     static std::map<uint32_t, std::queue<Message> > pending_messages;
     static std::mutex pending_messages_mtx;
+    static UserDatabase users;
+    static std::mutex users_mtx;
+    static void load_users();
+    static void save_users();
 };
 
 #endif // _CHAT_SERVER_GLOBAL_H_
