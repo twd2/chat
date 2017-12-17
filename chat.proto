@@ -63,5 +63,6 @@ message UserDatabase {
     string username = 2;
     string password = 3;
   }
-  repeated User users = 1;
+  uint32 maxUid = 1;
+  repeated User users = 2;
 }
