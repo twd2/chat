@@ -21,30 +21,12 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Packet.LoginRequest loginReq = new Packet.LoginRequest();
-            loginReq.username = new string('g', 1024);
-            loginReq.password = "twd3";
-            Debug.Print(loginReq.h.size.ToString());
-            Debug.Print(loginReq.h.type.ToString());
-            Packet.HostToNetwork(loginReq);
-            Debug.Print(loginReq.h.size.ToString());
-            Debug.Print(loginReq.h.type.ToString());
-
-            byte[] bytes = Util.StructureToByteArray(loginReq);
-            Packet.Hello loginReq2 = 
-                Util.ByteArrayToStructure<Packet.Hello>(bytes);
-            Packet.NetworkToHost(loginReq2);
-            // MessageBox.Show(Marshal.SizeOf(typeof(Packet.Hello)).ToString());
-
             TcpClient client = new TcpClient();
             client.Connect("192.168.1.105", 1025);
             NetworkStream stream = client.GetStream();
-            int type;
-            Packet.Hello obj = (Packet.Hello)Packet.Read(stream, out type);
-            Packet.NetworkToHost(obj);
-            Packet.HostToNetwork(obj);
-            Packet.Write(stream, obj);
-            MessageBox.Show(obj.message);
+            byte type;
+            byte[] buffer = Packet.Read(stream, out type);
+            MessageBox.Show(Encoding.UTF8.GetString(buffer));
         }
     }
 }
