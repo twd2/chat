@@ -56,6 +56,9 @@ void session::handle()
             CASE(PACKET_LOGIN, LoginRequest, login)
             CASE(PACKET_REGISTER, RegisterRequest, register)
             CASE(PACKET_LIST_USER, ListUserRequest, list_user)
+            CASE(PACKET_LIST_BUDDY, ListBuddyRequest, list_buddy)
+            CASE(PACKET_ADD_BUDDY, AddBuddyRequest, add_buddy)
+            CASE(PACKET_REMOVE_BUDDY, RemoveBuddyRequest, remove_buddy)
             CASE(PACKET_MESSAGE, Message, message)
             CASE(PACKET_RESET, Reset, reset)
 #undef CASE
@@ -189,6 +192,22 @@ void session::handle_list_user(ListUserRequest &q)
     }
     
     send_packet(sock, r);
+}
+
+
+void session::handle_list_buddy(ListBuddyRequest &q)
+{
+    log() << "handling list buddy!" << std::endl;
+}
+
+void session::handle_add_buddy(AddBuddyRequest &q)
+{
+    log() << "handling add buddy!" << std::endl;
+}
+
+void session::handle_remove_buddy(RemoveBuddyRequest &q)
+{
+    log() << "handling remove buddy!" << std::endl;
 }
 
 void session::handle_message(Message &q)

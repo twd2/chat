@@ -38,6 +38,9 @@ public:
     void handle_login(LoginRequest &q);
     void handle_register(RegisterRequest &q);
     void handle_list_user(ListUserRequest &q);
+    void handle_list_buddy(ListBuddyRequest &q);
+    void handle_add_buddy(AddBuddyRequest &q);
+    void handle_remove_buddy(RemoveBuddyRequest &q);
     void handle_message(Message &q);
     void handle_reset(Reset &q);
     void kick(bool send_msg = false);
