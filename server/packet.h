@@ -14,7 +14,10 @@
 #define PACKET_LOGIN 0
 #define PACKET_REGISTER 1
 #define PACKET_LIST_USER 2
-#define PACKET_MESSAGE 3
+#define PACKET_LIST_BUDDY 3
+#define PACKET_ADD_BUDDY 4
+#define PACKET_REMOVE_BUDDY 5
+#define PACKET_MESSAGE 6
 #define PACKET_RAW 254
 #define PACKET_RESET 255
 
@@ -47,6 +50,21 @@ inline ssize_t send_packet(int sock, const RegisterResponse &p)
 inline ssize_t send_packet(int sock, const ListUserResponse &p)
 {
     return __send_packet(sock, p, PACKET_LIST_USER);
+}
+
+inline ssize_t send_packet(int sock, const ListBuddyResponse &p)
+{
+    return __send_packet(sock, p, PACKET_LIST_BUDDY);
+}
+
+inline ssize_t send_packet(int sock, const AddBuddyResponse &p)
+{
+    return __send_packet(sock, p, PACKET_ADD_BUDDY);
+}
+
+inline ssize_t send_packet(int sock, const RemoveBuddyResponse &p)
+{
+    return __send_packet(sock, p, PACKET_REMOVE_BUDDY);
 }
 
 inline ssize_t send_packet(int sock, const Message &p)

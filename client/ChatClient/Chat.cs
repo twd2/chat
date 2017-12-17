@@ -30,13 +30,22 @@ public static partial class ChatReflection {
           "DSIkCgRDb2RlEgsKB1NVQ0NFU1MQABIPCgtVU0VSX0VYSVNUUxABIhEKD0xp",
           "c3RVc2VyUmVxdWVzdCJgChBMaXN0VXNlclJlc3BvbnNlEiUKBXVzZXJzGAEg",
           "AygLMhYuTGlzdFVzZXJSZXNwb25zZS5Vc2VyGiUKBFVzZXISCwoDdWlkGAEg",
-          "ASgNEhAKCHVzZXJuYW1lGAIgASgJIjEKB01lc3NhZ2USCwoDdWlkGAEgASgN",
-          "EgsKA21zZxgCIAEoCRIMCgRkYXRhGAMgASgMImEKBVJlc2V0EhkKBGNvZGUY",
-          "ASABKA4yCy5SZXNldC5Db2RlEgsKA21zZxgCIAEoCSIwCgRDb2RlEhEKDVVO",
-          "S05PV05fRVJST1IQABIVChFQUk9UT0NPTF9NSVNNQVRDSBABInoKDFVzZXJE",
-          "YXRhYmFzZRIOCgZtYXhVaWQYASABKA0SIQoFdXNlcnMYAiADKAsyEi5Vc2Vy",
-          "RGF0YWJhc2UuVXNlcho3CgRVc2VyEgsKA3VpZBgBIAEoDRIQCgh1c2VybmFt",
-          "ZRgCIAEoCRIQCghwYXNzd29yZBgDIAEoCWIGcHJvdG8z"));
+          "ASgNEhAKCHVzZXJuYW1lGAIgASgJIhIKEExpc3RCdWRkeVJlcXVlc3QiYgoR",
+          "TGlzdEJ1ZGR5UmVzcG9uc2USJgoFdXNlcnMYASADKAsyFy5MaXN0QnVkZHlS",
+          "ZXNwb25zZS5Vc2VyGiUKBFVzZXISCwoDdWlkGAEgASgNEhAKCHVzZXJuYW1l",
+          "GAIgASgJIh4KD0FkZEJ1ZGR5UmVxdWVzdBILCgN1aWQYASABKA0iWQoQQWRk",
+          "QnVkZHlSZXNwb25zZRIkCgRjb2RlGAEgASgOMhYuQWRkQnVkZHlSZXNwb25z",
+          "ZS5Db2RlIh8KBENvZGUSCwoHU1VDQ0VTUxAAEgoKBkZBSUxFRBABIiEKElJl",
+          "bW92ZUJ1ZGR5UmVxdWVzdBILCgN1aWQYASABKA0iXwoTUmVtb3ZlQnVkZHlS",
+          "ZXNwb25zZRInCgRjb2RlGAEgASgOMhkuUmVtb3ZlQnVkZHlSZXNwb25zZS5D",
+          "b2RlIh8KBENvZGUSCwoHU1VDQ0VTUxAAEgoKBkZBSUxFRBABIjEKB01lc3Nh",
+          "Z2USCwoDdWlkGAEgASgNEgsKA21zZxgCIAEoCRIMCgRkYXRhGAMgASgMImEK",
+          "BVJlc2V0EhkKBGNvZGUYASABKA4yCy5SZXNldC5Db2RlEgsKA21zZxgCIAEo",
+          "CSIwCgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NPTF9NSVNN",
+          "QVRDSBABIosBCgxVc2VyRGF0YWJhc2USDgoGbWF4VWlkGAEgASgNEiEKBXVz",
+          "ZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVzZXIaSAoEVXNlchILCgN1aWQY",
+          "ASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoIcGFzc3dvcmQYAyABKAkSDwoH",
+          "YnVkZGllcxgEIAMoDWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -46,9 +55,15 @@ public static partial class ChatReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Code", "Uid" }, null, new[]{ typeof(global::RegisterResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListUserRequest), global::ListUserRequest.Parser, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse), global::ListUserResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse.Types.User), global::ListUserResponse.Types.User.Parser, new[]{ "Uid", "Username" }, null, null, null)}),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyRequest), global::ListBuddyRequest.Parser, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse), global::ListBuddyResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse.Types.User), global::ListBuddyResponse.Types.User.Parser, new[]{ "Uid", "Username" }, null, null, null)}),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyRequest), global::AddBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyResponse), global::AddBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::AddBuddyResponse.Types.Code) }, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyRequest), global::RemoveBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyResponse), global::RemoveBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::RemoveBuddyResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Msg", "Data" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Reset), global::Reset.Parser, new[]{ "Code", "Msg" }, null, new[]{ typeof(global::Reset.Types.Code) }, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase), global::UserDatabase.Parser, new[]{ "MaxUid", "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase.Types.User), global::UserDatabase.Types.User.Parser, new[]{ "Uid", "Username", "Password" }, null, null, null)})
+          new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase), global::UserDatabase.Parser, new[]{ "MaxUid", "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase.Types.User), global::UserDatabase.Types.User.Parser, new[]{ "Uid", "Username", "Password", "Buddies" }, null, null, null)})
         }));
   }
   #endregion
@@ -1010,6 +1025,848 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
 
 }
 
+public sealed partial class ListBuddyRequest : pb::IMessage<ListBuddyRequest> {
+  private static readonly pb::MessageParser<ListBuddyRequest> _parser = new pb::MessageParser<ListBuddyRequest>(() => new ListBuddyRequest());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ListBuddyRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyRequest(ListBuddyRequest other) : this() {
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyRequest Clone() {
+    return new ListBuddyRequest(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ListBuddyRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ListBuddyRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ListBuddyRequest other) {
+    if (other == null) {
+      return;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+      }
+    }
+  }
+
+}
+
+public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> {
+  private static readonly pb::MessageParser<ListBuddyResponse> _parser = new pb::MessageParser<ListBuddyResponse>(() => new ListBuddyResponse());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ListBuddyResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyResponse(ListBuddyResponse other) : this() {
+    users_ = other.users_.Clone();
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ListBuddyResponse Clone() {
+    return new ListBuddyResponse(this);
+  }
+
+  /// <summary>Field number for the "users" field.</summary>
+  public const int UsersFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::ListBuddyResponse.Types.User> _repeated_users_codec
+      = pb::FieldCodec.ForMessage(10, global::ListBuddyResponse.Types.User.Parser);
+  private readonly pbc::RepeatedField<global::ListBuddyResponse.Types.User> users_ = new pbc::RepeatedField<global::ListBuddyResponse.Types.User>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ListBuddyResponse.Types.User> Users {
+    get { return users_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ListBuddyResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ListBuddyResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!users_.Equals(other.users_)) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= users_.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    users_.WriteTo(output, _repeated_users_codec);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += users_.CalculateSize(_repeated_users_codec);
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ListBuddyResponse other) {
+    if (other == null) {
+      return;
+    }
+    users_.Add(other.users_);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 10: {
+          users_.AddEntriesFrom(input, _repeated_users_codec);
+          break;
+        }
+      }
+    }
+  }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the ListBuddyResponse message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public sealed partial class User : pb::IMessage<User> {
+      private static readonly pb::MessageParser<User> _parser = new pb::MessageParser<User>(() => new User());
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public static pb::MessageParser<User> Parser { get { return _parser; } }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public static pbr::MessageDescriptor Descriptor {
+        get { return global::ListBuddyResponse.Descriptor.NestedTypes[0]; }
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      pbr::MessageDescriptor pb::IMessage.Descriptor {
+        get { return Descriptor; }
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public User() {
+        OnConstruction();
+      }
+
+      partial void OnConstruction();
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public User(User other) : this() {
+        uid_ = other.uid_;
+        username_ = other.username_;
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public User Clone() {
+        return new User(this);
+      }
+
+      /// <summary>Field number for the "uid" field.</summary>
+      public const int UidFieldNumber = 1;
+      private uint uid_;
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public uint Uid {
+        get { return uid_; }
+        set {
+          uid_ = value;
+        }
+      }
+
+      /// <summary>Field number for the "username" field.</summary>
+      public const int UsernameFieldNumber = 2;
+      private string username_ = "";
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public string Username {
+        get { return username_; }
+        set {
+          username_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        }
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public override bool Equals(object other) {
+        return Equals(other as User);
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public bool Equals(User other) {
+        if (ReferenceEquals(other, null)) {
+          return false;
+        }
+        if (ReferenceEquals(other, this)) {
+          return true;
+        }
+        if (Uid != other.Uid) return false;
+        if (Username != other.Username) return false;
+        return true;
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public override int GetHashCode() {
+        int hash = 1;
+        if (Uid != 0) hash ^= Uid.GetHashCode();
+        if (Username.Length != 0) hash ^= Username.GetHashCode();
+        return hash;
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public override string ToString() {
+        return pb::JsonFormatter.ToDiagnosticString(this);
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public void WriteTo(pb::CodedOutputStream output) {
+        if (Uid != 0) {
+          output.WriteRawTag(8);
+          output.WriteUInt32(Uid);
+        }
+        if (Username.Length != 0) {
+          output.WriteRawTag(18);
+          output.WriteString(Username);
+        }
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public int CalculateSize() {
+        int size = 0;
+        if (Uid != 0) {
+          size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Uid);
+        }
+        if (Username.Length != 0) {
+          size += 1 + pb::CodedOutputStream.ComputeStringSize(Username);
+        }
+        return size;
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public void MergeFrom(User other) {
+        if (other == null) {
+          return;
+        }
+        if (other.Uid != 0) {
+          Uid = other.Uid;
+        }
+        if (other.Username.Length != 0) {
+          Username = other.Username;
+        }
+      }
+
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public void MergeFrom(pb::CodedInputStream input) {
+        uint tag;
+        while ((tag = input.ReadTag()) != 0) {
+          switch(tag) {
+            default:
+              input.SkipLastField();
+              break;
+            case 8: {
+              Uid = input.ReadUInt32();
+              break;
+            }
+            case 18: {
+              Username = input.ReadString();
+              break;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+  #endregion
+
+}
+
+public sealed partial class AddBuddyRequest : pb::IMessage<AddBuddyRequest> {
+  private static readonly pb::MessageParser<AddBuddyRequest> _parser = new pb::MessageParser<AddBuddyRequest>(() => new AddBuddyRequest());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<AddBuddyRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyRequest(AddBuddyRequest other) : this() {
+    uid_ = other.uid_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyRequest Clone() {
+    return new AddBuddyRequest(this);
+  }
+
+  /// <summary>Field number for the "uid" field.</summary>
+  public const int UidFieldNumber = 1;
+  private uint uid_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Uid {
+    get { return uid_; }
+    set {
+      uid_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as AddBuddyRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(AddBuddyRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Uid != other.Uid) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Uid != 0) hash ^= Uid.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Uid != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Uid);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Uid != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Uid);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(AddBuddyRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Uid != 0) {
+      Uid = other.Uid;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          Uid = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class AddBuddyResponse : pb::IMessage<AddBuddyResponse> {
+  private static readonly pb::MessageParser<AddBuddyResponse> _parser = new pb::MessageParser<AddBuddyResponse>(() => new AddBuddyResponse());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<AddBuddyResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyResponse(AddBuddyResponse other) : this() {
+    code_ = other.code_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public AddBuddyResponse Clone() {
+    return new AddBuddyResponse(this);
+  }
+
+  /// <summary>Field number for the "code" field.</summary>
+  public const int CodeFieldNumber = 1;
+  private global::AddBuddyResponse.Types.Code code_ = 0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::AddBuddyResponse.Types.Code Code {
+    get { return code_; }
+    set {
+      code_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as AddBuddyResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(AddBuddyResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Code != other.Code) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Code != 0) hash ^= Code.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Code != 0) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Code);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Code != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(AddBuddyResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Code != 0) {
+      Code = other.Code;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          code_ = (global::AddBuddyResponse.Types.Code) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the AddBuddyResponse message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public enum Code {
+      [pbr::OriginalName("SUCCESS")] Success = 0,
+      [pbr::OriginalName("FAILED")] Failed = 1,
+    }
+
+  }
+  #endregion
+
+}
+
+public sealed partial class RemoveBuddyRequest : pb::IMessage<RemoveBuddyRequest> {
+  private static readonly pb::MessageParser<RemoveBuddyRequest> _parser = new pb::MessageParser<RemoveBuddyRequest>(() => new RemoveBuddyRequest());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RemoveBuddyRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyRequest(RemoveBuddyRequest other) : this() {
+    uid_ = other.uid_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyRequest Clone() {
+    return new RemoveBuddyRequest(this);
+  }
+
+  /// <summary>Field number for the "uid" field.</summary>
+  public const int UidFieldNumber = 1;
+  private uint uid_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Uid {
+    get { return uid_; }
+    set {
+      uid_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RemoveBuddyRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RemoveBuddyRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Uid != other.Uid) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Uid != 0) hash ^= Uid.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Uid != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Uid);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Uid != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Uid);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RemoveBuddyRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Uid != 0) {
+      Uid = other.Uid;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          Uid = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class RemoveBuddyResponse : pb::IMessage<RemoveBuddyResponse> {
+  private static readonly pb::MessageParser<RemoveBuddyResponse> _parser = new pb::MessageParser<RemoveBuddyResponse>(() => new RemoveBuddyResponse());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RemoveBuddyResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ChatReflection.Descriptor.MessageTypes[11]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyResponse(RemoveBuddyResponse other) : this() {
+    code_ = other.code_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RemoveBuddyResponse Clone() {
+    return new RemoveBuddyResponse(this);
+  }
+
+  /// <summary>Field number for the "code" field.</summary>
+  public const int CodeFieldNumber = 1;
+  private global::RemoveBuddyResponse.Types.Code code_ = 0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RemoveBuddyResponse.Types.Code Code {
+    get { return code_; }
+    set {
+      code_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RemoveBuddyResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RemoveBuddyResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Code != other.Code) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Code != 0) hash ^= Code.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Code != 0) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Code);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Code != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RemoveBuddyResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Code != 0) {
+      Code = other.Code;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          code_ = (global::RemoveBuddyResponse.Types.Code) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the RemoveBuddyResponse message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public enum Code {
+      [pbr::OriginalName("SUCCESS")] Success = 0,
+      [pbr::OriginalName("FAILED")] Failed = 1,
+    }
+
+  }
+  #endregion
+
+}
+
 public sealed partial class Message : pb::IMessage<Message> {
   private static readonly pb::MessageParser<Message> _parser = new pb::MessageParser<Message>(() => new Message());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1017,7 +1874,7 @@ public sealed partial class Message : pb::IMessage<Message> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[6]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1196,7 +2053,7 @@ public sealed partial class Reset : pb::IMessage<Reset> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[7]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1356,7 +2213,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ChatReflection.Descriptor.MessageTypes[8]; }
+    get { return global::ChatReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1515,6 +2372,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         uid_ = other.uid_;
         username_ = other.username_;
         password_ = other.password_;
+        buddies_ = other.buddies_.Clone();
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1555,6 +2413,16 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         }
       }
 
+      /// <summary>Field number for the "buddies" field.</summary>
+      public const int BuddiesFieldNumber = 4;
+      private static readonly pb::FieldCodec<uint> _repeated_buddies_codec
+          = pb::FieldCodec.ForUInt32(34);
+      private readonly pbc::RepeatedField<uint> buddies_ = new pbc::RepeatedField<uint>();
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public pbc::RepeatedField<uint> Buddies {
+        get { return buddies_; }
+      }
+
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
       public override bool Equals(object other) {
         return Equals(other as User);
@@ -1571,6 +2439,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         if (Uid != other.Uid) return false;
         if (Username != other.Username) return false;
         if (Password != other.Password) return false;
+        if(!buddies_.Equals(other.buddies_)) return false;
         return true;
       }
 
@@ -1580,6 +2449,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         if (Uid != 0) hash ^= Uid.GetHashCode();
         if (Username.Length != 0) hash ^= Username.GetHashCode();
         if (Password.Length != 0) hash ^= Password.GetHashCode();
+        hash ^= buddies_.GetHashCode();
         return hash;
       }
 
@@ -1602,6 +2472,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
           output.WriteRawTag(26);
           output.WriteString(Password);
         }
+        buddies_.WriteTo(output, _repeated_buddies_codec);
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1616,6 +2487,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         if (Password.Length != 0) {
           size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
         }
+        size += buddies_.CalculateSize(_repeated_buddies_codec);
         return size;
       }
 
@@ -1633,6 +2505,7 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
         if (other.Password.Length != 0) {
           Password = other.Password;
         }
+        buddies_.Add(other.buddies_);
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1653,6 +2526,11 @@ public sealed partial class UserDatabase : pb::IMessage<UserDatabase> {
             }
             case 26: {
               Password = input.ReadString();
+              break;
+            }
+            case 34:
+            case 32: {
+              buddies_.AddEntriesFrom(input, _repeated_buddies_codec);
               break;
             }
           }

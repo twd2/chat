@@ -40,6 +40,7 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     
     // FIXME: ugly!
     if (type != PACKET_LOGIN && type != PACKET_REGISTER && type != PACKET_LIST_USER &&
+        type != PACKET_LIST_BUDDY && type != PACKET_ADD_BUDDY && type != PACKET_REMOVE_BUDDY &&
         type != PACKET_MESSAGE && type != PACKET_RAW && type != PACKET_RESET)
     {
         return "";

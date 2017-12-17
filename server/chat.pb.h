@@ -37,7 +37,7 @@ namespace protobuf_chat_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[11];
+  static const ::google::protobuf::internal::ParseTable schema[18];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -57,6 +57,20 @@ void InitDefaultsListUserResponse_UserImpl();
 void InitDefaultsListUserResponse_User();
 void InitDefaultsListUserResponseImpl();
 void InitDefaultsListUserResponse();
+void InitDefaultsListBuddyRequestImpl();
+void InitDefaultsListBuddyRequest();
+void InitDefaultsListBuddyResponse_UserImpl();
+void InitDefaultsListBuddyResponse_User();
+void InitDefaultsListBuddyResponseImpl();
+void InitDefaultsListBuddyResponse();
+void InitDefaultsAddBuddyRequestImpl();
+void InitDefaultsAddBuddyRequest();
+void InitDefaultsAddBuddyResponseImpl();
+void InitDefaultsAddBuddyResponse();
+void InitDefaultsRemoveBuddyRequestImpl();
+void InitDefaultsRemoveBuddyRequest();
+void InitDefaultsRemoveBuddyResponseImpl();
+void InitDefaultsRemoveBuddyResponse();
 void InitDefaultsMessageImpl();
 void InitDefaultsMessage();
 void InitDefaultsResetImpl();
@@ -73,12 +87,34 @@ inline void InitDefaults() {
   InitDefaultsListUserRequest();
   InitDefaultsListUserResponse_User();
   InitDefaultsListUserResponse();
+  InitDefaultsListBuddyRequest();
+  InitDefaultsListBuddyResponse_User();
+  InitDefaultsListBuddyResponse();
+  InitDefaultsAddBuddyRequest();
+  InitDefaultsAddBuddyResponse();
+  InitDefaultsRemoveBuddyRequest();
+  InitDefaultsRemoveBuddyResponse();
   InitDefaultsMessage();
   InitDefaultsReset();
   InitDefaultsUserDatabase_User();
   InitDefaultsUserDatabase();
 }
 }  // namespace protobuf_chat_2eproto
+class AddBuddyRequest;
+class AddBuddyRequestDefaultTypeInternal;
+extern AddBuddyRequestDefaultTypeInternal _AddBuddyRequest_default_instance_;
+class AddBuddyResponse;
+class AddBuddyResponseDefaultTypeInternal;
+extern AddBuddyResponseDefaultTypeInternal _AddBuddyResponse_default_instance_;
+class ListBuddyRequest;
+class ListBuddyRequestDefaultTypeInternal;
+extern ListBuddyRequestDefaultTypeInternal _ListBuddyRequest_default_instance_;
+class ListBuddyResponse;
+class ListBuddyResponseDefaultTypeInternal;
+extern ListBuddyResponseDefaultTypeInternal _ListBuddyResponse_default_instance_;
+class ListBuddyResponse_User;
+class ListBuddyResponse_UserDefaultTypeInternal;
+extern ListBuddyResponse_UserDefaultTypeInternal _ListBuddyResponse_User_default_instance_;
 class ListUserRequest;
 class ListUserRequestDefaultTypeInternal;
 extern ListUserRequestDefaultTypeInternal _ListUserRequest_default_instance_;
@@ -103,6 +139,12 @@ extern RegisterRequestDefaultTypeInternal _RegisterRequest_default_instance_;
 class RegisterResponse;
 class RegisterResponseDefaultTypeInternal;
 extern RegisterResponseDefaultTypeInternal _RegisterResponse_default_instance_;
+class RemoveBuddyRequest;
+class RemoveBuddyRequestDefaultTypeInternal;
+extern RemoveBuddyRequestDefaultTypeInternal _RemoveBuddyRequest_default_instance_;
+class RemoveBuddyResponse;
+class RemoveBuddyResponseDefaultTypeInternal;
+extern RemoveBuddyResponseDefaultTypeInternal _RemoveBuddyResponse_default_instance_;
 class Reset;
 class ResetDefaultTypeInternal;
 extern ResetDefaultTypeInternal _Reset_default_instance_;
@@ -155,6 +197,48 @@ inline bool RegisterResponse_Code_Parse(
     const ::std::string& name, RegisterResponse_Code* value) {
   return ::google::protobuf::internal::ParseNamedEnum<RegisterResponse_Code>(
     RegisterResponse_Code_descriptor(), name, value);
+}
+enum AddBuddyResponse_Code {
+  AddBuddyResponse_Code_SUCCESS = 0,
+  AddBuddyResponse_Code_FAILED = 1,
+  AddBuddyResponse_Code_AddBuddyResponse_Code_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  AddBuddyResponse_Code_AddBuddyResponse_Code_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool AddBuddyResponse_Code_IsValid(int value);
+const AddBuddyResponse_Code AddBuddyResponse_Code_Code_MIN = AddBuddyResponse_Code_SUCCESS;
+const AddBuddyResponse_Code AddBuddyResponse_Code_Code_MAX = AddBuddyResponse_Code_FAILED;
+const int AddBuddyResponse_Code_Code_ARRAYSIZE = AddBuddyResponse_Code_Code_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* AddBuddyResponse_Code_descriptor();
+inline const ::std::string& AddBuddyResponse_Code_Name(AddBuddyResponse_Code value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    AddBuddyResponse_Code_descriptor(), value);
+}
+inline bool AddBuddyResponse_Code_Parse(
+    const ::std::string& name, AddBuddyResponse_Code* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<AddBuddyResponse_Code>(
+    AddBuddyResponse_Code_descriptor(), name, value);
+}
+enum RemoveBuddyResponse_Code {
+  RemoveBuddyResponse_Code_SUCCESS = 0,
+  RemoveBuddyResponse_Code_FAILED = 1,
+  RemoveBuddyResponse_Code_RemoveBuddyResponse_Code_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  RemoveBuddyResponse_Code_RemoveBuddyResponse_Code_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool RemoveBuddyResponse_Code_IsValid(int value);
+const RemoveBuddyResponse_Code RemoveBuddyResponse_Code_Code_MIN = RemoveBuddyResponse_Code_SUCCESS;
+const RemoveBuddyResponse_Code RemoveBuddyResponse_Code_Code_MAX = RemoveBuddyResponse_Code_FAILED;
+const int RemoveBuddyResponse_Code_Code_ARRAYSIZE = RemoveBuddyResponse_Code_Code_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* RemoveBuddyResponse_Code_descriptor();
+inline const ::std::string& RemoveBuddyResponse_Code_Name(RemoveBuddyResponse_Code value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    RemoveBuddyResponse_Code_descriptor(), value);
+}
+inline bool RemoveBuddyResponse_Code_Parse(
+    const ::std::string& name, RemoveBuddyResponse_Code* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<RemoveBuddyResponse_Code>(
+    RemoveBuddyResponse_Code_descriptor(), name, value);
 }
 enum Reset_Code {
   Reset_Code_UNKNOWN_ERROR = 0,
@@ -1002,6 +1086,767 @@ class ListUserResponse : public ::google::protobuf::Message /* @@protoc_insertio
 };
 // -------------------------------------------------------------------
 
+class ListBuddyRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ListBuddyRequest) */ {
+ public:
+  ListBuddyRequest();
+  virtual ~ListBuddyRequest();
+
+  ListBuddyRequest(const ListBuddyRequest& from);
+
+  inline ListBuddyRequest& operator=(const ListBuddyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ListBuddyRequest(ListBuddyRequest&& from) noexcept
+    : ListBuddyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ListBuddyRequest& operator=(ListBuddyRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ListBuddyRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListBuddyRequest* internal_default_instance() {
+    return reinterpret_cast<const ListBuddyRequest*>(
+               &_ListBuddyRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    7;
+
+  void Swap(ListBuddyRequest* other);
+  friend void swap(ListBuddyRequest& a, ListBuddyRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListBuddyRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ListBuddyRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ListBuddyRequest& from);
+  void MergeFrom(const ListBuddyRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ListBuddyRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:ListBuddyRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsListBuddyRequestImpl();
+};
+// -------------------------------------------------------------------
+
+class ListBuddyResponse_User : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ListBuddyResponse.User) */ {
+ public:
+  ListBuddyResponse_User();
+  virtual ~ListBuddyResponse_User();
+
+  ListBuddyResponse_User(const ListBuddyResponse_User& from);
+
+  inline ListBuddyResponse_User& operator=(const ListBuddyResponse_User& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ListBuddyResponse_User(ListBuddyResponse_User&& from) noexcept
+    : ListBuddyResponse_User() {
+    *this = ::std::move(from);
+  }
+
+  inline ListBuddyResponse_User& operator=(ListBuddyResponse_User&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ListBuddyResponse_User& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListBuddyResponse_User* internal_default_instance() {
+    return reinterpret_cast<const ListBuddyResponse_User*>(
+               &_ListBuddyResponse_User_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    8;
+
+  void Swap(ListBuddyResponse_User* other);
+  friend void swap(ListBuddyResponse_User& a, ListBuddyResponse_User& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListBuddyResponse_User* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ListBuddyResponse_User* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ListBuddyResponse_User& from);
+  void MergeFrom(const ListBuddyResponse_User& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ListBuddyResponse_User* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string username = 2;
+  void clear_username();
+  static const int kUsernameFieldNumber = 2;
+  const ::std::string& username() const;
+  void set_username(const ::std::string& value);
+  #if LANG_CXX11
+  void set_username(::std::string&& value);
+  #endif
+  void set_username(const char* value);
+  void set_username(const char* value, size_t size);
+  ::std::string* mutable_username();
+  ::std::string* release_username();
+  void set_allocated_username(::std::string* username);
+
+  // uint32 uid = 1;
+  void clear_uid();
+  static const int kUidFieldNumber = 1;
+  ::google::protobuf::uint32 uid() const;
+  void set_uid(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:ListBuddyResponse.User)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr username_;
+  ::google::protobuf::uint32 uid_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsListBuddyResponse_UserImpl();
+};
+// -------------------------------------------------------------------
+
+class ListBuddyResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ListBuddyResponse) */ {
+ public:
+  ListBuddyResponse();
+  virtual ~ListBuddyResponse();
+
+  ListBuddyResponse(const ListBuddyResponse& from);
+
+  inline ListBuddyResponse& operator=(const ListBuddyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ListBuddyResponse(ListBuddyResponse&& from) noexcept
+    : ListBuddyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ListBuddyResponse& operator=(ListBuddyResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ListBuddyResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ListBuddyResponse* internal_default_instance() {
+    return reinterpret_cast<const ListBuddyResponse*>(
+               &_ListBuddyResponse_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    9;
+
+  void Swap(ListBuddyResponse* other);
+  friend void swap(ListBuddyResponse& a, ListBuddyResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ListBuddyResponse* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ListBuddyResponse* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ListBuddyResponse& from);
+  void MergeFrom(const ListBuddyResponse& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ListBuddyResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef ListBuddyResponse_User User;
+
+  // accessors -------------------------------------------------------
+
+  // repeated .ListBuddyResponse.User users = 1;
+  int users_size() const;
+  void clear_users();
+  static const int kUsersFieldNumber = 1;
+  const ::ListBuddyResponse_User& users(int index) const;
+  ::ListBuddyResponse_User* mutable_users(int index);
+  ::ListBuddyResponse_User* add_users();
+  ::google::protobuf::RepeatedPtrField< ::ListBuddyResponse_User >*
+      mutable_users();
+  const ::google::protobuf::RepeatedPtrField< ::ListBuddyResponse_User >&
+      users() const;
+
+  // @@protoc_insertion_point(class_scope:ListBuddyResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::ListBuddyResponse_User > users_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsListBuddyResponseImpl();
+};
+// -------------------------------------------------------------------
+
+class AddBuddyRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:AddBuddyRequest) */ {
+ public:
+  AddBuddyRequest();
+  virtual ~AddBuddyRequest();
+
+  AddBuddyRequest(const AddBuddyRequest& from);
+
+  inline AddBuddyRequest& operator=(const AddBuddyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  AddBuddyRequest(AddBuddyRequest&& from) noexcept
+    : AddBuddyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AddBuddyRequest& operator=(AddBuddyRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const AddBuddyRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddBuddyRequest* internal_default_instance() {
+    return reinterpret_cast<const AddBuddyRequest*>(
+               &_AddBuddyRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    10;
+
+  void Swap(AddBuddyRequest* other);
+  friend void swap(AddBuddyRequest& a, AddBuddyRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddBuddyRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  AddBuddyRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const AddBuddyRequest& from);
+  void MergeFrom(const AddBuddyRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(AddBuddyRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 uid = 1;
+  void clear_uid();
+  static const int kUidFieldNumber = 1;
+  ::google::protobuf::uint32 uid() const;
+  void set_uid(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:AddBuddyRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 uid_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsAddBuddyRequestImpl();
+};
+// -------------------------------------------------------------------
+
+class AddBuddyResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:AddBuddyResponse) */ {
+ public:
+  AddBuddyResponse();
+  virtual ~AddBuddyResponse();
+
+  AddBuddyResponse(const AddBuddyResponse& from);
+
+  inline AddBuddyResponse& operator=(const AddBuddyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  AddBuddyResponse(AddBuddyResponse&& from) noexcept
+    : AddBuddyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AddBuddyResponse& operator=(AddBuddyResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const AddBuddyResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddBuddyResponse* internal_default_instance() {
+    return reinterpret_cast<const AddBuddyResponse*>(
+               &_AddBuddyResponse_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    11;
+
+  void Swap(AddBuddyResponse* other);
+  friend void swap(AddBuddyResponse& a, AddBuddyResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddBuddyResponse* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  AddBuddyResponse* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const AddBuddyResponse& from);
+  void MergeFrom(const AddBuddyResponse& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(AddBuddyResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef AddBuddyResponse_Code Code;
+  static const Code SUCCESS =
+    AddBuddyResponse_Code_SUCCESS;
+  static const Code FAILED =
+    AddBuddyResponse_Code_FAILED;
+  static inline bool Code_IsValid(int value) {
+    return AddBuddyResponse_Code_IsValid(value);
+  }
+  static const Code Code_MIN =
+    AddBuddyResponse_Code_Code_MIN;
+  static const Code Code_MAX =
+    AddBuddyResponse_Code_Code_MAX;
+  static const int Code_ARRAYSIZE =
+    AddBuddyResponse_Code_Code_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Code_descriptor() {
+    return AddBuddyResponse_Code_descriptor();
+  }
+  static inline const ::std::string& Code_Name(Code value) {
+    return AddBuddyResponse_Code_Name(value);
+  }
+  static inline bool Code_Parse(const ::std::string& name,
+      Code* value) {
+    return AddBuddyResponse_Code_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // .AddBuddyResponse.Code code = 1;
+  void clear_code();
+  static const int kCodeFieldNumber = 1;
+  ::AddBuddyResponse_Code code() const;
+  void set_code(::AddBuddyResponse_Code value);
+
+  // @@protoc_insertion_point(class_scope:AddBuddyResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  int code_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsAddBuddyResponseImpl();
+};
+// -------------------------------------------------------------------
+
+class RemoveBuddyRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:RemoveBuddyRequest) */ {
+ public:
+  RemoveBuddyRequest();
+  virtual ~RemoveBuddyRequest();
+
+  RemoveBuddyRequest(const RemoveBuddyRequest& from);
+
+  inline RemoveBuddyRequest& operator=(const RemoveBuddyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RemoveBuddyRequest(RemoveBuddyRequest&& from) noexcept
+    : RemoveBuddyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RemoveBuddyRequest& operator=(RemoveBuddyRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RemoveBuddyRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RemoveBuddyRequest* internal_default_instance() {
+    return reinterpret_cast<const RemoveBuddyRequest*>(
+               &_RemoveBuddyRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    12;
+
+  void Swap(RemoveBuddyRequest* other);
+  friend void swap(RemoveBuddyRequest& a, RemoveBuddyRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RemoveBuddyRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RemoveBuddyRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RemoveBuddyRequest& from);
+  void MergeFrom(const RemoveBuddyRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RemoveBuddyRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint32 uid = 1;
+  void clear_uid();
+  static const int kUidFieldNumber = 1;
+  ::google::protobuf::uint32 uid() const;
+  void set_uid(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:RemoveBuddyRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 uid_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsRemoveBuddyRequestImpl();
+};
+// -------------------------------------------------------------------
+
+class RemoveBuddyResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:RemoveBuddyResponse) */ {
+ public:
+  RemoveBuddyResponse();
+  virtual ~RemoveBuddyResponse();
+
+  RemoveBuddyResponse(const RemoveBuddyResponse& from);
+
+  inline RemoveBuddyResponse& operator=(const RemoveBuddyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RemoveBuddyResponse(RemoveBuddyResponse&& from) noexcept
+    : RemoveBuddyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RemoveBuddyResponse& operator=(RemoveBuddyResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RemoveBuddyResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RemoveBuddyResponse* internal_default_instance() {
+    return reinterpret_cast<const RemoveBuddyResponse*>(
+               &_RemoveBuddyResponse_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    13;
+
+  void Swap(RemoveBuddyResponse* other);
+  friend void swap(RemoveBuddyResponse& a, RemoveBuddyResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RemoveBuddyResponse* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  RemoveBuddyResponse* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const RemoveBuddyResponse& from);
+  void MergeFrom(const RemoveBuddyResponse& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(RemoveBuddyResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef RemoveBuddyResponse_Code Code;
+  static const Code SUCCESS =
+    RemoveBuddyResponse_Code_SUCCESS;
+  static const Code FAILED =
+    RemoveBuddyResponse_Code_FAILED;
+  static inline bool Code_IsValid(int value) {
+    return RemoveBuddyResponse_Code_IsValid(value);
+  }
+  static const Code Code_MIN =
+    RemoveBuddyResponse_Code_Code_MIN;
+  static const Code Code_MAX =
+    RemoveBuddyResponse_Code_Code_MAX;
+  static const int Code_ARRAYSIZE =
+    RemoveBuddyResponse_Code_Code_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Code_descriptor() {
+    return RemoveBuddyResponse_Code_descriptor();
+  }
+  static inline const ::std::string& Code_Name(Code value) {
+    return RemoveBuddyResponse_Code_Name(value);
+  }
+  static inline bool Code_Parse(const ::std::string& name,
+      Code* value) {
+    return RemoveBuddyResponse_Code_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // .RemoveBuddyResponse.Code code = 1;
+  void clear_code();
+  static const int kCodeFieldNumber = 1;
+  ::RemoveBuddyResponse_Code code() const;
+  void set_code(::RemoveBuddyResponse_Code value);
+
+  // @@protoc_insertion_point(class_scope:RemoveBuddyResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  int code_;
+  mutable int _cached_size_;
+  friend struct ::protobuf_chat_2eproto::TableStruct;
+  friend void ::protobuf_chat_2eproto::InitDefaultsRemoveBuddyResponseImpl();
+};
+// -------------------------------------------------------------------
+
 class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Message) */ {
  public:
   Message();
@@ -1037,7 +1882,7 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
                &_Message_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    7;
+    14;
 
   void Swap(Message* other);
   friend void swap(Message& a, Message& b) {
@@ -1166,7 +2011,7 @@ class Reset : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
                &_Reset_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    8;
+    15;
 
   void Swap(Reset* other);
   friend void swap(Reset& a, Reset& b) {
@@ -1306,7 +2151,7 @@ class UserDatabase_User : public ::google::protobuf::Message /* @@protoc_inserti
                &_UserDatabase_User_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    9;
+    16;
 
   void Swap(UserDatabase_User* other);
   friend void swap(UserDatabase_User& a, UserDatabase_User& b) {
@@ -1353,6 +2198,18 @@ class UserDatabase_User : public ::google::protobuf::Message /* @@protoc_inserti
 
   // accessors -------------------------------------------------------
 
+  // repeated uint32 buddies = 4;
+  int buddies_size() const;
+  void clear_buddies();
+  static const int kBuddiesFieldNumber = 4;
+  ::google::protobuf::uint32 buddies(int index) const;
+  void set_buddies(int index, ::google::protobuf::uint32 value);
+  void add_buddies(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      buddies() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_buddies();
+
   // string username = 2;
   void clear_username();
   static const int kUsernameFieldNumber = 2;
@@ -1391,6 +2248,8 @@ class UserDatabase_User : public ::google::protobuf::Message /* @@protoc_inserti
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > buddies_;
+  mutable int _buddies_cached_byte_size_;
   ::google::protobuf::internal::ArenaStringPtr username_;
   ::google::protobuf::internal::ArenaStringPtr password_;
   ::google::protobuf::uint32 uid_;
@@ -1435,7 +2294,7 @@ class UserDatabase : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_UserDatabase_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    10;
+    17;
 
   void Swap(UserDatabase* other);
   friend void swap(UserDatabase& a, UserDatabase& b) {
@@ -1914,6 +2773,187 @@ ListUserResponse::users() const {
 
 // -------------------------------------------------------------------
 
+// ListBuddyRequest
+
+// -------------------------------------------------------------------
+
+// ListBuddyResponse_User
+
+// uint32 uid = 1;
+inline void ListBuddyResponse_User::clear_uid() {
+  uid_ = 0u;
+}
+inline ::google::protobuf::uint32 ListBuddyResponse_User::uid() const {
+  // @@protoc_insertion_point(field_get:ListBuddyResponse.User.uid)
+  return uid_;
+}
+inline void ListBuddyResponse_User::set_uid(::google::protobuf::uint32 value) {
+  
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:ListBuddyResponse.User.uid)
+}
+
+// string username = 2;
+inline void ListBuddyResponse_User::clear_username() {
+  username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ListBuddyResponse_User::username() const {
+  // @@protoc_insertion_point(field_get:ListBuddyResponse.User.username)
+  return username_.GetNoArena();
+}
+inline void ListBuddyResponse_User::set_username(const ::std::string& value) {
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ListBuddyResponse.User.username)
+}
+#if LANG_CXX11
+inline void ListBuddyResponse_User::set_username(::std::string&& value) {
+  
+  username_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ListBuddyResponse.User.username)
+}
+#endif
+inline void ListBuddyResponse_User::set_username(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ListBuddyResponse.User.username)
+}
+inline void ListBuddyResponse_User::set_username(const char* value, size_t size) {
+  
+  username_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ListBuddyResponse.User.username)
+}
+inline ::std::string* ListBuddyResponse_User::mutable_username() {
+  
+  // @@protoc_insertion_point(field_mutable:ListBuddyResponse.User.username)
+  return username_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ListBuddyResponse_User::release_username() {
+  // @@protoc_insertion_point(field_release:ListBuddyResponse.User.username)
+  
+  return username_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ListBuddyResponse_User::set_allocated_username(::std::string* username) {
+  if (username != NULL) {
+    
+  } else {
+    
+  }
+  username_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), username);
+  // @@protoc_insertion_point(field_set_allocated:ListBuddyResponse.User.username)
+}
+
+// -------------------------------------------------------------------
+
+// ListBuddyResponse
+
+// repeated .ListBuddyResponse.User users = 1;
+inline int ListBuddyResponse::users_size() const {
+  return users_.size();
+}
+inline void ListBuddyResponse::clear_users() {
+  users_.Clear();
+}
+inline const ::ListBuddyResponse_User& ListBuddyResponse::users(int index) const {
+  // @@protoc_insertion_point(field_get:ListBuddyResponse.users)
+  return users_.Get(index);
+}
+inline ::ListBuddyResponse_User* ListBuddyResponse::mutable_users(int index) {
+  // @@protoc_insertion_point(field_mutable:ListBuddyResponse.users)
+  return users_.Mutable(index);
+}
+inline ::ListBuddyResponse_User* ListBuddyResponse::add_users() {
+  // @@protoc_insertion_point(field_add:ListBuddyResponse.users)
+  return users_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::ListBuddyResponse_User >*
+ListBuddyResponse::mutable_users() {
+  // @@protoc_insertion_point(field_mutable_list:ListBuddyResponse.users)
+  return &users_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::ListBuddyResponse_User >&
+ListBuddyResponse::users() const {
+  // @@protoc_insertion_point(field_list:ListBuddyResponse.users)
+  return users_;
+}
+
+// -------------------------------------------------------------------
+
+// AddBuddyRequest
+
+// uint32 uid = 1;
+inline void AddBuddyRequest::clear_uid() {
+  uid_ = 0u;
+}
+inline ::google::protobuf::uint32 AddBuddyRequest::uid() const {
+  // @@protoc_insertion_point(field_get:AddBuddyRequest.uid)
+  return uid_;
+}
+inline void AddBuddyRequest::set_uid(::google::protobuf::uint32 value) {
+  
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:AddBuddyRequest.uid)
+}
+
+// -------------------------------------------------------------------
+
+// AddBuddyResponse
+
+// .AddBuddyResponse.Code code = 1;
+inline void AddBuddyResponse::clear_code() {
+  code_ = 0;
+}
+inline ::AddBuddyResponse_Code AddBuddyResponse::code() const {
+  // @@protoc_insertion_point(field_get:AddBuddyResponse.code)
+  return static_cast< ::AddBuddyResponse_Code >(code_);
+}
+inline void AddBuddyResponse::set_code(::AddBuddyResponse_Code value) {
+  
+  code_ = value;
+  // @@protoc_insertion_point(field_set:AddBuddyResponse.code)
+}
+
+// -------------------------------------------------------------------
+
+// RemoveBuddyRequest
+
+// uint32 uid = 1;
+inline void RemoveBuddyRequest::clear_uid() {
+  uid_ = 0u;
+}
+inline ::google::protobuf::uint32 RemoveBuddyRequest::uid() const {
+  // @@protoc_insertion_point(field_get:RemoveBuddyRequest.uid)
+  return uid_;
+}
+inline void RemoveBuddyRequest::set_uid(::google::protobuf::uint32 value) {
+  
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:RemoveBuddyRequest.uid)
+}
+
+// -------------------------------------------------------------------
+
+// RemoveBuddyResponse
+
+// .RemoveBuddyResponse.Code code = 1;
+inline void RemoveBuddyResponse::clear_code() {
+  code_ = 0;
+}
+inline ::RemoveBuddyResponse_Code RemoveBuddyResponse::code() const {
+  // @@protoc_insertion_point(field_get:RemoveBuddyResponse.code)
+  return static_cast< ::RemoveBuddyResponse_Code >(code_);
+}
+inline void RemoveBuddyResponse::set_code(::RemoveBuddyResponse_Code value) {
+  
+  code_ = value;
+  // @@protoc_insertion_point(field_set:RemoveBuddyResponse.code)
+}
+
+// -------------------------------------------------------------------
+
 // Message
 
 // uint32 uid = 1;
@@ -2231,6 +3271,36 @@ inline void UserDatabase_User::set_allocated_password(::std::string* password) {
   // @@protoc_insertion_point(field_set_allocated:UserDatabase.User.password)
 }
 
+// repeated uint32 buddies = 4;
+inline int UserDatabase_User::buddies_size() const {
+  return buddies_.size();
+}
+inline void UserDatabase_User::clear_buddies() {
+  buddies_.Clear();
+}
+inline ::google::protobuf::uint32 UserDatabase_User::buddies(int index) const {
+  // @@protoc_insertion_point(field_get:UserDatabase.User.buddies)
+  return buddies_.Get(index);
+}
+inline void UserDatabase_User::set_buddies(int index, ::google::protobuf::uint32 value) {
+  buddies_.Set(index, value);
+  // @@protoc_insertion_point(field_set:UserDatabase.User.buddies)
+}
+inline void UserDatabase_User::add_buddies(::google::protobuf::uint32 value) {
+  buddies_.Add(value);
+  // @@protoc_insertion_point(field_add:UserDatabase.User.buddies)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+UserDatabase_User::buddies() const {
+  // @@protoc_insertion_point(field_list:UserDatabase.User.buddies)
+  return buddies_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+UserDatabase_User::mutable_buddies() {
+  // @@protoc_insertion_point(field_mutable_list:UserDatabase.User.buddies)
+  return &buddies_;
+}
+
 // -------------------------------------------------------------------
 
 // UserDatabase
@@ -2302,6 +3372,20 @@ UserDatabase::users() const {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -2318,6 +3402,16 @@ template <> struct is_proto_enum< ::RegisterResponse_Code> : ::google::protobuf:
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::RegisterResponse_Code>() {
   return ::RegisterResponse_Code_descriptor();
+}
+template <> struct is_proto_enum< ::AddBuddyResponse_Code> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::AddBuddyResponse_Code>() {
+  return ::AddBuddyResponse_Code_descriptor();
+}
+template <> struct is_proto_enum< ::RemoveBuddyResponse_Code> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::RemoveBuddyResponse_Code>() {
+  return ::RemoveBuddyResponse_Code_descriptor();
 }
 template <> struct is_proto_enum< ::Reset_Code> : ::google::protobuf::internal::true_type {};
 template <>

@@ -40,6 +40,41 @@ message ListUserResponse {
   repeated User users = 1;
 }
 
+message ListBuddyRequest {
+}
+
+message ListBuddyResponse {
+  message User {
+    uint32 uid = 1;
+    string username = 2;
+  }
+  repeated User users = 1;
+}
+
+message AddBuddyRequest {
+  uint32 uid = 1;
+}
+
+message AddBuddyResponse {
+  enum Code {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
+  Code code = 1;
+}
+
+message RemoveBuddyRequest {
+  uint32 uid = 1;
+}
+
+message RemoveBuddyResponse {
+  enum Code {
+    SUCCESS = 0;
+    FAILED = 1;
+  }
+  Code code = 1;
+}
+
 message Message {
   uint32 uid = 1; // source uid for messages from server to client;
                   // destination uid for messages from client to server
@@ -62,6 +97,7 @@ message UserDatabase {
     uint32 uid = 1;
     string username = 2;
     string password = 3;
+    repeated uint32 buddies = 4;
   }
   uint32 maxUid = 1;
   repeated User users = 2;

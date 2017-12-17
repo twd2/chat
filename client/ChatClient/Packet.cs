@@ -16,7 +16,10 @@ namespace ChatClient
         public const byte PACKET_LOGIN = 0;
         public const byte PACKET_REGISTER = 1;
         public const byte PACKET_LIST_USER = 2;
-        public const byte PACKET_MESSAGE = 3;
+        public const byte PACKET_LIST_BUDDY = 3;
+        public const byte PACKET_ADD_BUDDY = 4;
+        public const byte PACKET_REMOVE_BUDDY = 5;
+        public const byte PACKET_MESSAGE = 6;
         public const byte PACKET_RAW = 254;
         public const byte PACKET_RESET = 255;
 
