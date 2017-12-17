@@ -73,7 +73,7 @@ namespace ChatClient
                 try
                 {
                     // TODO: configurable
-                    Program.session.Connect("192.168.1.105", 1025);
+                    Program.session.Connect("172.16.67.150", 1025);
                     Invoke(new Action(() =>
                     {
                         Enabled = true;

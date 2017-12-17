@@ -78,6 +78,24 @@ namespace ChatClient
                         HandleListUser(r);
                         break;
                     }
+                    case Packet.PACKET_LIST_BUDDY:
+                    {
+                        ListBuddyResponse r = ListBuddyResponse.Parser.ParseFrom(buffer);
+                        HandleListBuddy(r);
+                        break;
+                    }
+                    case Packet.PACKET_ADD_BUDDY:
+                    {
+                        AddBuddyResponse r = AddBuddyResponse.Parser.ParseFrom(buffer);
+                        HandleAddBuddy(r);
+                        break;
+                    }
+                    case Packet.PACKET_REMOVE_BUDDY:
+                    {
+                        RemoveBuddyResponse r = RemoveBuddyResponse.Parser.ParseFrom(buffer);
+                        HandleRemoveBuddy(r);
+                        break;
+                    }
                     case Packet.PACKET_MESSAGE:
                     {
                         Message r = Message.Parser.ParseFrom(buffer);
@@ -127,6 +145,22 @@ namespace ChatClient
         {
             Debug.Print("handling list user");
             onListUserResponse(r);
+        }
+
+        private void HandleListBuddy(ListBuddyResponse r)
+        {
+            Debug.Print("handling list buddy");
+            // onListBuddyResponse(r); // TODO
+        }
+
+        private void HandleAddBuddy(AddBuddyResponse r)
+        {
+            Debug.Print("handling add buddy");
+        }
+
+        private void HandleRemoveBuddy(RemoveBuddyResponse r)
+        {
+            Debug.Print("handling remove buddy");
         }
 
         private void HandleMessage(Message r)
