@@ -43,7 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogin.Location = new System.Drawing.Point(12, 74);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(125, 42);
+            this.btnLogin.Size = new System.Drawing.Size(169, 42);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.txtPassword.Location = new System.Drawing.Point(73, 43);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(201, 25);
+            this.txtPassword.Size = new System.Drawing.Size(262, 25);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.Text = "123456";
             // 
@@ -84,7 +84,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(73, 12);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(201, 25);
+            this.txtUsername.Size = new System.Drawing.Size(262, 25);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.Text = "twd2";
             // 
@@ -93,9 +93,9 @@
             this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegister.Location = new System.Drawing.Point(143, 74);
+            this.btnRegister.Location = new System.Drawing.Point(187, 74);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(131, 42);
+            this.btnRegister.Size = new System.Drawing.Size(148, 42);
             this.btnRegister.TabIndex = 3;
             this.btnRegister.Text = "注册";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 128);
+            this.ClientSize = new System.Drawing.Size(347, 128);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPassword);
@@ -115,7 +115,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "chat";
+            this.Text = "登录到chat";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

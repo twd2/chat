@@ -48,7 +48,9 @@
             this.ClientSize = new System.Drawing.Size(282, 253);
             this.Controls.Add(this.btnListUser);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "chat";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }

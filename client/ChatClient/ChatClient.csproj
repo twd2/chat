@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chat.cs" />
+    <Compile Include="ListUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListUserForm.Designer.cs">
+      <DependentUpon>ListUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Util.cs" />
+    <EmbeddedResource Include="ListUserForm.resx">
+      <DependentUpon>ListUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

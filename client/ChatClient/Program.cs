@@ -9,6 +9,8 @@ namespace ChatClient
 {
     static class Program
     {
+        public static LoginForm loginForm = null;
+        public static MainForm mainForm = null;
         public static Session session = new Session();
         public static ManualResetEvent exitEvent = new ManualResetEvent(true);
 
@@ -20,7 +22,8 @@ namespace ChatClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            loginForm = new LoginForm();
+            Application.Run(loginForm);
             exitEvent.WaitOne();
             Debug.Print("here");
             Environment.Exit(0);

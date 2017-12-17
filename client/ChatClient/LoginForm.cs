@@ -34,7 +34,8 @@ namespace ChatClient
                         case LoginResponse.Types.Code.Success:
                         {
                             Program.exitEvent.Reset();
-                            new MainForm().Show();
+                            Program.mainForm = new MainForm();
+                            Program.mainForm.Show();
                             Hide();
                             break;
                         }

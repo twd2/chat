@@ -20,10 +20,18 @@ namespace ChatClient
 
         private void btnListUser_Click(object sender, EventArgs e)
         {
-            new Thread(() =>
-            {
-                Program.session.ListUser();
-            }).Start();
+            new ListUserForm().Show();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.loginForm.Close();
+            Program.exitEvent.Set();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

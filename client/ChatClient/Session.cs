@@ -24,6 +24,9 @@ namespace ChatClient
         ManualResetEvent registerEvent = new ManualResetEvent(false);
         RegisterResponse lastRegisterResponse = null;
 
+        public delegate void OnListUserResponse(ListUserResponse r);
+        public OnListUserResponse onListUserResponse = null;
+
         public Session()
         {
 
@@ -123,7 +126,7 @@ namespace ChatClient
         private void HandleListUser(ListUserResponse r)
         {
             Debug.Print("handling list user");
-            // TODO: callback
+            onListUserResponse(r);
         }
 
         private void HandleMessage(Message r)
@@ -142,7 +145,10 @@ namespace ChatClient
             LoginRequest q = new LoginRequest();
             q.Username = username;
             q.Password = password;
-            Packet.Write(stream, q);
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
             loginEvent.WaitOne();
             return lastLoginResponse.Code;
         }
@@ -153,7 +159,10 @@ namespace ChatClient
             RegisterRequest q = new RegisterRequest();
             q.Username = username;
             q.Password = password;
-            Packet.Write(stream, q);
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
             registerEvent.WaitOne();
             return lastRegisterResponse;
         }
@@ -161,7 +170,10 @@ namespace ChatClient
         public void ListUser()
         {
             ListUserRequest q = new ListUserRequest();
-            Packet.Write(stream, q);
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
         }
 
         public void Close()
