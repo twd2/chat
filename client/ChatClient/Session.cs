@@ -205,7 +205,9 @@ namespace ChatClient
 
         private void HandleMessage(Message r)
         {
-            Debug.Print(string.Format("message from {0}: {1}", r.Uid, r.Msg));
+            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime dt = epoch.Add(TimeSpan.FromTicks((long)r.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
+            Debug.Print(string.Format("message from {0} @ {1}: {2}", r.Uid, dt.ToString(), r.Msg));
             if (onMessage != null)
             {
                 onMessage(r);

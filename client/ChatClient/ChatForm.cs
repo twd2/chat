@@ -24,10 +24,23 @@ namespace ChatClient
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
+            if (Program.chatFormMap.ContainsKey(buddyUid))
+            {
+                Program.chatFormMap[buddyUid].Show();
+                Close();
+            }
+            Program.chatFormMap[buddyUid] = this;
+
             buddyUsername = Program.usernameMap.ContainsKey(buddyUid)
                 ? Program.usernameMap[buddyUid]
                 : "UID=" + buddyUid.ToString();
             Text = string.Format("与 {0} 的聊天", buddyUsername);
+        }
+
+        private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ChatForm _;
+            Program.chatFormMap.TryRemove(buddyUid, out _);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -36,6 +49,21 @@ namespace ChatClient
             {
                 Program.session.SendMessage(buddyUid, txtSend.Text);
             }).Start();
+            string msg = string.Format("{0} ({1}) {2}\n{3}\n",
+                Program.session.Username, Program.session.Uid, DateTime.Now.ToString(),
+                txtSend.Text);
+            Program.WriteLog(buddyUid, msg);
+        }
+
+        public void OnMessage(Message m)
+        {
+            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime dt = epoch.Add(TimeSpan.FromTicks((long)m.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
+            // TODO
+            string msg = string.Format("{0} ({1}) {2}\n{3}\n",
+                buddyUsername, buddyUid, dt.ToString(),
+                txtSend.Text);
+            Program.WriteLog(buddyUid, msg);
         }
     }
 }

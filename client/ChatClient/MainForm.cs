@@ -41,6 +41,7 @@ namespace ChatClient
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.session.onMessage -= OnMessage;
             Program.session.onListBuddyResponse -= OnListBuddyResponse;
             Program.session.onClosed -= OnSessionClosed;
             Program.loginForm.Close();
@@ -51,6 +52,7 @@ namespace ChatClient
         {
             Program.session.onClosed += OnSessionClosed;
             Program.session.onListBuddyResponse += OnListBuddyResponse;
+            Program.session.onMessage += OnMessage;
             labHello.Text = Program.session.Username + "，您好！";
             btnRefresh_Click(null, null);
         }
@@ -119,6 +121,19 @@ namespace ChatClient
             }
             UserWrapper uw = (UserWrapper)lstBuddies.Items[lstBuddies.SelectedIndex];
             new ChatForm(uw.user.Uid).Show();
+        }
+
+        public void OnMessage(Message m)
+        {
+            Invoke(new Action(() =>
+            {
+                if (!Program.chatFormMap.ContainsKey(m.Uid))
+                {
+                    Program.chatFormMap[m.Uid] = new ChatForm(m.Uid);
+                    Program.chatFormMap[m.Uid].Show();
+                }
+                Program.chatFormMap[m.Uid].OnMessage(m);
+            }));
         }
     }
 }
