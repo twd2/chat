@@ -24,13 +24,6 @@ namespace ChatClient
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            if (Program.chatFormMap.ContainsKey(buddyUid))
-            {
-                Program.chatFormMap[buddyUid].Show();
-                Close();
-            }
-            Program.chatFormMap[buddyUid] = this;
-
             buddyUsername = Program.usernameMap.ContainsKey(buddyUid)
                 ? Program.usernameMap[buddyUid]
                 : "UID=" + buddyUid.ToString();
@@ -52,17 +45,22 @@ namespace ChatClient
             string msg = string.Format("{0} ({1}) {2}\n{3}\n",
                 Program.session.Username, Program.session.Uid, DateTime.Now.ToString(),
                 txtSend.Text);
-            Program.WriteLog(buddyUid, msg);
+            ShowAndLog(msg);
         }
 
         public void OnMessage(Message m)
         {
             DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             DateTime dt = epoch.Add(TimeSpan.FromTicks((long)m.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
-            // TODO
             string msg = string.Format("{0} ({1}) {2}\n{3}\n",
                 buddyUsername, buddyUid, dt.ToString(),
-                txtSend.Text);
+                m.Msg);
+            ShowAndLog(msg);
+        }
+
+        private void ShowAndLog(string msg)
+        {
+            txtSession.AppendText(msg.Replace("\n", "\r\n") + "\r\n");
             Program.WriteLog(buddyUid, msg);
         }
     }

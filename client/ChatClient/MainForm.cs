@@ -120,7 +120,12 @@ namespace ChatClient
                 return;
             }
             UserWrapper uw = (UserWrapper)lstBuddies.Items[lstBuddies.SelectedIndex];
-            new ChatForm(uw.user.Uid).Show();
+            if (!Program.chatFormMap.ContainsKey(uw.user.Uid))
+            {
+                Program.chatFormMap[uw.user.Uid] = new ChatForm(uw.user.Uid);
+            }
+            Program.chatFormMap[uw.user.Uid].Show();
+            Program.chatFormMap[uw.user.Uid].Focus();
         }
 
         public void OnMessage(Message m)
