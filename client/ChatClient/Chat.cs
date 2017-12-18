@@ -28,24 +28,25 @@ public static partial class ChatReflection {
           "KAkSEAoIcGFzc3dvcmQYAiABKAkiawoQUmVnaXN0ZXJSZXNwb25zZRIkCgRj",
           "b2RlGAEgASgOMhYuUmVnaXN0ZXJSZXNwb25zZS5Db2RlEgsKA3VpZBgCIAEo",
           "DSIkCgRDb2RlEgsKB1NVQ0NFU1MQABIPCgtVU0VSX0VYSVNUUxABIhEKD0xp",
-          "c3RVc2VyUmVxdWVzdCJgChBMaXN0VXNlclJlc3BvbnNlEiUKBXVzZXJzGAEg",
-          "AygLMhYuTGlzdFVzZXJSZXNwb25zZS5Vc2VyGiUKBFVzZXISCwoDdWlkGAEg",
-          "ASgNEhAKCHVzZXJuYW1lGAIgASgJIhIKEExpc3RCdWRkeVJlcXVlc3QiYgoR",
-          "TGlzdEJ1ZGR5UmVzcG9uc2USJgoFdXNlcnMYASADKAsyFy5MaXN0QnVkZHlS",
-          "ZXNwb25zZS5Vc2VyGiUKBFVzZXISCwoDdWlkGAEgASgNEhAKCHVzZXJuYW1l",
-          "GAIgASgJIh4KD0FkZEJ1ZGR5UmVxdWVzdBILCgN1aWQYASABKA0iWQoQQWRk",
-          "QnVkZHlSZXNwb25zZRIkCgRjb2RlGAEgASgOMhYuQWRkQnVkZHlSZXNwb25z",
-          "ZS5Db2RlIh8KBENvZGUSCwoHU1VDQ0VTUxAAEgoKBkZBSUxFRBABIiEKElJl",
-          "bW92ZUJ1ZGR5UmVxdWVzdBILCgN1aWQYASABKA0iXwoTUmVtb3ZlQnVkZHlS",
-          "ZXNwb25zZRInCgRjb2RlGAEgASgOMhkuUmVtb3ZlQnVkZHlSZXNwb25zZS5D",
-          "b2RlIh8KBENvZGUSCwoHU1VDQ0VTUxAAEgoKBkZBSUxFRBABIjEKB01lc3Nh",
-          "Z2USCwoDdWlkGAEgASgNEgsKA21zZxgCIAEoCRIMCgRkYXRhGAMgASgMIm0K",
-          "BVJlc2V0EhkKBGNvZGUYASABKA4yCy5SZXNldC5Db2RlEgsKA21zZxgCIAEo",
-          "CSI8CgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NPTF9NSVNN",
-          "QVRDSBABEgoKBktJQ0tFRBACIosBCgxVc2VyRGF0YWJhc2USDgoGbWF4VWlk",
-          "GAEgASgNEiEKBXVzZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVzZXIaSAoE",
-          "VXNlchILCgN1aWQYASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoIcGFzc3dv",
-          "cmQYAyABKAkSDwoHYnVkZGllcxgEIAMoDWIGcHJvdG8z"));
+          "c3RVc2VyUmVxdWVzdCJwChBMaXN0VXNlclJlc3BvbnNlEiUKBXVzZXJzGAEg",
+          "AygLMhYuTGlzdFVzZXJSZXNwb25zZS5Vc2VyGjUKBFVzZXISCwoDdWlkGAEg",
+          "ASgNEhAKCHVzZXJuYW1lGAIgASgJEg4KBm9ubGluZRgDIAEoCCISChBMaXN0",
+          "QnVkZHlSZXF1ZXN0InIKEUxpc3RCdWRkeVJlc3BvbnNlEiYKBXVzZXJzGAEg",
+          "AygLMhcuTGlzdEJ1ZGR5UmVzcG9uc2UuVXNlcho1CgRVc2VyEgsKA3VpZBgB",
+          "IAEoDRIQCgh1c2VybmFtZRgCIAEoCRIOCgZvbmxpbmUYAyABKAgiHgoPQWRk",
+          "QnVkZHlSZXF1ZXN0EgsKA3VpZBgBIAEoDSJZChBBZGRCdWRkeVJlc3BvbnNl",
+          "EiQKBGNvZGUYASABKA4yFi5BZGRCdWRkeVJlc3BvbnNlLkNvZGUiHwoEQ29k",
+          "ZRILCgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiIQoSUmVtb3ZlQnVkZHlSZXF1",
+          "ZXN0EgsKA3VpZBgBIAEoDSJfChNSZW1vdmVCdWRkeVJlc3BvbnNlEicKBGNv",
+          "ZGUYASABKA4yGS5SZW1vdmVCdWRkeVJlc3BvbnNlLkNvZGUiHwoEQ29kZRIL",
+          "CgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiMQoHTWVzc2FnZRILCgN1aWQYASAB",
+          "KA0SCwoDbXNnGAIgASgJEgwKBGRhdGEYAyABKAwibQoFUmVzZXQSGQoEY29k",
+          "ZRgBIAEoDjILLlJlc2V0LkNvZGUSCwoDbXNnGAIgASgJIjwKBENvZGUSEQoN",
+          "VU5LTk9XTl9FUlJPUhAAEhUKEVBST1RPQ09MX01JU01BVENIEAESCgoGS0lD",
+          "S0VEEAIiiwEKDFVzZXJEYXRhYmFzZRIOCgZtYXhVaWQYASABKA0SIQoFdXNl",
+          "cnMYAiADKAsyEi5Vc2VyRGF0YWJhc2UuVXNlchpICgRVc2VyEgsKA3VpZBgB",
+          "IAEoDRIQCgh1c2VybmFtZRgCIAEoCRIQCghwYXNzd29yZBgDIAEoCRIPCgdi",
+          "dWRkaWVzGAQgAygNYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -54,9 +55,9 @@ public static partial class ChatReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterRequest), global::RegisterRequest.Parser, new[]{ "Username", "Password" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Code", "Uid" }, null, new[]{ typeof(global::RegisterResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListUserRequest), global::ListUserRequest.Parser, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse), global::ListUserResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse.Types.User), global::ListUserResponse.Types.User.Parser, new[]{ "Uid", "Username" }, null, null, null)}),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse), global::ListUserResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListUserResponse.Types.User), global::ListUserResponse.Types.User.Parser, new[]{ "Uid", "Username", "Online" }, null, null, null)}),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyRequest), global::ListBuddyRequest.Parser, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse), global::ListBuddyResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse.Types.User), global::ListBuddyResponse.Types.User.Parser, new[]{ "Uid", "Username" }, null, null, null)}),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse), global::ListBuddyResponse.Parser, new[]{ "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::ListBuddyResponse.Types.User), global::ListBuddyResponse.Types.User.Parser, new[]{ "Uid", "Username", "Online" }, null, null, null)}),
           new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyRequest), global::AddBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyResponse), global::AddBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::AddBuddyResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyRequest), global::RemoveBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
@@ -901,6 +902,7 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
       public User(User other) : this() {
         uid_ = other.uid_;
         username_ = other.username_;
+        online_ = other.online_;
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -930,6 +932,17 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
         }
       }
 
+      /// <summary>Field number for the "online" field.</summary>
+      public const int OnlineFieldNumber = 3;
+      private bool online_;
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public bool Online {
+        get { return online_; }
+        set {
+          online_ = value;
+        }
+      }
+
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
       public override bool Equals(object other) {
         return Equals(other as User);
@@ -945,6 +958,7 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
         }
         if (Uid != other.Uid) return false;
         if (Username != other.Username) return false;
+        if (Online != other.Online) return false;
         return true;
       }
 
@@ -953,6 +967,7 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
         int hash = 1;
         if (Uid != 0) hash ^= Uid.GetHashCode();
         if (Username.Length != 0) hash ^= Username.GetHashCode();
+        if (Online != false) hash ^= Online.GetHashCode();
         return hash;
       }
 
@@ -971,6 +986,10 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
           output.WriteRawTag(18);
           output.WriteString(Username);
         }
+        if (Online != false) {
+          output.WriteRawTag(24);
+          output.WriteBool(Online);
+        }
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -981,6 +1000,9 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
         }
         if (Username.Length != 0) {
           size += 1 + pb::CodedOutputStream.ComputeStringSize(Username);
+        }
+        if (Online != false) {
+          size += 1 + 1;
         }
         return size;
       }
@@ -995,6 +1017,9 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
         }
         if (other.Username.Length != 0) {
           Username = other.Username;
+        }
+        if (other.Online != false) {
+          Online = other.Online;
         }
       }
 
@@ -1012,6 +1037,10 @@ public sealed partial class ListUserResponse : pb::IMessage<ListUserResponse> {
             }
             case 18: {
               Username = input.ReadString();
+              break;
+            }
+            case 24: {
+              Online = input.ReadBool();
               break;
             }
           }
@@ -1251,6 +1280,7 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
       public User(User other) : this() {
         uid_ = other.uid_;
         username_ = other.username_;
+        online_ = other.online_;
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1280,6 +1310,17 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
         }
       }
 
+      /// <summary>Field number for the "online" field.</summary>
+      public const int OnlineFieldNumber = 3;
+      private bool online_;
+      [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+      public bool Online {
+        get { return online_; }
+        set {
+          online_ = value;
+        }
+      }
+
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
       public override bool Equals(object other) {
         return Equals(other as User);
@@ -1295,6 +1336,7 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
         }
         if (Uid != other.Uid) return false;
         if (Username != other.Username) return false;
+        if (Online != other.Online) return false;
         return true;
       }
 
@@ -1303,6 +1345,7 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
         int hash = 1;
         if (Uid != 0) hash ^= Uid.GetHashCode();
         if (Username.Length != 0) hash ^= Username.GetHashCode();
+        if (Online != false) hash ^= Online.GetHashCode();
         return hash;
       }
 
@@ -1321,6 +1364,10 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
           output.WriteRawTag(18);
           output.WriteString(Username);
         }
+        if (Online != false) {
+          output.WriteRawTag(24);
+          output.WriteBool(Online);
+        }
       }
 
       [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1331,6 +1378,9 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
         }
         if (Username.Length != 0) {
           size += 1 + pb::CodedOutputStream.ComputeStringSize(Username);
+        }
+        if (Online != false) {
+          size += 1 + 1;
         }
         return size;
       }
@@ -1345,6 +1395,9 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
         }
         if (other.Username.Length != 0) {
           Username = other.Username;
+        }
+        if (other.Online != false) {
+          Online = other.Online;
         }
       }
 
@@ -1362,6 +1415,10 @@ public sealed partial class ListBuddyResponse : pb::IMessage<ListBuddyResponse> 
             }
             case 18: {
               Username = input.ReadString();
+              break;
+            }
+            case 24: {
+              Online = input.ReadBool();
               break;
             }
           }

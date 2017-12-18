@@ -36,6 +36,7 @@ message ListUserResponse {
   message User {
     uint32 uid = 1;
     string username = 2;
+    bool online = 3;
   }
   repeated User users = 1;
 }
@@ -47,6 +48,7 @@ message ListBuddyResponse {
   message User {
     uint32 uid = 1;
     string username = 2;
+    bool online = 3;
   }
   repeated User users = 1;
 }

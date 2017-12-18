@@ -186,11 +186,13 @@ void session::handle_list_user(ListUserRequest &q)
     
     {
         std::unique_lock<std::mutex> lock(global::users_mtx);
+        std::unique_lock<std::mutex> lock2(global::user_sessions_mtx);
         for (const UserDatabase::User &u : global::users.users())
         {
             ListUserResponse::User &ru = *r.add_users();
             ru.set_uid(u.uid());
             ru.set_username(u.username());
+            ru.set_online(global::has_session(u.uid()));
         }
     }
     

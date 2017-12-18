@@ -24,6 +24,7 @@ public:
     static std::mutex users_mtx;
     static void load_users();
     static void save_users();
+    static bool has_session(uint32_t uid);
 };
 
 #endif // _CHAT_SERVER_GLOBAL_H_

@@ -30,3 +30,9 @@ void global::save_users()
     std::fstream out_file(USER_DATABASE_FILE, std::ios::out | std::ios::trunc | std::ios::binary);
     users.SerializeToOstream(&out_file);
 }
+
+bool global::has_session(uint32_t uid)
+{
+    auto iter = global::user_sessions.find(uid);
+    return iter != global::user_sessions.end();
+}

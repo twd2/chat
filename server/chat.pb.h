@@ -968,12 +968,19 @@ class ListUserResponse_User : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::uint32 uid() const;
   void set_uid(::google::protobuf::uint32 value);
 
+  // bool online = 3;
+  void clear_online();
+  static const int kOnlineFieldNumber = 3;
+  bool online() const;
+  void set_online(bool value);
+
   // @@protoc_insertion_point(class_scope:ListUserResponse.User)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr username_;
   ::google::protobuf::uint32 uid_;
+  bool online_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
   friend void ::protobuf_chat_2eproto::InitDefaultsListUserResponse_UserImpl();
@@ -1281,12 +1288,19 @@ class ListBuddyResponse_User : public ::google::protobuf::Message /* @@protoc_in
   ::google::protobuf::uint32 uid() const;
   void set_uid(::google::protobuf::uint32 value);
 
+  // bool online = 3;
+  void clear_online();
+  static const int kOnlineFieldNumber = 3;
+  bool online() const;
+  void set_online(bool value);
+
   // @@protoc_insertion_point(class_scope:ListBuddyResponse.User)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr username_;
   ::google::protobuf::uint32 uid_;
+  bool online_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
   friend void ::protobuf_chat_2eproto::InitDefaultsListBuddyResponse_UserImpl();
@@ -2740,6 +2754,20 @@ inline void ListUserResponse_User::set_allocated_username(::std::string* usernam
   // @@protoc_insertion_point(field_set_allocated:ListUserResponse.User.username)
 }
 
+// bool online = 3;
+inline void ListUserResponse_User::clear_online() {
+  online_ = false;
+}
+inline bool ListUserResponse_User::online() const {
+  // @@protoc_insertion_point(field_get:ListUserResponse.User.online)
+  return online_;
+}
+inline void ListUserResponse_User::set_online(bool value) {
+  
+  online_ = value;
+  // @@protoc_insertion_point(field_set:ListUserResponse.User.online)
+}
+
 // -------------------------------------------------------------------
 
 // ListUserResponse
@@ -2847,6 +2875,20 @@ inline void ListBuddyResponse_User::set_allocated_username(::std::string* userna
   }
   username_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), username);
   // @@protoc_insertion_point(field_set_allocated:ListBuddyResponse.User.username)
+}
+
+// bool online = 3;
+inline void ListBuddyResponse_User::clear_online() {
+  online_ = false;
+}
+inline bool ListBuddyResponse_User::online() const {
+  // @@protoc_insertion_point(field_get:ListBuddyResponse.User.online)
+  return online_;
+}
+inline void ListBuddyResponse_User::set_online(bool value) {
+  
+  online_ = value;
+  // @@protoc_insertion_point(field_set:ListBuddyResponse.User.online)
 }
 
 // -------------------------------------------------------------------

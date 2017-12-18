@@ -17,8 +17,6 @@ private:
     sockaddr_in sin;
     uint32_t uid = 0;
     std::mutex mtx;
-    
-    void set_uid(uint32_t new_uid);
 
 public:
     bool is_alive = true;
@@ -44,6 +42,10 @@ public:
     void handle_message(Message &q);
     void handle_reset(Reset &q);
     void kick(bool send_msg = false);
+
+private:
+    void set_uid(uint32_t new_uid);
+    bool is_online(uint32_t uid);
 };
 
 #endif // _CHAT_SERVER_SESSION_H_

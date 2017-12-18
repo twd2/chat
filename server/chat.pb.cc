@@ -535,6 +535,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListUserResponse_User, uid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListUserResponse_User, username_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListUserResponse_User, online_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListUserResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -553,6 +554,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListBuddyResponse_User, uid_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListBuddyResponse_User, username_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListBuddyResponse_User, online_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::ListBuddyResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -622,18 +624,18 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 21, -1, sizeof(::RegisterResponse)},
   { 28, -1, sizeof(::ListUserRequest)},
   { 33, -1, sizeof(::ListUserResponse_User)},
-  { 40, -1, sizeof(::ListUserResponse)},
-  { 46, -1, sizeof(::ListBuddyRequest)},
-  { 51, -1, sizeof(::ListBuddyResponse_User)},
-  { 58, -1, sizeof(::ListBuddyResponse)},
-  { 64, -1, sizeof(::AddBuddyRequest)},
-  { 70, -1, sizeof(::AddBuddyResponse)},
-  { 76, -1, sizeof(::RemoveBuddyRequest)},
-  { 82, -1, sizeof(::RemoveBuddyResponse)},
-  { 88, -1, sizeof(::Message)},
-  { 96, -1, sizeof(::Reset)},
-  { 103, -1, sizeof(::UserDatabase_User)},
-  { 112, -1, sizeof(::UserDatabase)},
+  { 41, -1, sizeof(::ListUserResponse)},
+  { 47, -1, sizeof(::ListBuddyRequest)},
+  { 52, -1, sizeof(::ListBuddyResponse_User)},
+  { 60, -1, sizeof(::ListBuddyResponse)},
+  { 66, -1, sizeof(::AddBuddyRequest)},
+  { 72, -1, sizeof(::AddBuddyResponse)},
+  { 78, -1, sizeof(::RemoveBuddyRequest)},
+  { 84, -1, sizeof(::RemoveBuddyResponse)},
+  { 90, -1, sizeof(::Message)},
+  { 98, -1, sizeof(::Reset)},
+  { 105, -1, sizeof(::UserDatabase_User)},
+  { 114, -1, sizeof(::UserDatabase)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -688,29 +690,30 @@ void AddDescriptorsImpl() {
       "\002 \001(\t\"k\n\020RegisterResponse\022$\n\004code\030\001 \001(\0162"
       "\026.RegisterResponse.Code\022\013\n\003uid\030\002 \001(\r\"$\n\004"
       "Code\022\013\n\007SUCCESS\020\000\022\017\n\013USER_EXISTS\020\001\"\021\n\017Li"
-      "stUserRequest\"`\n\020ListUserResponse\022%\n\005use"
-      "rs\030\001 \003(\0132\026.ListUserResponse.User\032%\n\004User"
-      "\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\"\022\n\020ListB"
-      "uddyRequest\"b\n\021ListBuddyResponse\022&\n\005user"
-      "s\030\001 \003(\0132\027.ListBuddyResponse.User\032%\n\004User"
-      "\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\"\036\n\017AddBu"
-      "ddyRequest\022\013\n\003uid\030\001 \001(\r\"Y\n\020AddBuddyRespo"
-      "nse\022$\n\004code\030\001 \001(\0162\026.AddBuddyResponse.Cod"
-      "e\"\037\n\004Code\022\013\n\007SUCCESS\020\000\022\n\n\006FAILED\020\001\"!\n\022Re"
-      "moveBuddyRequest\022\013\n\003uid\030\001 \001(\r\"_\n\023RemoveB"
-      "uddyResponse\022\'\n\004code\030\001 \001(\0162\031.RemoveBuddy"
-      "Response.Code\"\037\n\004Code\022\013\n\007SUCCESS\020\000\022\n\n\006FA"
-      "ILED\020\001\"1\n\007Message\022\013\n\003uid\030\001 \001(\r\022\013\n\003msg\030\002 "
-      "\001(\t\022\014\n\004data\030\003 \001(\014\"m\n\005Reset\022\031\n\004code\030\001 \001(\016"
-      "2\013.Reset.Code\022\013\n\003msg\030\002 \001(\t\"<\n\004Code\022\021\n\rUN"
-      "KNOWN_ERROR\020\000\022\025\n\021PROTOCOL_MISMATCH\020\001\022\n\n\006"
-      "KICKED\020\002\"\213\001\n\014UserDatabase\022\016\n\006maxUid\030\001 \001("
-      "\r\022!\n\005users\030\002 \003(\0132\022.UserDatabase.User\032H\n\004"
-      "User\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020\n\010p"
-      "assword\030\003 \001(\t\022\017\n\007buddies\030\004 \003(\rb\006proto3"
+      "stUserRequest\"p\n\020ListUserResponse\022%\n\005use"
+      "rs\030\001 \003(\0132\026.ListUserResponse.User\0325\n\004User"
+      "\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\016\n\006onlin"
+      "e\030\003 \001(\010\"\022\n\020ListBuddyRequest\"r\n\021ListBuddy"
+      "Response\022&\n\005users\030\001 \003(\0132\027.ListBuddyRespo"
+      "nse.User\0325\n\004User\022\013\n\003uid\030\001 \001(\r\022\020\n\010usernam"
+      "e\030\002 \001(\t\022\016\n\006online\030\003 \001(\010\"\036\n\017AddBuddyReque"
+      "st\022\013\n\003uid\030\001 \001(\r\"Y\n\020AddBuddyResponse\022$\n\004c"
+      "ode\030\001 \001(\0162\026.AddBuddyResponse.Code\"\037\n\004Cod"
+      "e\022\013\n\007SUCCESS\020\000\022\n\n\006FAILED\020\001\"!\n\022RemoveBudd"
+      "yRequest\022\013\n\003uid\030\001 \001(\r\"_\n\023RemoveBuddyResp"
+      "onse\022\'\n\004code\030\001 \001(\0162\031.RemoveBuddyResponse"
+      ".Code\"\037\n\004Code\022\013\n\007SUCCESS\020\000\022\n\n\006FAILED\020\001\"1"
+      "\n\007Message\022\013\n\003uid\030\001 \001(\r\022\013\n\003msg\030\002 \001(\t\022\014\n\004d"
+      "ata\030\003 \001(\014\"m\n\005Reset\022\031\n\004code\030\001 \001(\0162\013.Reset"
+      ".Code\022\013\n\003msg\030\002 \001(\t\"<\n\004Code\022\021\n\rUNKNOWN_ER"
+      "ROR\020\000\022\025\n\021PROTOCOL_MISMATCH\020\001\022\n\n\006KICKED\020\002"
+      "\"\213\001\n\014UserDatabase\022\016\n\006maxUid\030\001 \001(\r\022!\n\005use"
+      "rs\030\002 \003(\0132\022.UserDatabase.User\032H\n\004User\022\013\n\003"
+      "uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020\n\010password\030"
+      "\003 \001(\t\022\017\n\007buddies\030\004 \003(\rb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1158);
+      descriptor, 1190);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "chat.proto", &protobuf_RegisterTypes);
 }
@@ -2227,6 +2230,7 @@ void ListUserResponse_User::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ListUserResponse_User::kUidFieldNumber;
 const int ListUserResponse_User::kUsernameFieldNumber;
+const int ListUserResponse_User::kOnlineFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ListUserResponse_User::ListUserResponse_User()
@@ -2246,13 +2250,17 @@ ListUserResponse_User::ListUserResponse_User(const ListUserResponse_User& from)
   if (from.username().size() > 0) {
     username_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.username_);
   }
-  uid_ = from.uid_;
+  ::memcpy(&uid_, &from.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&online_) -
+    reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   // @@protoc_insertion_point(copy_constructor:ListUserResponse.User)
 }
 
 void ListUserResponse_User::SharedCtor() {
   username_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = 0u;
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&online_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   _cached_size_ = 0;
 }
 
@@ -2295,7 +2303,9 @@ void ListUserResponse_User::Clear() {
   (void) cached_has_bits;
 
   username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = 0u;
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&online_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   _internal_metadata_.Clear();
 }
 
@@ -2333,6 +2343,20 @@ bool ListUserResponse_User::MergePartialFromCodedStream(
             this->username().data(), static_cast<int>(this->username().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "ListUserResponse.User.username"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool online = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &online_)));
         } else {
           goto handle_unusual;
         }
@@ -2380,6 +2404,11 @@ void ListUserResponse_User::SerializeWithCachedSizes(
       2, this->username(), output);
   }
 
+  // bool online = 3;
+  if (this->online() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->online(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -2408,6 +2437,11 @@ void ListUserResponse_User::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->username(), target);
+  }
+
+  // bool online = 3;
+  if (this->online() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->online(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -2439,6 +2473,11 @@ size_t ListUserResponse_User::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->uid());
+  }
+
+  // bool online = 3;
+  if (this->online() != 0) {
+    total_size += 1 + 1;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2477,6 +2516,9 @@ void ListUserResponse_User::MergeFrom(const ListUserResponse_User& from) {
   if (from.uid() != 0) {
     set_uid(from.uid());
   }
+  if (from.online() != 0) {
+    set_online(from.online());
+  }
 }
 
 void ListUserResponse_User::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2505,6 +2547,7 @@ void ListUserResponse_User::InternalSwap(ListUserResponse_User* other) {
   using std::swap;
   username_.Swap(&other->username_);
   swap(uid_, other->uid_);
+  swap(online_, other->online_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
@@ -2957,6 +3000,7 @@ void ListBuddyResponse_User::InitAsDefaultInstance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ListBuddyResponse_User::kUidFieldNumber;
 const int ListBuddyResponse_User::kUsernameFieldNumber;
+const int ListBuddyResponse_User::kOnlineFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ListBuddyResponse_User::ListBuddyResponse_User()
@@ -2976,13 +3020,17 @@ ListBuddyResponse_User::ListBuddyResponse_User(const ListBuddyResponse_User& fro
   if (from.username().size() > 0) {
     username_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.username_);
   }
-  uid_ = from.uid_;
+  ::memcpy(&uid_, &from.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&online_) -
+    reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   // @@protoc_insertion_point(copy_constructor:ListBuddyResponse.User)
 }
 
 void ListBuddyResponse_User::SharedCtor() {
   username_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = 0u;
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&online_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   _cached_size_ = 0;
 }
 
@@ -3025,7 +3073,9 @@ void ListBuddyResponse_User::Clear() {
   (void) cached_has_bits;
 
   username_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  uid_ = 0u;
+  ::memset(&uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&online_) -
+      reinterpret_cast<char*>(&uid_)) + sizeof(online_));
   _internal_metadata_.Clear();
 }
 
@@ -3063,6 +3113,20 @@ bool ListBuddyResponse_User::MergePartialFromCodedStream(
             this->username().data(), static_cast<int>(this->username().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "ListBuddyResponse.User.username"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bool online = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &online_)));
         } else {
           goto handle_unusual;
         }
@@ -3110,6 +3174,11 @@ void ListBuddyResponse_User::SerializeWithCachedSizes(
       2, this->username(), output);
   }
 
+  // bool online = 3;
+  if (this->online() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->online(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -3138,6 +3207,11 @@ void ListBuddyResponse_User::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->username(), target);
+  }
+
+  // bool online = 3;
+  if (this->online() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->online(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -3169,6 +3243,11 @@ size_t ListBuddyResponse_User::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->uid());
+  }
+
+  // bool online = 3;
+  if (this->online() != 0) {
+    total_size += 1 + 1;
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -3207,6 +3286,9 @@ void ListBuddyResponse_User::MergeFrom(const ListBuddyResponse_User& from) {
   if (from.uid() != 0) {
     set_uid(from.uid());
   }
+  if (from.online() != 0) {
+    set_online(from.online());
+  }
 }
 
 void ListBuddyResponse_User::CopyFrom(const ::google::protobuf::Message& from) {
@@ -3235,6 +3317,7 @@ void ListBuddyResponse_User::InternalSwap(ListBuddyResponse_User* other) {
   using std::swap;
   username_.Swap(&other->username_);
   swap(uid_, other->uid_);
+  swap(online_, other->online_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }
