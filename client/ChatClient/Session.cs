@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ChatClient
     class Session
     {
         uint uid = 0;
+        string username = "";
         bool connected = false;
         TcpClient tcpClient = null;
         NetworkStream stream = null;
@@ -30,9 +32,28 @@ namespace ChatClient
         public delegate void OnListBuddyResponse(ListBuddyResponse r);
         public OnListBuddyResponse onListBuddyResponse = null;
 
+        public delegate void OnMessage(Message m);
+        public OnMessage onMessage = null;
+
         Reset lastReset = null;
         public delegate void OnClosed(Reset r);
         public OnClosed onClosed = null;
+
+        public uint Uid
+        {
+            get
+            {
+                return uid;
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+        }
 
         public Session()
         {
@@ -139,6 +160,10 @@ namespace ChatClient
             {
                 uid = r.Uid;
             }
+            else
+            {
+                username = "";
+            }
             lastLoginResponse = r;
             loginEvent.Set();
         }
@@ -180,7 +205,11 @@ namespace ChatClient
 
         private void HandleMessage(Message r)
         {
-            Debug.Print("handling message");
+            Debug.Print(string.Format("message from {0}: {1}", r.Uid, r.Msg));
+            if (onMessage != null)
+            {
+                onMessage(r);
+            }
         }
 
         private void HandleReset(Reset r)
@@ -200,6 +229,7 @@ namespace ChatClient
                 Packet.Write(stream, q);
             }
             loginEvent.WaitOne();
+            this.username = username;
             return lastLoginResponse.Code;
         }
 
@@ -220,6 +250,54 @@ namespace ChatClient
         public void ListUser()
         {
             ListUserRequest q = new ListUserRequest();
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
+        }
+
+        public void ListBuddy()
+        {
+            ListBuddyRequest q = new ListBuddyRequest();
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
+        }
+
+        public void AddBuddy(uint uid)
+        {
+            AddBuddyRequest q = new AddBuddyRequest();
+            q.Uid = uid;
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
+        }
+
+        public void SendMessage(uint destUid, string msg)
+        {
+            Message q = new Message();
+            q.Uid = destUid;
+            q.Msg = msg;
+            q.Data = ByteString.Empty;
+            lock (this)
+            {
+                Packet.Write(stream, q);
+            }
+        }
+
+        public void SendFile(uint destUid, string filename)
+        {
+            FileInfo fi = new FileInfo(filename);
+            Message q = new Message();
+            q.Uid = destUid;
+            q.Msg = fi.Name;
+            using (FileStream fs = fi.OpenRead())
+            {
+                q.Data = ByteString.FromStream(fs);
+            }
+            // TODO: fragmentation
             lock (this)
             {
                 Packet.Write(stream, q);

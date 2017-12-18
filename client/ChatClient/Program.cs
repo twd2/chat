@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace ChatClient
         public static MainForm mainForm = null;
         public static Session session = new Session();
         public static ManualResetEvent exitEvent = new ManualResetEvent(true);
+        public static ConcurrentDictionary<uint, string> usernameMap =
+            new ConcurrentDictionary<uint, string>();
 
         /// <summary>
         /// 应用程序的主入口点。

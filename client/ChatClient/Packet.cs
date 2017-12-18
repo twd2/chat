@@ -37,6 +37,12 @@ namespace ChatClient
             size |= (uint)buffer[2] << 8;
             size |= (uint)buffer[3] << 0;
             type = buffer[4];
+
+            if (size == 0)
+            {
+                return new byte[0];
+            }
+
             buffer = new byte[size];
             if (Util.SafeRead(stream, buffer, 0, buffer.Length) <= 0)
             {

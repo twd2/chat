@@ -36,9 +36,10 @@
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(277, 12);
+            this.btnRefresh.Location = new System.Drawing.Point(208, 10);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(86, 32);
+            this.btnRefresh.Size = new System.Drawing.Size(64, 26);
             this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -50,18 +51,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstUsers.FormattingEnabled = true;
-            this.lstUsers.ItemHeight = 15;
-            this.lstUsers.Location = new System.Drawing.Point(12, 50);
+            this.lstUsers.ItemHeight = 12;
+            this.lstUsers.Location = new System.Drawing.Point(9, 40);
+            this.lstUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstUsers.Name = "lstUsers";
-            this.lstUsers.Size = new System.Drawing.Size(351, 319);
+            this.lstUsers.Size = new System.Drawing.Size(264, 256);
             this.lstUsers.TabIndex = 2;
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 375);
+            this.btnAdd.Location = new System.Drawing.Point(9, 300);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(183, 29);
+            this.btnAdd.Size = new System.Drawing.Size(137, 23);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "将选择的用户加为好友";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -69,12 +72,13 @@
             // 
             // ListUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 416);
+            this.ClientSize = new System.Drawing.Size(281, 333);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lstUsers);
             this.Controls.Add(this.btnRefresh);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ListUserForm";
             this.Text = "搜索用户";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListUserForm_FormClosing);

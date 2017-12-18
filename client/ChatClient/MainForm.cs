@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,21 @@ namespace ChatClient
 {
     public partial class MainForm : Form
     {
+        public class UserWrapper
+        {
+            public ListBuddyResponse.Types.User user;
+
+            public UserWrapper(ListBuddyResponse.Types.User user)
+            {
+                this.user = user;
+            }
+
+            public override string ToString()
+            {
+                return string.Format("{0} ({1})", user.Username, user.Online ? "在线" : "离线");
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,6 +41,7 @@ namespace ChatClient
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.session.onListBuddyResponse -= OnListBuddyResponse;
             Program.session.onClosed -= OnSessionClosed;
             Program.loginForm.Close();
             Program.exitEvent.Set();
@@ -33,6 +50,23 @@ namespace ChatClient
         private void MainForm_Load(object sender, EventArgs e)
         {
             Program.session.onClosed += OnSessionClosed;
+            Program.session.onListBuddyResponse += OnListBuddyResponse;
+            labHello.Text = Program.session.Username + "，您好！";
+            btnRefresh_Click(null, null);
+        }
+
+        private void OnListBuddyResponse(ListBuddyResponse r)
+        {
+            Invoke(new Action(() =>
+            {
+                lstBuddies.Items.Clear();
+                foreach (ListBuddyResponse.Types.User u in r.Users)
+                {
+                    Program.usernameMap[u.Uid] = u.Username;
+                    lstBuddies.Items.Add(new UserWrapper(u));
+                    Debug.Print(u.Username);
+                }
+            }));
         }
 
         private void OnSessionClosed(Reset r)
@@ -66,6 +100,25 @@ namespace ChatClient
                 }
                 Environment.Exit(1);
             }));
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            new Thread(() =>
+            {
+                Program.session.ListBuddy();
+            }).Start();
+        }
+
+        private void lstBuddies_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstBuddies.SelectedIndex == -1)
+            {
+                MessageBox.Show("您没有选择任何用户。");
+                return;
+            }
+            UserWrapper uw = (UserWrapper)lstBuddies.Items[lstBuddies.SelectedIndex];
+            new ChatForm(uw.user.Uid).Show();
         }
     }
 }

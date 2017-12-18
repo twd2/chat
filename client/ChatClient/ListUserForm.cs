@@ -25,7 +25,7 @@ namespace ChatClient
 
             public override string ToString()
             {
-                return user.Username;
+                return string.Format("{0} ({1})", user.Username, user.Online ? "在线" : "离线");
             }
         }
 
@@ -60,6 +60,7 @@ namespace ChatClient
                 lstUsers.Items.Clear();
                 foreach (ListUserResponse.Types.User u in r.Users)
                 {
+                    Program.usernameMap[u.Uid] = u.Username;
                     lstUsers.Items.Add(new UserWrapper(u));
                     Debug.Print(u.Username);
                 }
@@ -71,7 +72,13 @@ namespace ChatClient
             if (lstUsers.SelectedIndex == -1)
             {
                 MessageBox.Show("您没有选择任何用户。");
+                return;
             }
+            UserWrapper uw = (UserWrapper)lstUsers.Items[lstUsers.SelectedIndex];
+            new Thread(() =>
+            {
+                Program.session.AddBuddy(uw.user.Uid);
+            }).Start();
         }
     }
 }
