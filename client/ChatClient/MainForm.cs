@@ -25,13 +25,47 @@ namespace ChatClient
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.session.onClosed -= OnSessionClosed;
             Program.loginForm.Close();
             Program.exitEvent.Set();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Program.session.onClosed += OnSessionClosed;
+        }
 
+        private void OnSessionClosed(Reset r)
+        {
+            Invoke(new Action(() =>
+            {
+                if (r != null)
+                {
+                    switch (r.Code)
+                    {
+                        case Reset.Types.Code.ProtocolMismatch:
+                        {
+                            MessageBox.Show("协议不匹配。");
+                            break;
+                        }
+                        case Reset.Types.Code.Kicked:
+                        {
+                            MessageBox.Show("您已被踢下线。");
+                            break;
+                        }
+                        default:
+                        {
+                            MessageBox.Show("出现了未知错误。");
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("服务器连接已断开。");
+                }
+                Environment.Exit(1);
+            }));
         }
     }
 }

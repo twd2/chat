@@ -36,6 +36,7 @@ namespace ChatClient
                             Program.exitEvent.Reset();
                             Program.mainForm = new MainForm();
                             Program.mainForm.Show();
+                            Program.session.onClosed -= OnSessionClosed;
                             Hide();
                             break;
                         }
@@ -62,7 +63,7 @@ namespace ChatClient
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            new RegisterForm().Show();
+            new RegisterForm().ShowDialog();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -73,7 +74,9 @@ namespace ChatClient
                 try
                 {
                     // TODO: configurable
-                    Program.session.Connect("172.16.67.150", 1025);
+                    Program.session.onClosed += OnSessionClosed;
+                    Program.session.Connect(Properties.Settings.Default.Server,
+                                            Properties.Settings.Default.Port);
                     Invoke(new Action(() =>
                     {
                         Enabled = true;
@@ -88,6 +91,39 @@ namespace ChatClient
                     }));
                 }
             }).Start();
+        }
+
+        private void OnSessionClosed(Reset r)
+        {
+            Invoke(new Action(() =>
+            {
+                if (r != null)
+                {
+                    switch (r.Code)
+                    {
+                        case Reset.Types.Code.ProtocolMismatch:
+                        {
+                            MessageBox.Show("协议不匹配。");
+                            break;
+                        }
+                        case Reset.Types.Code.Kicked:
+                        {
+                            MessageBox.Show("您已被踢下线。");
+                            break;
+                        }
+                        default:
+                        {
+                            MessageBox.Show("出现了未知错误。");
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("服务器连接已断开。");
+                }
+                Environment.Exit(1);
+            }));
         }
     }
 }

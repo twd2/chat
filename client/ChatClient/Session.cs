@@ -27,6 +27,13 @@ namespace ChatClient
         public delegate void OnListUserResponse(ListUserResponse r);
         public OnListUserResponse onListUserResponse = null;
 
+        public delegate void OnListBuddyResponse(ListBuddyResponse r);
+        public OnListBuddyResponse onListBuddyResponse = null;
+
+        Reset lastReset = null;
+        public delegate void OnClosed(Reset r);
+        public OnClosed onClosed = null;
+
         public Session()
         {
 
@@ -56,6 +63,8 @@ namespace ChatClient
                 }
 
                 Debug.Print("Type: {0}", type);
+
+                lastReset = null;
 
                 // dispatch
                 switch (type)
@@ -144,13 +153,19 @@ namespace ChatClient
         private void HandleListUser(ListUserResponse r)
         {
             Debug.Print("handling list user");
-            onListUserResponse(r);
+            if (onListUserResponse != null)
+            {
+                onListUserResponse(r);
+            }
         }
 
         private void HandleListBuddy(ListBuddyResponse r)
         {
             Debug.Print("handling list buddy");
-            // onListBuddyResponse(r); // TODO
+            if (onListBuddyResponse != null)
+            {
+                onListBuddyResponse(r);
+            }
         }
 
         private void HandleAddBuddy(AddBuddyResponse r)
@@ -171,6 +186,7 @@ namespace ChatClient
         private void HandleReset(Reset r)
         {
             Debug.Print("handling reset");
+            lastReset = r;
         }
 
         public LoginResponse.Types.Code Login(string username, string password)
@@ -223,6 +239,10 @@ namespace ChatClient
             tcpClient.Close();
             tcpClient = null;
             thread = null;
+            if (onClosed != null)
+            {
+                onClosed(lastReset);
+            }
         }
     }
 }
