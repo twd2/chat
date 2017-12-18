@@ -73,6 +73,21 @@ namespace ChatClient
             Write(stream, p.ToByteArray(), PACKET_LIST_USER);
         }
 
+        public static void Write(Stream stream, ListBuddyRequest p)
+        {
+            Write(stream, p.ToByteArray(), PACKET_LIST_BUDDY);
+        }
+
+        public static void Write(Stream stream, AddBuddyRequest p)
+        {
+            Write(stream, p.ToByteArray(), PACKET_ADD_BUDDY);
+        }
+
+        public static void Write(Stream stream, RemoveBuddyRequest p)
+        {
+            Write(stream, p.ToByteArray(), PACKET_REMOVE_BUDDY);
+        }
+
         public static void Write(Stream stream, Message p)
         {
             Write(stream, p.ToByteArray(), PACKET_MESSAGE);
