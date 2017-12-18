@@ -39,14 +39,14 @@ public static partial class ChatReflection {
           "ZRILCgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiIQoSUmVtb3ZlQnVkZHlSZXF1",
           "ZXN0EgsKA3VpZBgBIAEoDSJfChNSZW1vdmVCdWRkeVJlc3BvbnNlEicKBGNv",
           "ZGUYASABKA4yGS5SZW1vdmVCdWRkeVJlc3BvbnNlLkNvZGUiHwoEQ29kZRIL",
-          "CgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiMQoHTWVzc2FnZRILCgN1aWQYASAB",
-          "KA0SCwoDbXNnGAIgASgJEgwKBGRhdGEYAyABKAwibQoFUmVzZXQSGQoEY29k",
-          "ZRgBIAEoDjILLlJlc2V0LkNvZGUSCwoDbXNnGAIgASgJIjwKBENvZGUSEQoN",
-          "VU5LTk9XTl9FUlJPUhAAEhUKEVBST1RPQ09MX01JU01BVENIEAESCgoGS0lD",
-          "S0VEEAIiiwEKDFVzZXJEYXRhYmFzZRIOCgZtYXhVaWQYASABKA0SIQoFdXNl",
-          "cnMYAiADKAsyEi5Vc2VyRGF0YWJhc2UuVXNlchpICgRVc2VyEgsKA3VpZBgB",
-          "IAEoDRIQCgh1c2VybmFtZRgCIAEoCRIQCghwYXNzd29yZBgDIAEoCRIPCgdi",
-          "dWRkaWVzGAQgAygNYgZwcm90bzM="));
+          "CgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiRAoHTWVzc2FnZRILCgN1aWQYASAB",
+          "KA0SEQoJdGltZXN0YW1wGAIgASgEEgsKA21zZxgDIAEoCRIMCgRkYXRhGAQg",
+          "ASgMIm0KBVJlc2V0EhkKBGNvZGUYASABKA4yCy5SZXNldC5Db2RlEgsKA21z",
+          "ZxgCIAEoCSI8CgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NP",
+          "TF9NSVNNQVRDSBABEgoKBktJQ0tFRBACIosBCgxVc2VyRGF0YWJhc2USDgoG",
+          "bWF4VWlkGAEgASgNEiEKBXVzZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVz",
+          "ZXIaSAoEVXNlchILCgN1aWQYASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoI",
+          "cGFzc3dvcmQYAyABKAkSDwoHYnVkZGllcxgEIAMoDWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -62,7 +62,7 @@ public static partial class ChatReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyResponse), global::AddBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::AddBuddyResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyRequest), global::RemoveBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyResponse), global::RemoveBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::RemoveBuddyResponse.Types.Code) }, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Msg", "Data" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Timestamp", "Msg", "Data" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Reset), global::Reset.Parser, new[]{ "Code", "Msg" }, null, new[]{ typeof(global::Reset.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase), global::UserDatabase.Parser, new[]{ "MaxUid", "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase.Types.User), global::UserDatabase.Types.User.Parser, new[]{ "Uid", "Username", "Password", "Buddies" }, null, null, null)})
         }));
@@ -1949,6 +1949,7 @@ public sealed partial class Message : pb::IMessage<Message> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public Message(Message other) : this() {
     uid_ = other.uid_;
+    timestamp_ = other.timestamp_;
     msg_ = other.msg_;
     data_ = other.data_;
   }
@@ -1972,11 +1973,25 @@ public sealed partial class Message : pb::IMessage<Message> {
     }
   }
 
-  /// <summary>Field number for the "msg" field.</summary>
-  public const int MsgFieldNumber = 2;
-  private string msg_ = "";
+  /// <summary>Field number for the "timestamp" field.</summary>
+  public const int TimestampFieldNumber = 2;
+  private ulong timestamp_;
   /// <summary>
   /// destination uid for messages from client to server
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ulong Timestamp {
+    get { return timestamp_; }
+    set {
+      timestamp_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "msg" field.</summary>
+  public const int MsgFieldNumber = 3;
+  private string msg_ = "";
+  /// <summary>
+  /// if data exists, msg means file name (for file transportation).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public string Msg {
@@ -1987,7 +2002,7 @@ public sealed partial class Message : pb::IMessage<Message> {
   }
 
   /// <summary>Field number for the "data" field.</summary>
-  public const int DataFieldNumber = 3;
+  public const int DataFieldNumber = 4;
   private pb::ByteString data_ = pb::ByteString.Empty;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public pb::ByteString Data {
@@ -2011,6 +2026,7 @@ public sealed partial class Message : pb::IMessage<Message> {
       return true;
     }
     if (Uid != other.Uid) return false;
+    if (Timestamp != other.Timestamp) return false;
     if (Msg != other.Msg) return false;
     if (Data != other.Data) return false;
     return true;
@@ -2020,6 +2036,7 @@ public sealed partial class Message : pb::IMessage<Message> {
   public override int GetHashCode() {
     int hash = 1;
     if (Uid != 0) hash ^= Uid.GetHashCode();
+    if (Timestamp != 0UL) hash ^= Timestamp.GetHashCode();
     if (Msg.Length != 0) hash ^= Msg.GetHashCode();
     if (Data.Length != 0) hash ^= Data.GetHashCode();
     return hash;
@@ -2036,12 +2053,16 @@ public sealed partial class Message : pb::IMessage<Message> {
       output.WriteRawTag(8);
       output.WriteUInt32(Uid);
     }
+    if (Timestamp != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Timestamp);
+    }
     if (Msg.Length != 0) {
-      output.WriteRawTag(18);
+      output.WriteRawTag(26);
       output.WriteString(Msg);
     }
     if (Data.Length != 0) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(34);
       output.WriteBytes(Data);
     }
   }
@@ -2051,6 +2072,9 @@ public sealed partial class Message : pb::IMessage<Message> {
     int size = 0;
     if (Uid != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Uid);
+    }
+    if (Timestamp != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Timestamp);
     }
     if (Msg.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Msg);
@@ -2068,6 +2092,9 @@ public sealed partial class Message : pb::IMessage<Message> {
     }
     if (other.Uid != 0) {
       Uid = other.Uid;
+    }
+    if (other.Timestamp != 0UL) {
+      Timestamp = other.Timestamp;
     }
     if (other.Msg.Length != 0) {
       Msg = other.Msg;
@@ -2089,11 +2116,15 @@ public sealed partial class Message : pb::IMessage<Message> {
           Uid = input.ReadUInt32();
           break;
         }
-        case 18: {
-          Msg = input.ReadString();
+        case 16: {
+          Timestamp = input.ReadUInt64();
           break;
         }
         case 26: {
+          Msg = input.ReadString();
+          break;
+        }
+        case 34: {
           Data = input.ReadBytes();
           break;
         }

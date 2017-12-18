@@ -6,6 +6,7 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -340,6 +341,7 @@ void session::handle_message(Message &q)
 
     uint32_t dest_uid = q.uid();
     q.set_uid(uid);
+    q.set_timestamp(time(nullptr));
 
     std::shared_ptr<session> buddy_session = nullptr;
 

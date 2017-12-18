@@ -80,8 +80,9 @@ message RemoveBuddyResponse {
 message Message {
   uint32 uid = 1; // source uid for messages from server to client;
                   // destination uid for messages from client to server
-  string msg = 2; // if data exists, msg means file name (for file transportation).
-  bytes data = 3;
+  uint64 timestamp = 2;
+  string msg = 3; // if data exists, msg means file name (for file transportation).
+  bytes data = 4;
 }
 
 message Reset {

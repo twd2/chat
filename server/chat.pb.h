@@ -1944,9 +1944,9 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
-  // string msg = 2;
+  // string msg = 3;
   void clear_msg();
-  static const int kMsgFieldNumber = 2;
+  static const int kMsgFieldNumber = 3;
   const ::std::string& msg() const;
   void set_msg(const ::std::string& value);
   #if LANG_CXX11
@@ -1958,9 +1958,9 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_msg();
   void set_allocated_msg(::std::string* msg);
 
-  // bytes data = 3;
+  // bytes data = 4;
   void clear_data();
-  static const int kDataFieldNumber = 3;
+  static const int kDataFieldNumber = 4;
   const ::std::string& data() const;
   void set_data(const ::std::string& value);
   #if LANG_CXX11
@@ -1971,6 +1971,12 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* mutable_data();
   ::std::string* release_data();
   void set_allocated_data(::std::string* data);
+
+  // uint64 timestamp = 2;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 2;
+  ::google::protobuf::uint64 timestamp() const;
+  void set_timestamp(::google::protobuf::uint64 value);
 
   // uint32 uid = 1;
   void clear_uid();
@@ -1984,6 +1990,7 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr msg_;
   ::google::protobuf::internal::ArenaStringPtr data_;
+  ::google::protobuf::uint64 timestamp_;
   ::google::protobuf::uint32 uid_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
@@ -3015,7 +3022,21 @@ inline void Message::set_uid(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:Message.uid)
 }
 
-// string msg = 2;
+// uint64 timestamp = 2;
+inline void Message::clear_timestamp() {
+  timestamp_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 Message::timestamp() const {
+  // @@protoc_insertion_point(field_get:Message.timestamp)
+  return timestamp_;
+}
+inline void Message::set_timestamp(::google::protobuf::uint64 value) {
+  
+  timestamp_ = value;
+  // @@protoc_insertion_point(field_set:Message.timestamp)
+}
+
+// string msg = 3;
 inline void Message::clear_msg() {
   msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3068,7 +3089,7 @@ inline void Message::set_allocated_msg(::std::string* msg) {
   // @@protoc_insertion_point(field_set_allocated:Message.msg)
 }
 
-// bytes data = 3;
+// bytes data = 4;
 inline void Message::clear_data() {
   data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
