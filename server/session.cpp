@@ -77,6 +77,7 @@ void session::handle()
             Reset r;
             r.set_code(Reset::PROTOCOL_MISMATCH);
             r.set_msg("invalid type or bad data");
+            std::unique_lock<std::mutex> lock(mtx);
             send_packet(sock, r);
             break;
         }
@@ -129,7 +130,10 @@ void session::handle_login(LoginRequest &q)
     
     set_uid(new_uid);
 
-    send_packet(sock, r);
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
 }
 
 void session::handle_register(RegisterRequest &q)
@@ -170,7 +174,10 @@ void session::handle_register(RegisterRequest &q)
         }
     }
 
-    send_packet(sock, r);
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
 }
 
 void session::handle_list_user(ListUserRequest &q)
@@ -196,23 +203,130 @@ void session::handle_list_user(ListUserRequest &q)
         }
     }
     
-    send_packet(sock, r);
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
 }
 
 
 void session::handle_list_buddy(ListBuddyRequest &q)
 {
     log() << "handling list buddy!" << std::endl;
+    if (!uid)
+    {
+        kick(true);
+        return;
+    }
+
+    send_list_buddy();
 }
 
 void session::handle_add_buddy(AddBuddyRequest &q)
 {
     log() << "handling add buddy!" << std::endl;
+    if (!uid)
+    {
+        kick(true);
+        return;
+    }
+    
+    AddBuddyResponse r;
+    
+    {
+        std::unique_lock<std::mutex> lock(global::users_mtx);
+        for (UserDatabase::User &u : *global::users.mutable_users())
+        {
+            if (u.uid() == uid)
+            {
+                u.add_buddies(q.uid());
+            }
+            if (uid != q.uid() && u.uid() == q.uid())
+            {
+                u.add_buddies(uid);
+            }
+        }
+        global::save_users();
+    }
+    
+    r.set_code(AddBuddyResponse::SUCCESS);
+    
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
+    
+    send_list_buddy();
+    std::shared_ptr<session> buddy_session = nullptr;
+
+    {
+        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+        if (global::has_session(q.uid()))
+        {
+            buddy_session = global::user_sessions[q.uid()];
+        }
+    }
+
+    if (buddy_session)
+    {
+        buddy_session->send_list_buddy();
+    }
 }
 
 void session::handle_remove_buddy(RemoveBuddyRequest &q)
 {
     log() << "handling remove buddy!" << std::endl;
+    if (!uid)
+    {
+        kick(true);
+        return;
+    }
+    
+    RemoveBuddyResponse r;
+    r.set_code(RemoveBuddyResponse::FAILED); // not implemented
+
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
+    
+    send_list_buddy();
+}
+
+void session::send_list_buddy()
+{
+    ListBuddyResponse r;
+    
+    {
+        std::unique_lock<std::mutex> lock(global::users_mtx);
+        std::unique_lock<std::mutex> lock2(global::user_sessions_mtx);
+        for (const UserDatabase::User &u : global::users.users())
+        {
+            if (u.uid() == uid)
+            {
+                for (const uint32_t &bid : u.buddies())
+                {
+                    ListBuddyResponse::User &ru = *r.add_users();
+                    ru.set_uid(bid);
+                    for (const UserDatabase::User &u : global::users.users())
+                    {
+                        if (u.uid() == bid)
+                        {
+                            ru.set_username(u.username());
+                            break;
+                        }
+                    }
+                    ru.set_online(global::has_session(bid));
+                }
+                break;
+            }
+        }
+    }
+    
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        send_packet(sock, r);
+    }
 }
 
 void session::handle_message(Message &q)
@@ -226,7 +340,33 @@ void session::handle_message(Message &q)
 
     uint32_t dest_uid = q.uid();
     q.set_uid(uid);
-    // TODO: do forward
+
+    std::shared_ptr<session> buddy_session = nullptr;
+
+    {
+        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+        if (global::has_session(dest_uid))
+        {
+            buddy_session = global::user_sessions[dest_uid];
+        }
+    }
+
+    if (buddy_session)
+    {
+        log() << "forwarding" << std::endl;
+        buddy_session->send_message(q);
+    }
+    else
+    {
+        // TODO: enqueue
+        log() << "user not online, enqueue" << std::endl;
+    }
+}
+
+void session::send_message(Message &m)
+{
+    std::unique_lock<std::mutex> lock(mtx);
+    send_packet(sock, m);
 }
 
 void session::handle_reset(Reset &q)
@@ -242,16 +382,24 @@ void session::set_uid(uint32_t new_uid)
         return;
     }
 
-    std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
-    auto iter = global::user_sessions.find(new_uid);
+    auto iter = global::user_sessions.end();
+
+    {
+        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+        iter = global::user_sessions.find(new_uid);
+    }
+
     if (iter != global::user_sessions.end())
     {
-        std::unique_lock<std::mutex> lock(iter->second->mtx);
         iter->second->kick(true);
     }
-    global::user_sessions.erase(uid);
-    uid = new_uid;
-    global::user_sessions[new_uid] = *self_iter;
+
+    {
+        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+        global::user_sessions.erase(uid);
+        uid = new_uid;
+        global::user_sessions[new_uid] = *self_iter;
+    }
 }
 
 session::~session()
@@ -270,9 +418,15 @@ void session::kick(bool send_msg)
     {
         Reset r;
         r.set_code(Reset::KICKED);
+        std::unique_lock<std::mutex> lock(mtx);
         send_packet(sock, r);
     }
-    global::user_sessions.erase(uid);
+
+    {
+        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+        global::user_sessions.erase(uid);
+    }
+
     is_alive = false;
     shutdown(sock, SHUT_RDWR);
     close(sock);

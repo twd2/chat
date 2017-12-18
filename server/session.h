@@ -46,6 +46,8 @@ public:
 private:
     void set_uid(uint32_t new_uid);
     bool is_online(uint32_t uid);
+    void send_list_buddy();
+    void send_message(Message &m);
 };
 
 #endif // _CHAT_SERVER_SESSION_H_
