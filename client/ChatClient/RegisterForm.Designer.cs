@@ -42,9 +42,10 @@
             this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegister.Location = new System.Drawing.Point(12, 105);
+            this.btnRegister.Location = new System.Drawing.Point(9, 84);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(252, 41);
+            this.btnRegister.Size = new System.Drawing.Size(189, 33);
             this.btnRegister.TabIndex = 9;
             this.btnRegister.Text = "注册";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -54,9 +55,10 @@
             // 
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsername.Location = new System.Drawing.Point(69, 12);
+            this.txtUsername.Location = new System.Drawing.Point(52, 10);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(195, 25);
+            this.txtUsername.Size = new System.Drawing.Size(147, 21);
             this.txtUsername.TabIndex = 4;
             this.txtUsername.Text = "twd2";
             // 
@@ -64,28 +66,31 @@
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(69, 43);
+            this.txtPassword.Location = new System.Drawing.Point(52, 34);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(195, 25);
+            this.txtPassword.Size = new System.Drawing.Size(147, 21);
             this.txtPassword.TabIndex = 5;
             this.txtPassword.Text = "123456";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 46);
+            this.label2.Location = new System.Drawing.Point(6, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 7;
             this.label2.Text = "密码";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 15);
+            this.label1.Location = new System.Drawing.Point(6, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "用户名";
             // 
@@ -93,27 +98,29 @@
             // 
             this.txtPassword2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword2.Location = new System.Drawing.Point(69, 74);
+            this.txtPassword2.Location = new System.Drawing.Point(52, 59);
+            this.txtPassword2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword2.Name = "txtPassword2";
             this.txtPassword2.PasswordChar = '*';
-            this.txtPassword2.Size = new System.Drawing.Size(195, 25);
+            this.txtPassword2.Size = new System.Drawing.Size(147, 21);
             this.txtPassword2.TabIndex = 10;
             this.txtPassword2.Text = "123456";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 77);
+            this.label3.Location = new System.Drawing.Point(6, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 11;
             this.label3.Text = "重复";
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 158);
+            this.ClientSize = new System.Drawing.Size(207, 126);
             this.Controls.Add(this.txtPassword2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnRegister);
@@ -122,6 +129,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
             this.Name = "RegisterForm";
             this.Text = "注册";
             this.ResumeLayout(false);

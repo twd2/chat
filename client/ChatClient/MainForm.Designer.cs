@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnListUser = new System.Windows.Forms.Button();
             this.lstBuddies = new System.Windows.Forms.ListBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.labHello = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnListUser
             // 
             this.btnListUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnListUser.Location = new System.Drawing.Point(146, 10);
+            this.btnListUser.Location = new System.Drawing.Point(135, 11);
             this.btnListUser.Margin = new System.Windows.Forms.Padding(2);
             this.btnListUser.Name = "btnListUser";
-            this.btnListUser.Size = new System.Drawing.Size(64, 26);
+            this.btnListUser.Size = new System.Drawing.Size(97, 25);
             this.btnListUser.TabIndex = 0;
-            this.btnListUser.Text = "添加好友";
+            this.btnListUser.Text = "添加好友(&A)";
             this.btnListUser.UseVisualStyleBackColor = true;
             this.btnListUser.Click += new System.EventHandler(this.btnListUser_Click);
             // 
@@ -56,19 +58,19 @@
             this.lstBuddies.Location = new System.Drawing.Point(11, 40);
             this.lstBuddies.Margin = new System.Windows.Forms.Padding(2);
             this.lstBuddies.Name = "lstBuddies";
-            this.lstBuddies.Size = new System.Drawing.Size(267, 196);
+            this.lstBuddies.Size = new System.Drawing.Size(289, 196);
             this.lstBuddies.TabIndex = 3;
             this.lstBuddies.DoubleClick += new System.EventHandler(this.lstBuddies_DoubleClick);
             // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(214, 11);
+            this.btnRefresh.Location = new System.Drawing.Point(236, 11);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(64, 25);
             this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.Text = "刷新(&R)";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -77,15 +79,21 @@
             this.labHello.AutoSize = true;
             this.labHello.Location = new System.Drawing.Point(12, 17);
             this.labHello.Name = "labHello";
-            this.labHello.Size = new System.Drawing.Size(41, 12);
+            this.labHello.Size = new System.Drawing.Size(101, 12);
             this.labHello.TabIndex = 5;
-            this.labHello.Text = "label1";
+            this.labHello.Text = "twd2twd2，您好！";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 252);
+            this.ClientSize = new System.Drawing.Size(311, 252);
             this.Controls.Add(this.labHello);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lstBuddies);
@@ -106,5 +114,6 @@
         private System.Windows.Forms.ListBox lstBuddies;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label labHello;
+        private System.Windows.Forms.Timer timer1;
     }
 }

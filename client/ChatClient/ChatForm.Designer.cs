@@ -44,10 +44,12 @@
             // 
             // txtSession
             // 
+            this.txtSession.BackColor = System.Drawing.Color.White;
             this.txtSession.Location = new System.Drawing.Point(12, 44);
             this.txtSession.Multiline = true;
             this.txtSession.Name = "txtSession";
             this.txtSession.ReadOnly = true;
+            this.txtSession.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtSession.Size = new System.Drawing.Size(260, 235);
             this.txtSession.TabIndex = 1;
             // 
@@ -69,6 +71,7 @@
             this.btnFile.TabIndex = 3;
             this.btnFile.Text = "发送文件(&F)";
             this.btnFile.UseVisualStyleBackColor = true;
+            this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
             // 
             // ChatForm
             // 
@@ -81,8 +84,8 @@
             this.Controls.Add(this.txtSend);
             this.Name = "ChatForm";
             this.Text = "ChatForm";
-            this.Load += new System.EventHandler(this.ChatForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
+            this.Load += new System.EventHandler(this.ChatForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

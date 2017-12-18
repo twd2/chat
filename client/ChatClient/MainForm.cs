@@ -130,15 +130,23 @@ namespace ChatClient
 
         public void OnMessage(Message m)
         {
-            Invoke(new Action(() =>
+            new Thread(() =>
             {
-                if (!Program.chatFormMap.ContainsKey(m.Uid))
+                Invoke(new Action(() =>
                 {
-                    Program.chatFormMap[m.Uid] = new ChatForm(m.Uid);
-                    Program.chatFormMap[m.Uid].Show();
-                }
-                Program.chatFormMap[m.Uid].OnMessage(m);
-            }));
+                    if (!Program.chatFormMap.ContainsKey(m.Uid))
+                    {
+                        Program.chatFormMap[m.Uid] = new ChatForm(m.Uid);
+                        Program.chatFormMap[m.Uid].Show();
+                    }
+                    Program.chatFormMap[m.Uid].OnMessage(m);
+                }));
+            }).Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            btnRefresh_Click(null, null);
         }
     }
 }

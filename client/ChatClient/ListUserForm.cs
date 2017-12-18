@@ -55,16 +55,23 @@ namespace ChatClient
 
         private void OnListUserResponse(ListUserResponse r)
         {
-            Invoke(new Action(() =>
+            try
             {
-                lstUsers.Items.Clear();
-                foreach (ListUserResponse.Types.User u in r.Users)
+                Invoke(new Action(() =>
                 {
-                    Program.usernameMap[u.Uid] = u.Username;
-                    lstUsers.Items.Add(new UserWrapper(u));
-                    Debug.Print(u.Username);
-                }
-            }));
+                    lstUsers.Items.Clear();
+                    foreach (ListUserResponse.Types.User u in r.Users)
+                    {
+                        Program.usernameMap[u.Uid] = u.Username;
+                        lstUsers.Items.Add(new UserWrapper(u));
+                        Debug.Print(u.Username);
+                    }
+                }));
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -79,6 +86,11 @@ namespace ChatClient
             {
                 Program.session.AddBuddy(uw.user.Uid);
             }).Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            btnRefresh_Click(null, null);
         }
     }
 }
