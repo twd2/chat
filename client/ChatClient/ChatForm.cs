@@ -13,27 +13,28 @@ namespace ChatClient
 {
     public partial class ChatForm : Form
     {
-        uint buddy_uid;
+        uint buddyUid;
+        string buddyUsername = "";
 
-        public ChatForm(uint buddy_uid)
+        public ChatForm(uint buddyUid)
         {
-            this.buddy_uid = buddy_uid;
+            this.buddyUid = buddyUid;
             InitializeComponent();
         }
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
-            Text = string.Format("与 {0} 的聊天",
-                Program.usernameMap.ContainsKey(buddy_uid)
-                ? Program.usernameMap[buddy_uid]
-                : "UID=" + buddy_uid.ToString());
+            buddyUsername = Program.usernameMap.ContainsKey(buddyUid)
+                ? Program.usernameMap[buddyUid]
+                : "UID=" + buddyUid.ToString();
+            Text = string.Format("与 {0} 的聊天", buddyUsername);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             new Thread(() =>
             {
-                Program.session.SendMessage(buddy_uid, txtSend.Text);
+                Program.session.SendMessage(buddyUid, txtSend.Text);
             }).Start();
         }
     }
