@@ -243,12 +243,13 @@ inline bool RemoveBuddyResponse_Code_Parse(
 enum Reset_Code {
   Reset_Code_UNKNOWN_ERROR = 0,
   Reset_Code_PROTOCOL_MISMATCH = 1,
+  Reset_Code_KICKED = 2,
   Reset_Code_Reset_Code_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   Reset_Code_Reset_Code_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool Reset_Code_IsValid(int value);
 const Reset_Code Reset_Code_Code_MIN = Reset_Code_UNKNOWN_ERROR;
-const Reset_Code Reset_Code_Code_MAX = Reset_Code_PROTOCOL_MISMATCH;
+const Reset_Code Reset_Code_Code_MAX = Reset_Code_KICKED;
 const int Reset_Code_Code_ARRAYSIZE = Reset_Code_Code_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Reset_Code_descriptor();
@@ -2061,6 +2062,8 @@ class Reset : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
     Reset_Code_UNKNOWN_ERROR;
   static const Code PROTOCOL_MISMATCH =
     Reset_Code_PROTOCOL_MISMATCH;
+  static const Code KICKED =
+    Reset_Code_KICKED;
   static inline bool Code_IsValid(int value) {
     return Reset_Code_IsValid(value);
   }

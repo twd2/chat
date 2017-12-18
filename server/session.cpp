@@ -74,7 +74,10 @@ void session::handle()
         if (invalid)
         {
             log() << "invalid type or bad data" << std::endl;
-            send_packet(sock, "invalid type or bad data", PACKET_RAW);
+            Reset r;
+            r.set_code(Reset::PROTOCOL_MISMATCH);
+            r.set_msg("invalid type or bad data");
+            send_packet(sock, r);
             break;
         }
     }
@@ -263,7 +266,9 @@ void session::kick(bool send_msg)
 
     if (send_msg)
     {
-        send_packet(sock, "kicked!", PACKET_RAW);
+        Reset r;
+        r.set_code(Reset::KICKED);
+        send_packet(sock, r);
     }
     global::user_sessions.erase(uid);
     is_alive = false;

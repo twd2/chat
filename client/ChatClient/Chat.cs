@@ -39,13 +39,13 @@ public static partial class ChatReflection {
           "bW92ZUJ1ZGR5UmVxdWVzdBILCgN1aWQYASABKA0iXwoTUmVtb3ZlQnVkZHlS",
           "ZXNwb25zZRInCgRjb2RlGAEgASgOMhkuUmVtb3ZlQnVkZHlSZXNwb25zZS5D",
           "b2RlIh8KBENvZGUSCwoHU1VDQ0VTUxAAEgoKBkZBSUxFRBABIjEKB01lc3Nh",
-          "Z2USCwoDdWlkGAEgASgNEgsKA21zZxgCIAEoCRIMCgRkYXRhGAMgASgMImEK",
+          "Z2USCwoDdWlkGAEgASgNEgsKA21zZxgCIAEoCRIMCgRkYXRhGAMgASgMIm0K",
           "BVJlc2V0EhkKBGNvZGUYASABKA4yCy5SZXNldC5Db2RlEgsKA21zZxgCIAEo",
-          "CSIwCgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NPTF9NSVNN",
-          "QVRDSBABIosBCgxVc2VyRGF0YWJhc2USDgoGbWF4VWlkGAEgASgNEiEKBXVz",
-          "ZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVzZXIaSAoEVXNlchILCgN1aWQY",
-          "ASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoIcGFzc3dvcmQYAyABKAkSDwoH",
-          "YnVkZGllcxgEIAMoDWIGcHJvdG8z"));
+          "CSI8CgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NPTF9NSVNN",
+          "QVRDSBABEgoKBktJQ0tFRBACIosBCgxVc2VyRGF0YWJhc2USDgoGbWF4VWlk",
+          "GAEgASgNEiEKBXVzZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVzZXIaSAoE",
+          "VXNlchILCgN1aWQYASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoIcGFzc3dv",
+          "cmQYAyABKAkSDwoHYnVkZGllcxgEIAMoDWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -2196,6 +2196,7 @@ public sealed partial class Reset : pb::IMessage<Reset> {
     public enum Code {
       [pbr::OriginalName("UNKNOWN_ERROR")] UnknownError = 0,
       [pbr::OriginalName("PROTOCOL_MISMATCH")] ProtocolMismatch = 1,
+      [pbr::OriginalName("KICKED")] Kicked = 2,
     }
 
   }

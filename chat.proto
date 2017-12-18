@@ -86,6 +86,7 @@ message Reset {
   enum Code {
     UNKNOWN_ERROR = 0;
     PROTOCOL_MISMATCH = 1;
+    KICKED = 2;
   }
   Code code = 1;
   string msg = 2;

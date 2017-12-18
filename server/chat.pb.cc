@@ -701,16 +701,16 @@ void AddDescriptorsImpl() {
       "uddyResponse\022\'\n\004code\030\001 \001(\0162\031.RemoveBuddy"
       "Response.Code\"\037\n\004Code\022\013\n\007SUCCESS\020\000\022\n\n\006FA"
       "ILED\020\001\"1\n\007Message\022\013\n\003uid\030\001 \001(\r\022\013\n\003msg\030\002 "
-      "\001(\t\022\014\n\004data\030\003 \001(\014\"a\n\005Reset\022\031\n\004code\030\001 \001(\016"
-      "2\013.Reset.Code\022\013\n\003msg\030\002 \001(\t\"0\n\004Code\022\021\n\rUN"
-      "KNOWN_ERROR\020\000\022\025\n\021PROTOCOL_MISMATCH\020\001\"\213\001\n"
-      "\014UserDatabase\022\016\n\006maxUid\030\001 \001(\r\022!\n\005users\030\002"
-      " \003(\0132\022.UserDatabase.User\032H\n\004User\022\013\n\003uid\030"
-      "\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020\n\010password\030\003 \001("
-      "\t\022\017\n\007buddies\030\004 \003(\rb\006proto3"
+      "\001(\t\022\014\n\004data\030\003 \001(\014\"m\n\005Reset\022\031\n\004code\030\001 \001(\016"
+      "2\013.Reset.Code\022\013\n\003msg\030\002 \001(\t\"<\n\004Code\022\021\n\rUN"
+      "KNOWN_ERROR\020\000\022\025\n\021PROTOCOL_MISMATCH\020\001\022\n\n\006"
+      "KICKED\020\002\"\213\001\n\014UserDatabase\022\016\n\006maxUid\030\001 \001("
+      "\r\022!\n\005users\030\002 \003(\0132\022.UserDatabase.User\032H\n\004"
+      "User\022\013\n\003uid\030\001 \001(\r\022\020\n\010username\030\002 \001(\t\022\020\n\010p"
+      "assword\030\003 \001(\t\022\017\n\007buddies\030\004 \003(\rb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1146);
+      descriptor, 1158);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "chat.proto", &protobuf_RegisterTypes);
 }
@@ -820,6 +820,7 @@ bool Reset_Code_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -829,6 +830,7 @@ bool Reset_Code_IsValid(int value) {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const Reset_Code Reset::UNKNOWN_ERROR;
 const Reset_Code Reset::PROTOCOL_MISMATCH;
+const Reset_Code Reset::KICKED;
 const Reset_Code Reset::Code_MIN;
 const Reset_Code Reset::Code_MAX;
 const int Reset::Code_ARRAYSIZE;
