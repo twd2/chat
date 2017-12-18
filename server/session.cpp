@@ -233,44 +233,67 @@ void session::handle_add_buddy(AddBuddyRequest &q)
     }
     
     AddBuddyResponse r;
-    
+
+    bool found = false;
+
     {
         std::unique_lock<std::mutex> lock(global::users_mtx);
-        for (UserDatabase::User &u : *global::users.mutable_users())
+        for (const UserDatabase::User &u : global::users.users())
         {
             if (u.uid() == uid)
             {
-                u.add_buddies(q.uid());
-            }
-            if (uid != q.uid() && u.uid() == q.uid())
-            {
-                u.add_buddies(uid);
+                for (const uint32_t &bid : u.buddies())
+                {
+                    if (bid == q.uid())
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                break;
             }
         }
-        global::save_users();
+        if (!found)
+        {
+            for (UserDatabase::User &u : *global::users.mutable_users())
+            {
+                if (u.uid() == uid)
+                {
+                    u.add_buddies(q.uid());
+                }
+                if (uid != q.uid() && u.uid() == q.uid())
+                {
+                    u.add_buddies(uid);
+                }
+            }
+            global::save_users();
+        }
     }
     
     r.set_code(AddBuddyResponse::SUCCESS);
-    
+
     {
         std::unique_lock<std::mutex> lock(mtx);
         send_packet(sock, r);
     }
     
-    send_list_buddy();
-    std::shared_ptr<session> buddy_session = nullptr;
-
+    if (!found)
     {
-        std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
-        if (global::has_session(q.uid()))
+        send_list_buddy();
+        std::shared_ptr<session> buddy_session = nullptr;
+
         {
-            buddy_session = global::user_sessions[q.uid()];
+            std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
+            if (global::has_session(q.uid()))
+            {
+                buddy_session = global::user_sessions[q.uid()];
+            }
         }
-    }
 
-    if (buddy_session)
-    {
-        buddy_session->send_list_buddy();
+        if (buddy_session)
+        {
+            buddy_session->send_list_buddy();
+        }
     }
 }
 
