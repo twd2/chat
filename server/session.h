@@ -48,6 +48,7 @@ private:
     bool is_online(uint32_t uid);
     void send_list_buddy();
     void send_message(Message &m);
+    void send_pending_messages();
 };
 
 #endif // _CHAT_SERVER_SESSION_H_

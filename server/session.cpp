@@ -107,6 +107,7 @@ void session::handle_login(LoginRequest &q)
         {
             if (q.username() == u.username())
             {
+                // TODO: password hash
                 if (q.password() == u.password())
                 {
                     r.set_code(LoginResponse::SUCCESS);
@@ -135,6 +136,9 @@ void session::handle_login(LoginRequest &q)
         std::unique_lock<std::mutex> lock(mtx);
         send_packet(sock, r);
     }
+    
+    send_list_buddy();
+    send_pending_messages();
 }
 
 void session::handle_register(RegisterRequest &q)
@@ -168,7 +172,7 @@ void session::handle_register(RegisterRequest &q)
             UserDatabase::User &new_user = *global::users.add_users();
             new_user.set_uid(new_uid);
             new_user.set_username(q.username());
-            new_user.set_password(q.password());
+            new_user.set_password(q.password()); // TODO: password hash
             global::save_users();
             r.set_code(RegisterResponse::SUCCESS);
             r.set_uid(new_uid);
@@ -383,8 +387,10 @@ void session::handle_message(Message &q)
     }
     else
     {
-        // TODO: enqueue
         log() << "user not online, enqueue" << std::endl;
+        // enqueue
+        std::unique_lock<std::mutex> lock(global::pending_messages_mtx);
+        global::pending_messages[dest_uid].push(std::move(q));
     }
 }
 
@@ -392,6 +398,27 @@ void session::send_message(Message &m)
 {
     std::unique_lock<std::mutex> lock(mtx);
     send_packet(sock, m);
+}
+
+void session::send_pending_messages()
+{
+    std::queue<Message> local_queue;
+
+    {
+        std::unique_lock<std::mutex> lock(global::pending_messages_mtx);
+        std::queue<Message> &queue = global::pending_messages[uid];
+        while (!queue.empty())
+        {
+            local_queue.push(std::move(queue.front()));
+            queue.pop();
+        }
+    }
+
+    while (!local_queue.empty())
+    {
+        send_message(local_queue.front());
+        local_queue.pop();
+    }
 }
 
 void session::handle_reset(Reset &q)
@@ -407,16 +434,20 @@ void session::set_uid(uint32_t new_uid)
         return;
     }
 
-    auto iter = global::user_sessions.end();
+    std::shared_ptr<session> old_session = nullptr;
 
     {
         std::unique_lock<std::mutex> lock(global::user_sessions_mtx);
-        iter = global::user_sessions.find(new_uid);
+        auto iter = global::user_sessions.find(new_uid);
+        if (iter != global::user_sessions.end())
+        {
+            old_session = iter->second;
+        }
     }
 
-    if (iter != global::user_sessions.end())
+    if (old_session)
     {
-        iter->second->kick(true);
+        old_session->kick(true);
     }
 
     {
