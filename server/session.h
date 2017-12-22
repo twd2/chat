@@ -8,6 +8,7 @@
 #include <mutex>
 
 #include <netinet/in.h>
+#include <openssl/ssl.h>
 
 class session
 {
@@ -15,6 +16,7 @@ private:
     std::list<std::shared_ptr<session> >::iterator self_iter;
     int sock;
     sockaddr_in sin;
+    SSL *ssl_sock = nullptr;
     uint32_t uid = 0;
     std::mutex mtx;
 

@@ -12,6 +12,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <openssl/err.h>
 
 #include <iostream>
 #include <string>
@@ -22,16 +23,42 @@ void session::handle()
     inet_ntop(AF_INET, &(sin.sin_addr), remote_addr, sizeof(remote_addr));
     unsigned short remote_port = ntohs(sin.sin_port);
     log() << "Started handle for " << std::dec << remote_addr << ":" << remote_port << std::endl;
+    
+    log() << "Starting SSL session" << std::endl;
+    {
+        std::unique_lock<std::mutex> lock(global::ssl_ctx_mtx);
+        ssl_sock = SSL_new(global::ssl_ctx);
+    }
+    if (!ssl_sock)
+    {
+        ERR_print_errors_fp(stderr);
+        kick();
+        return;
+    }
+    if (SSL_set_fd(ssl_sock, sock) <= 0)
+    {
+        ERR_print_errors_fp(stderr);
+        kick();
+        return;
+    }
+    if (SSL_accept(ssl_sock) <= 0)
+    {
+        ERR_print_errors_fp(stderr);
+        kick();
+        return;
+    }
+    
+    log() << "Using cipher " << SSL_get_cipher(ssl_sock) << std::endl;
 
     std::string msg = "This is a chat server. Hello, ";
     msg = msg + remote_addr + "!";
-    send_packet(sock, msg, PACKET_RAW);
+    send_packet(ssl_sock, msg, PACKET_RAW);
 
     while (is_alive)
     {
         ssize_t result = 1;
         packet_type_t type;
-        std::string buffer = recv_packet(sock, type, &result);
+        std::string buffer = recv_packet(ssl_sock, type, &result);
         if (result <= 0)
         {
             log() << "broken" << std::endl;
@@ -79,7 +106,7 @@ void session::handle()
             r.set_code(Reset::PROTOCOL_MISMATCH);
             r.set_msg("invalid type or bad data");
             std::unique_lock<std::mutex> lock(mtx);
-            send_packet(sock, r);
+            send_packet(ssl_sock, r);
             break;
         }
     }
@@ -134,7 +161,7 @@ void session::handle_login(LoginRequest &q)
 
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
     
     send_list_buddy();
@@ -181,7 +208,7 @@ void session::handle_register(RegisterRequest &q)
 
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
 }
 
@@ -210,7 +237,7 @@ void session::handle_list_user(ListUserRequest &q)
     
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
 }
 
@@ -278,7 +305,7 @@ void session::handle_add_buddy(AddBuddyRequest &q)
 
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
     
     if (!found)
@@ -315,7 +342,7 @@ void session::handle_remove_buddy(RemoveBuddyRequest &q)
 
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
     
     send_list_buddy();
@@ -353,7 +380,7 @@ void session::send_list_buddy()
     
     {
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
 }
 
@@ -397,7 +424,7 @@ void session::handle_message(Message &q)
 void session::send_message(Message &m)
 {
     std::unique_lock<std::mutex> lock(mtx);
-    send_packet(sock, m);
+    send_packet(ssl_sock, m);
 }
 
 void session::send_pending_messages()
@@ -475,7 +502,7 @@ void session::kick(bool send_msg)
         Reset r;
         r.set_code(Reset::KICKED);
         std::unique_lock<std::mutex> lock(mtx);
-        send_packet(sock, r);
+        send_packet(ssl_sock, r);
     }
 
     {
@@ -486,5 +513,14 @@ void session::kick(bool send_msg)
     is_alive = false;
     shutdown(sock, SHUT_RDWR);
     close(sock);
+    {
+        std::unique_lock<std::mutex> lock(mtx);
+        if (ssl_sock)
+        {
+            SSL_shutdown(ssl_sock);
+            SSL_free(ssl_sock);
+            ssl_sock = nullptr;
+        }
+    }
     log() << "shutdown and close" << std::endl;
 }

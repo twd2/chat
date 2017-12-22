@@ -9,6 +9,8 @@
 #include <map>
 #include <queue>
 
+#include <openssl/ssl.h>
+
 class session;
 
 class global
@@ -25,6 +27,11 @@ public:
     static void load_users();
     static void save_users();
     static bool has_session(uint32_t uid);
+    
+    static std::mutex ssl_ctx_mtx;
+    static SSL_CTX *ssl_ctx;
+    static void init_ssl();
+    static void release_ssl();
 };
 
 #endif // _CHAT_SERVER_GLOBAL_H_

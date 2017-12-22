@@ -36,6 +36,8 @@ int main()
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     signal(SIGINT, ctrl_c_handler);
     
+    global::init_ssl();
+    
     global::load_users();
 
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -89,5 +91,6 @@ int main()
         // TODO: clean dummy threads
         threads.push_back(std::make_shared<std::thread>(handle, client_sock, client_sin));
     }
+    global::release_ssl();
     return 0;
 }
