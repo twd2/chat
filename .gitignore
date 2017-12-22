@@ -528,3 +528,4 @@ FakesAssemblies/
 # Targets
 main
 *.bin
+*.pem
