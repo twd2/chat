@@ -7,12 +7,12 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
+std::string recv_packet(SSL *sock, packet_type_t &type, ssize_t *err)
 {
     uint32_t size = 0;
 
     // read and check size
-    ssize_t result = safe_recv(sock, &size, sizeof(size));
+    ssize_t result = ssl_safe_recv(sock, &size, sizeof(size));
     if (result <= 0)
     {
         if (err)
@@ -26,7 +26,7 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     
     // read type
     // assert sizeof(type) == 1
-    result = safe_recv(sock, &type, sizeof(type));
+    result = ssl_safe_recv(sock, &type, sizeof(type));
     if (result <= 0)
     {
         if (err)
@@ -54,7 +54,7 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     // read payload
     std::string buffer;
     buffer.resize(size);
-    result = safe_recv(sock, &buffer[0u], size);
+    result = ssl_safe_recv(sock, &buffer[0u], size);
     if (result <= 0)
     {
         if (err)
@@ -66,12 +66,12 @@ std::string recv_packet(int sock, packet_type_t &type, ssize_t *err)
     return buffer;
 }
 
-ssize_t send_packet(int sock, const std::string &buffer, packet_type_t type)
+ssize_t send_packet(SSL *sock, const std::string &buffer, packet_type_t type)
 {
     // send size
     uint32_t size = buffer.size();
     size = htonl(size);
-    ssize_t result = safe_send(sock, &size, sizeof(size));
+    ssize_t result = ssl_safe_send(sock, &size, sizeof(size));
     if (result <= 0)
     {
         return result;
@@ -79,9 +79,9 @@ ssize_t send_packet(int sock, const std::string &buffer, packet_type_t type)
     
     // send type
     // assert sizeof(type) == 1
-    safe_send(sock, &type, sizeof(type));
+    ssl_safe_send(sock, &type, sizeof(type));
 
     // send payload
-    return safe_send(sock, buffer.data(), buffer.size());
+    return ssl_safe_send(sock, buffer.data(), buffer.size());
 }
 

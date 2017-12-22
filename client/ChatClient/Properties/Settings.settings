@@ -3,10 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">172.16.67.150</Value>
+      <Value Profile="(Default)">192.168.1.105</Value>
     </Setting>
     <Setting Name="Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1025</Value>
+    </Setting>
+    <Setting Name="Fingerprint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7585E199299FEF62D88A238D81F41BBCEDB13E0D</Value>
     </Setting>
   </Settings>
 </SettingsFile>

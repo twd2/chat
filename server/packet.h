@@ -11,6 +11,8 @@
 
 #include <sys/types.h>
 
+#include <openssl/ssl.h>
+
 #define PACKET_LOGIN 0
 #define PACKET_REGISTER 1
 #define PACKET_LIST_USER 2
@@ -23,10 +25,10 @@
 
 typedef uint8_t packet_type_t;
 
-std::string recv_packet(int sock, packet_type_t &type, ssize_t *err = nullptr);
-ssize_t send_packet(int sock, const std::string &buffer, packet_type_t type);
+std::string recv_packet(SSL *sock, packet_type_t &type, ssize_t *err = nullptr);
+ssize_t send_packet(SSL *sock, const std::string &buffer, packet_type_t type);
 
-template <typename T> ssize_t  __send_packet(int sock, const T &p, packet_type_t type)
+template <typename T> ssize_t  __send_packet(SSL *sock, const T &p, packet_type_t type)
 {
     std::string buffer;
     if (!p.SerializeToString(&buffer))
@@ -37,42 +39,42 @@ template <typename T> ssize_t  __send_packet(int sock, const T &p, packet_type_t
     return send_packet(sock, buffer, type);
 }
 
-inline ssize_t send_packet(int sock, const LoginResponse &p)
+inline ssize_t send_packet(SSL *sock, const LoginResponse &p)
 {
     return __send_packet(sock, p, PACKET_LOGIN);
 }
 
-inline ssize_t send_packet(int sock, const RegisterResponse &p)
+inline ssize_t send_packet(SSL *sock, const RegisterResponse &p)
 {
     return __send_packet(sock, p, PACKET_REGISTER);
 }
 
-inline ssize_t send_packet(int sock, const ListUserResponse &p)
+inline ssize_t send_packet(SSL *sock, const ListUserResponse &p)
 {
     return __send_packet(sock, p, PACKET_LIST_USER);
 }
 
-inline ssize_t send_packet(int sock, const ListBuddyResponse &p)
+inline ssize_t send_packet(SSL *sock, const ListBuddyResponse &p)
 {
     return __send_packet(sock, p, PACKET_LIST_BUDDY);
 }
 
-inline ssize_t send_packet(int sock, const AddBuddyResponse &p)
+inline ssize_t send_packet(SSL *sock, const AddBuddyResponse &p)
 {
     return __send_packet(sock, p, PACKET_ADD_BUDDY);
 }
 
-inline ssize_t send_packet(int sock, const RemoveBuddyResponse &p)
+inline ssize_t send_packet(SSL *sock, const RemoveBuddyResponse &p)
 {
     return __send_packet(sock, p, PACKET_REMOVE_BUDDY);
 }
 
-inline ssize_t send_packet(int sock, const Message &p)
+inline ssize_t send_packet(SSL *sock, const Message &p)
 {
     return __send_packet(sock, p, PACKET_MESSAGE);
 }
 
-inline ssize_t send_packet(int sock, const Reset &p)
+inline ssize_t send_packet(SSL *sock, const Reset &p)
 {
     return __send_packet(sock, p, PACKET_RESET);
 }

@@ -15,7 +15,7 @@ ifeq ($(shell uname),Linux)
 	# linker
 	LD = g++
 	LIB_DIR = 
-	LD_LIBS = -lstdc++ -lc -lm -ldl -lpthread -lprotobuf
+	LD_LIBS = -lstdc++ -lc -lm -ldl -lpthread -lprotobuf -lssl -lcrypto
 	LD_FLAGS = $(LIB_DIR)
 else
 
@@ -27,7 +27,7 @@ ifeq ($(shell uname),Darwin)
 	# linker
 	LD = cc
 	LIB_DIR = 
-	LD_LIBS = -lc++ -lm -lSystem -lpthread -lprotobuf
+	LD_LIBS = -lc++ -lm -lSystem -lpthread -lprotobuf -lssl -lcrypto
 	LD_FLAGS = $(LIB_DIR)
 else
 	# Unsupported operating system.
