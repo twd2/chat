@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +20,8 @@ namespace ChatClient
         string username = "";
         bool connected = false;
         TcpClient tcpClient = null;
-        NetworkStream stream = null;
+        NetworkStream rawStream = null;
+        SslStream stream = null;
         Thread thread = null;
 
         ManualResetEvent loginEvent = new ManualResetEvent(false);
@@ -64,10 +68,40 @@ namespace ChatClient
         {
             tcpClient = new TcpClient();
             tcpClient.Connect(server, port);
-            stream = tcpClient.GetStream();
+            rawStream = tcpClient.GetStream();
+            stream = new SslStream(rawStream, false, validateRemoteCert, selectLocalCert,
+                                   EncryptionPolicy.RequireEncryption);
+            stream.AuthenticateAsClient(server, new X509CertificateCollection(), 
+                                        SslProtocols.Tls12, false);
             connected = true;
             thread = new Thread(Handle);
             thread.Start();
+        }
+
+        private bool validateRemoteCert(
+            object sender,
+            X509Certificate certificate,
+            X509Chain chain,
+            SslPolicyErrors sslPolicyErrors)
+        {
+            if (certificate.GetType() == typeof(X509Certificate2))
+            {
+                X509Certificate2 cert = (X509Certificate2)certificate;
+                // TODO: configurable
+                return cert.Thumbprint.Replace(" ", "").ToUpper() ==
+                    Properties.Settings.Default.Fingerprint.Replace(" ", "").ToUpper();
+            }
+            return false;
+        }
+
+        private X509Certificate selectLocalCert(
+            object sender,
+            string targetHost,
+            X509CertificateCollection localCertificates,
+            X509Certificate remoteCertificate,
+            string[] acceptableIssuers)
+        {
+            return null;
         }
 
         private void Handle()
@@ -313,9 +347,18 @@ namespace ChatClient
                 return;
             }
             connected = false;
-            stream.Close();
-            stream.Dispose();
-            stream = null;
+            if (stream != null)
+            {
+                stream.Close();
+                stream.Dispose();
+                stream = null;
+            }
+            if (rawStream != null)
+            {
+                rawStream.Close();
+                rawStream.Dispose();
+                rawStream = null;
+            }
             tcpClient.Close();
             tcpClient = null;
             thread = null;
