@@ -68,6 +68,7 @@ std::string recv_packet(SSL *sock, packet_type_t &type, ssize_t *err)
 
 ssize_t send_packet(SSL *sock, const std::string &buffer, packet_type_t type)
 {
+    log() << "sending" << std::endl;
     // send size
     uint32_t size = buffer.size();
     size = htonl(size);
@@ -79,9 +80,18 @@ ssize_t send_packet(SSL *sock, const std::string &buffer, packet_type_t type)
     
     // send type
     // assert sizeof(type) == 1
-    ssl_safe_send(sock, &type, sizeof(type));
+    result = ssl_safe_send(sock, &type, sizeof(type));
+    if (result <= 0)
+    {
+        return result;
+    }
 
     // send payload
-    return ssl_safe_send(sock, buffer.data(), buffer.size());
+    result = ssl_safe_send(sock, buffer.data(), buffer.size());
+    if (result <= 0)
+    {
+        return result;
+    }
+    return sizeof(size) + sizeof(type) + buffer.size();
 }
 

@@ -49,7 +49,7 @@ private:
     void set_uid(uint32_t new_uid);
     bool is_online(uint32_t uid);
     void send_list_buddy();
-    void send_message(Message &m);
+    ssize_t send_message(Message &m);
     void send_pending_messages();
 };
 

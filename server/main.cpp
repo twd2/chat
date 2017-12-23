@@ -78,10 +78,10 @@ int main()
         int keepIdle = 5;
         int keepInterval = 5;
         int keepCount = 9;
-        setsockopt(client_sock, SOL_SOCKET, SO_KEEPALIVE, &on, sizeof(on));
         setsockopt(client_sock, SOL_TCP, TCP_KEEPIDLE, &keepIdle, sizeof(keepIdle));
         setsockopt(client_sock, SOL_TCP, TCP_KEEPINTVL, &keepInterval, sizeof(keepInterval));
         setsockopt(client_sock, SOL_TCP, TCP_KEEPCNT, &keepCount, sizeof(keepCount));
+        setsockopt(client_sock, SOL_SOCKET, SO_KEEPALIVE, &on, sizeof(on));
 
         char remote_addr[INET6_ADDRSTRLEN];
         inet_ntop(AF_INET, &(client_sin.sin_addr), remote_addr, sizeof(remote_addr));
