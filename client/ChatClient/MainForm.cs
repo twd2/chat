@@ -32,6 +32,9 @@ namespace ChatClient
         public MainForm()
         {
             InitializeComponent();
+            Program.session.onClosed += OnSessionClosed;
+            Program.session.onListBuddyResponse += OnListBuddyResponse;
+            Program.session.onMessage += OnMessage;
         }
 
         private void btnListUser_Click(object sender, EventArgs e)
@@ -50,9 +53,6 @@ namespace ChatClient
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Program.session.onClosed += OnSessionClosed;
-            Program.session.onListBuddyResponse += OnListBuddyResponse;
-            Program.session.onMessage += OnMessage;
             labHello.Text = Program.session.Username + "，您好！";
             btnRefresh_Click(null, null);
         }
@@ -65,6 +65,10 @@ namespace ChatClient
                 foreach (ListBuddyResponse.Types.User u in r.Users)
                 {
                     Program.usernameMap[u.Uid] = u.Username;
+                    if (Program.chatFormMap.ContainsKey(u.Uid))
+                    {
+                        Program.chatFormMap[u.Uid].UpdateUsername();
+                    }
                     lstBuddies.Items.Add(new UserWrapper(u));
                     Debug.Print(u.Username);
                 }

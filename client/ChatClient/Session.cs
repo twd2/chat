@@ -30,6 +30,8 @@ namespace ChatClient
         ManualResetEvent registerEvent = new ManualResetEvent(false);
         RegisterResponse lastRegisterResponse = null;
 
+        ManualResetEvent readyEvent = new ManualResetEvent(false);
+
         public delegate void OnListUserResponse(ListUserResponse r);
         public OnListUserResponse onListUserResponse = null;
 
@@ -73,6 +75,7 @@ namespace ChatClient
                                    EncryptionPolicy.RequireEncryption);
             stream.AuthenticateAsClient(server, new X509CertificateCollection(), 
                                         SslProtocols.Tls12, false);
+            Debug.Print("Using cipher " + stream.CipherAlgorithm.ToString());
             connected = true;
             thread = new Thread(Handle);
             thread.Start();
@@ -87,7 +90,8 @@ namespace ChatClient
             if (certificate.GetType() == typeof(X509Certificate2))
             {
                 X509Certificate2 cert = (X509Certificate2)certificate;
-                // TODO: configurable
+                Debug.Print("Remote Cert: " + cert.Thumbprint.Replace(" ", "").ToUpper());
+                Debug.Print("Trusted Cert: " + Properties.Settings.Default.Fingerprint.Replace(" ", "").ToUpper());
                 return cert.Thumbprint.Replace(" ", "").ToUpper() ==
                     Properties.Settings.Default.Fingerprint.Replace(" ", "").ToUpper();
             }
@@ -212,6 +216,7 @@ namespace ChatClient
         private void HandleListUser(ListUserResponse r)
         {
             Debug.Print("handling list user");
+            readyEvent.WaitOne();
             if (onListUserResponse != null)
             {
                 onListUserResponse(r);
@@ -221,6 +226,7 @@ namespace ChatClient
         private void HandleListBuddy(ListBuddyResponse r)
         {
             Debug.Print("handling list buddy");
+            readyEvent.WaitOne();
             if (onListBuddyResponse != null)
             {
                 onListBuddyResponse(r);
@@ -242,6 +248,7 @@ namespace ChatClient
             DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             DateTime dt = epoch.Add(TimeSpan.FromTicks((long)r.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
             Debug.Print(string.Format("message from {0} @ {1}: {2}", r.Uid, dt.ToString(), r.Msg));
+            readyEvent.WaitOne();
             if (onMessage != null)
             {
                 onMessage(r);
@@ -338,6 +345,11 @@ namespace ChatClient
             {
                 Packet.Write(stream, q);
             }
+        }
+
+        public void SetReady()
+        {
+            readyEvent.Set();
         }
 
         public void Close()

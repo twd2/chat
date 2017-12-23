@@ -36,6 +36,7 @@ namespace ChatClient
                             Program.exitEvent.Reset();
                             Program.mainForm = new MainForm();
                             Program.mainForm.Show();
+                            Program.session.SetReady();
                             Program.session.onClosed -= OnSessionClosed;
                             Hide();
                             break;
@@ -73,7 +74,6 @@ namespace ChatClient
             {
                 try
                 {
-                    // TODO: configurable
                     Program.session.onClosed += OnSessionClosed;
                     Program.session.Connect(Properties.Settings.Default.Server,
                                             Properties.Settings.Default.Port);

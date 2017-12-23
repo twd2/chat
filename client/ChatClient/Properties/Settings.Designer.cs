@@ -49,7 +49,7 @@ namespace ChatClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7585E199299FEF62D88A238D81F41BBCEDB13E0D")]
+        [global::System.Configuration.DefaultSettingValueAttribute("d0 ef 55 9e 8d cb 2d da 30 68 13 81 c6 88 51 62 a7 f1 cd d9")]
         public string Fingerprint {
             get {
                 return ((string)(this["Fingerprint"]));

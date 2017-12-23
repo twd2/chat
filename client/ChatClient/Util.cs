@@ -16,7 +16,15 @@ namespace ChatClient
             int read = 0;
             while (read < length)
             {
-                int result = stream.Read(buffer, offset + read, (int)Math.Min(CHUNK_SIZE, length - (uint)read));
+                int result;
+                try
+                {
+                    result = stream.Read(buffer, offset + read, (int)Math.Min(CHUNK_SIZE, length - (uint)read));
+                }
+                catch (Exception)
+                {
+                    result = -1;
+                }
                 if (result <= 0)
                 {
                     return result;

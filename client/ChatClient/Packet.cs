@@ -60,8 +60,15 @@ namespace ChatClient
             header[2] = (byte)((len >> 8) & 0xff);
             header[3] = (byte)((len >> 0) & 0xff);
             header[4] = type;
-            Util.SafeWrite(stream, header, 0, header.Length);
-            Util.SafeWrite(stream, buffer, 0, buffer.Length);
+            try
+            {
+                Util.SafeWrite(stream, header, 0, header.Length);
+                Util.SafeWrite(stream, buffer, 0, buffer.Length);
+            }
+            catch (Exception)
+            {
+                // TODO
+            }
         }
 
         public static void Write(Stream stream, LoginRequest p)

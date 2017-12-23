@@ -16,7 +16,7 @@ namespace ChatClient
     {
         uint buddyUid;
         string buddyUsername = "";
-
+        bool isInputing = false;
         public ChatForm(uint buddyUid)
         {
             this.buddyUid = buddyUid;
@@ -25,10 +25,20 @@ namespace ChatClient
 
         private void ChatForm_Load(object sender, EventArgs e)
         {
+            UpdateUsername();
+        }
+
+        public void UpdateUsername()
+        {
             buddyUsername = Program.usernameMap.ContainsKey(buddyUid)
                 ? Program.usernameMap[buddyUid]
                 : "UID=" + buddyUid.ToString();
-            Text = string.Format("与 {0} 的聊天", buddyUsername);
+            UpdateTitle();
+        }
+
+        public void UpdateTitle()
+        {
+            Text = string.Format("与 {0} 的聊天{1}", buddyUsername, isInputing ? " - 正在输入..." : "");
         }
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)

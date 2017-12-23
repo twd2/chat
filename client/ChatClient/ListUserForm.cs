@@ -63,6 +63,10 @@ namespace ChatClient
                     foreach (ListUserResponse.Types.User u in r.Users)
                     {
                         Program.usernameMap[u.Uid] = u.Username;
+                        if (Program.chatFormMap.ContainsKey(u.Uid))
+                        {
+                            Program.chatFormMap[u.Uid].UpdateUsername();
+                        }
                         lstUsers.Items.Add(new UserWrapper(u));
                         Debug.Print(u.Username);
                     }

@@ -33,7 +33,6 @@ namespace ChatClient
             loginForm = new LoginForm();
             Application.Run(loginForm);
             exitEvent.WaitOne();
-            Debug.Print("here");
             Environment.Exit(0);
         }
 
