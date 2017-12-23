@@ -112,6 +112,8 @@ void session::handle()
     }
 
     kick();
+    SSL_free(ssl_sock);
+    ssl_sock = nullptr;
 }
 
 void session::handle_login(LoginRequest &q)
@@ -513,14 +515,6 @@ void session::kick(bool send_msg)
     is_alive = false;
     shutdown(sock, SHUT_RDWR);
     close(sock);
-    {
-        std::unique_lock<std::mutex> lock(mtx);
-        if (ssl_sock)
-        {
-            SSL_shutdown(ssl_sock);
-            SSL_free(ssl_sock);
-            ssl_sock = nullptr;
-        }
-    }
+    SSL_shutdown(ssl_sock);
     log() << "shutdown and close" << std::endl;
 }

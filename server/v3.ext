@@ -1,0 +1,2 @@
+keyUsage=critical, digitalSignature, keyEncipherment, dataEncipherment
+extendedKeyUsage=critical, serverAuth, clientAuth
