@@ -1,5 +1,7 @@
 #include "util.h"
 
+#include <ctime>
+
 #include <sys/socket.h>
 
 #include <iostream>
@@ -68,5 +70,6 @@ ssize_t ssl_safe_send(SSL *sock, const void *buf, std::size_t len)
 
 std::ostream &log()
 {
-    return std::cout << "[thread 0x" << std::hex << std::this_thread::get_id() << "] ";
+    return std::cout << std::dec << "[" << time(nullptr) << "]" <<
+                        "[thread 0x" << std::hex << std::this_thread::get_id() << "] ";
 }

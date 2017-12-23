@@ -29,91 +29,95 @@ void session::handle()
         std::unique_lock<std::mutex> lock(global::ssl_ctx_mtx);
         ssl_sock = SSL_new(global::ssl_ctx);
     }
+    bool inited = true;
     if (!ssl_sock)
     {
         ERR_print_errors_fp(stderr);
-        kick();
-        return;
+        inited = false;
     }
-    if (SSL_set_fd(ssl_sock, sock) <= 0)
+    if (inited && SSL_set_fd(ssl_sock, sock) <= 0)
     {
         ERR_print_errors_fp(stderr);
-        kick();
-        return;
+        inited = false;
     }
-    if (SSL_accept(ssl_sock) <= 0)
+    if (inited && SSL_accept(ssl_sock) <= 0)
     {
         ERR_print_errors_fp(stderr);
-        kick();
-        return;
+        inited = false;
     }
-    
-    log() << "Using cipher " << SSL_get_cipher(ssl_sock) << std::endl;
 
-    std::string msg = "This is a chat server. Hello, ";
-    msg = msg + remote_addr + "!";
-    send_packet(ssl_sock, msg, PACKET_RAW);
-
-    while (is_alive)
+    if (inited)
     {
-        ssize_t result = 1;
-        packet_type_t type;
-        std::string buffer = recv_packet(ssl_sock, type, &result);
-        if (result <= 0)
+        log() << "Using cipher " << SSL_get_cipher(ssl_sock) << std::endl;
+
+        std::string msg = "This is a chat server. Hello, ";
+        msg = msg + remote_addr + "!";
+        send_packet(ssl_sock, msg, PACKET_RAW);
+
+        while (is_alive)
         {
-            log() << "broken" << std::endl;
-            break;
-        }
-        bool invalid = false;
-        
-        // dispatch
-        switch (type)
-        {
-#define CASE(packet_type, type, handler) \
-            case packet_type: \
-            { \
-                type q; \
-                if (!q.ParseFromString(buffer)) \
-                { \
-                    invalid = true; \
-                    break; \
-                } \
-                handle_##handler(q); \
-                break; \
-            }
-            CASE(PACKET_LOGIN, LoginRequest, login)
-            CASE(PACKET_REGISTER, RegisterRequest, register)
-            CASE(PACKET_LIST_USER, ListUserRequest, list_user)
-            CASE(PACKET_LIST_BUDDY, ListBuddyRequest, list_buddy)
-            CASE(PACKET_ADD_BUDDY, AddBuddyRequest, add_buddy)
-            CASE(PACKET_REMOVE_BUDDY, RemoveBuddyRequest, remove_buddy)
-            CASE(PACKET_MESSAGE, Message, message)
-            CASE(PACKET_RESET, Reset, reset)
-#undef CASE
-            case PACKET_RAW:
-                // TODO
-                break;
-            default:
+            ssize_t result = 1;
+            packet_type_t type;
+            std::string buffer = recv_packet(ssl_sock, type, &result);
+            if (result <= 0)
             {
-                invalid = true;
+                log() << "broken" << std::endl;
                 break;
             }
-        }
-        if (invalid)
-        {
-            log() << "invalid type or bad data" << std::endl;
-            Reset r;
-            r.set_code(Reset::PROTOCOL_MISMATCH);
-            r.set_msg("invalid type or bad data");
-            std::unique_lock<std::mutex> lock(mtx);
-            send_packet(ssl_sock, r);
-            break;
+            bool invalid = false;
+            log() << "parsing..." << std::endl;
+            // dispatch
+            switch (type)
+            {
+#define CASE(packet_type, type, handler) \
+                case packet_type: \
+                { \
+                    type q; \
+                    if (!q.ParseFromString(buffer)) \
+                    { \
+                        invalid = true; \
+                        break; \
+                    } \
+                    handle_##handler(q); \
+                    break; \
+                }
+                CASE(PACKET_LOGIN, LoginRequest, login)
+                CASE(PACKET_REGISTER, RegisterRequest, register)
+                CASE(PACKET_LIST_USER, ListUserRequest, list_user)
+                CASE(PACKET_LIST_BUDDY, ListBuddyRequest, list_buddy)
+                CASE(PACKET_ADD_BUDDY, AddBuddyRequest, add_buddy)
+                CASE(PACKET_REMOVE_BUDDY, RemoveBuddyRequest, remove_buddy)
+                CASE(PACKET_MESSAGE, Message, message)
+                CASE(PACKET_RESET, Reset, reset)
+#undef CASE
+                case PACKET_RAW:
+                    // TODO
+                    break;
+                default:
+                {
+                    invalid = true;
+                    break;
+                }
+            }
+            if (invalid)
+            {
+                log() << "invalid type or bad data" << std::endl;
+                Reset r;
+                r.set_code(Reset::PROTOCOL_MISMATCH);
+                r.set_msg("invalid type or bad data");
+                std::unique_lock<std::mutex> lock(mtx);
+                send_packet(ssl_sock, r);
+                break;
+            }
         }
     }
 
     kick();
-    SSL_free(ssl_sock);
-    ssl_sock = nullptr;
+    if (ssl_sock)
+    {
+        SSL_free(ssl_sock);
+        ssl_sock = nullptr;
+    }
 }
 
 void session::handle_login(LoginRequest &q)
@@ -159,15 +163,28 @@ void session::handle_login(LoginRequest &q)
         }
     }
     
-    set_uid(new_uid);
-
+    if (new_uid)
     {
-        std::unique_lock<std::mutex> lock(mtx);
-        send_packet(ssl_sock, r);
+        set_uid(new_uid);
+        log() << "Logged in as " << q.username() << std::endl;
+
+        {
+            std::unique_lock<std::mutex> lock(mtx);
+            send_packet(ssl_sock, r);
+        }
+
+        send_list_buddy();
+        send_pending_messages();
     }
-    
-    send_list_buddy();
-    send_pending_messages();
+    else
+    {
+        log() << q.username() << " log in failed" << std::endl;
+
+        {
+            std::unique_lock<std::mutex> lock(mtx);
+            send_packet(ssl_sock, r);
+        }
+    }
 }
 
 void session::handle_register(RegisterRequest &q)
@@ -286,6 +303,7 @@ void session::handle_add_buddy(AddBuddyRequest &q)
                 break;
             }
         }
+        // TODO: check user existence
         if (!found)
         {
             for (UserDatabase::User &u : *global::users.mutable_users())
@@ -421,12 +439,13 @@ void session::handle_message(Message &q)
         std::unique_lock<std::mutex> lock(global::pending_messages_mtx);
         global::pending_messages[dest_uid].push(std::move(q));
     }
+    log() << "done" << std::endl;
 }
 
-void session::send_message(Message &m)
+ssize_t session::send_message(Message &m)
 {
     std::unique_lock<std::mutex> lock(mtx);
-    send_packet(ssl_sock, m);
+    return send_packet(ssl_sock, m);
 }
 
 void session::send_pending_messages()
@@ -443,6 +462,7 @@ void session::send_pending_messages()
         }
     }
 
+    // TODO: what if the connection is broken
     while (!local_queue.empty())
     {
         send_message(local_queue.front());

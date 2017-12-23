@@ -28,7 +28,7 @@ typedef uint8_t packet_type_t;
 std::string recv_packet(SSL *sock, packet_type_t &type, ssize_t *err = nullptr);
 ssize_t send_packet(SSL *sock, const std::string &buffer, packet_type_t type);
 
-template <typename T> ssize_t  __send_packet(SSL *sock, const T &p, packet_type_t type)
+template <typename T> ssize_t __send_packet(SSL *sock, const T &p, packet_type_t type)
 {
     std::string buffer;
     if (!p.SerializeToString(&buffer))
