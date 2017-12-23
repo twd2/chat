@@ -13,25 +13,24 @@ namespace ChatClient
 
         public static int SafeRead(Stream stream, byte[] buffer, int offset, int length)
         {
-            int read = 0;
-            while (read < length)
+            try
             {
-                int result;
-                try
+                int read = 0;
+                while (read < length)
                 {
-                    result = stream.Read(buffer, offset + read, (int)Math.Min(CHUNK_SIZE, length - (uint)read));
+                    int result = stream.Read(buffer, offset + read, (int)Math.Min(CHUNK_SIZE, length - (uint)read));
+                    if (result <= 0)
+                    {
+                        return result;
+                    }
+                    read += result;
                 }
-                catch (Exception)
-                {
-                    result = -1;
-                }
-                if (result <= 0)
-                {
-                    return result;
-                }
-                read += result;
+                return read;
             }
-            return read;
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         public static void SafeWrite(Stream stream, byte[] buffer, int offset, int length)
