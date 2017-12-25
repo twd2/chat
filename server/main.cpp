@@ -35,6 +35,7 @@ int main()
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     signal(SIGINT, ctrl_c_handler);
+    signal(SIGPIPE, SIG_IGN);
     
     global::init_ssl();
     
@@ -82,6 +83,8 @@ int main()
         setsockopt(client_sock, SOL_TCP, TCP_KEEPINTVL, &keepInterval, sizeof(keepInterval));
         setsockopt(client_sock, SOL_TCP, TCP_KEEPCNT, &keepCount, sizeof(keepCount));
         setsockopt(client_sock, SOL_SOCKET, SO_KEEPALIVE, &on, sizeof(on));
+        // no SIGPIPE
+        // setsockopt(client_sock, SOL_SOCKET, SO_NOSIGPIPE, &on, sizeof(on));
 
         char remote_addr[INET6_ADDRSTRLEN];
         inet_ntop(AF_INET, &(client_sin.sin_addr), remote_addr, sizeof(remote_addr));
