@@ -60,6 +60,12 @@
     <Compile Include="ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphicsForm.Designer.cs">
+      <DependentUpon>GraphicsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphicsForm.resx">
+      <DependentUpon>GraphicsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListUserForm.resx">
       <DependentUpon>ListUserForm.cs</DependentUpon>

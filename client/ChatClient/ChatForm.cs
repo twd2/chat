@@ -23,6 +23,8 @@ namespace ChatClient
         DateTime lastSendInputing =
             DateTime.Now.Subtract(TimeSpan.FromSeconds(INPUTING_INTERVAL));
 
+        GraphicsForm canvasForm = null;
+
         public ChatForm(uint buddyUid)
         {
             this.buddyUid = buddyUid;
@@ -47,10 +49,19 @@ namespace ChatClient
         public void UpdateTitle()
         {
             Text = string.Format("与 {0} 的聊天{1}", buddyUsername, isInputing ? " - 正在输入..." : "");
+            if (canvasForm != null)
+            {
+                canvasForm.Text = string.Format("与 {0} 的共享画板", buddyUsername);
+            }
         }
 
         private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (canvasForm != null && !canvasForm.IsDisposed)
+            {
+                canvasForm.Close();
+                canvasForm = null;
+            }
             ChatForm _;
             Program.chatFormMap.TryRemove(buddyUid, out _);
         }
@@ -102,6 +113,8 @@ namespace ChatClient
                 }
                 case Message.Types.Type.Graphics:
                 {
+                    EnsureCanvas();
+                    canvasForm.OnMessage(m);
                     break;
                 }
                 default:
@@ -186,6 +199,21 @@ namespace ChatClient
                 isInputing = false;
                 UpdateTitle();
             }
+        }
+
+        private void btnCanvas_Click(object sender, EventArgs e)
+        {
+            EnsureCanvas();
+        }
+
+        private void EnsureCanvas()
+        {
+            if (canvasForm == null || canvasForm.IsDisposed)
+            {
+                canvasForm = new GraphicsForm(buddyUid);
+                UpdateTitle();
+            }
+            canvasForm.Show();
         }
     }
 }

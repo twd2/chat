@@ -34,6 +34,7 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.btnFile = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnCanvas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtSend
@@ -86,11 +87,22 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnCanvas
+            // 
+            this.btnCanvas.Location = new System.Drawing.Point(145, 12);
+            this.btnCanvas.Name = "btnCanvas";
+            this.btnCanvas.Size = new System.Drawing.Size(127, 26);
+            this.btnCanvas.TabIndex = 4;
+            this.btnCanvas.Text = "共享画板(&C)";
+            this.btnCanvas.UseVisualStyleBackColor = true;
+            this.btnCanvas.Click += new System.EventHandler(this.btnCanvas_Click);
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 348);
+            this.Controls.Add(this.btnCanvas);
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtSession);
@@ -111,5 +123,6 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnFile;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnCanvas;
     }
 }
