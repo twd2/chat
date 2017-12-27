@@ -39,14 +39,17 @@ public static partial class ChatReflection {
           "ZRILCgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiIQoSUmVtb3ZlQnVkZHlSZXF1",
           "ZXN0EgsKA3VpZBgBIAEoDSJfChNSZW1vdmVCdWRkeVJlc3BvbnNlEicKBGNv",
           "ZGUYASABKA4yGS5SZW1vdmVCdWRkeVJlc3BvbnNlLkNvZGUiHwoEQ29kZRIL",
-          "CgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiRAoHTWVzc2FnZRILCgN1aWQYASAB",
-          "KA0SEQoJdGltZXN0YW1wGAIgASgEEgsKA21zZxgDIAEoCRIMCgRkYXRhGAQg",
-          "ASgMIm0KBVJlc2V0EhkKBGNvZGUYASABKA4yCy5SZXNldC5Db2RlEgsKA21z",
-          "ZxgCIAEoCSI8CgRDb2RlEhEKDVVOS05PV05fRVJST1IQABIVChFQUk9UT0NP",
-          "TF9NSVNNQVRDSBABEgoKBktJQ0tFRBACIosBCgxVc2VyRGF0YWJhc2USDgoG",
-          "bWF4VWlkGAEgASgNEiEKBXVzZXJzGAIgAygLMhIuVXNlckRhdGFiYXNlLlVz",
-          "ZXIaSAoEVXNlchILCgN1aWQYASABKA0SEAoIdXNlcm5hbWUYAiABKAkSEAoI",
-          "cGFzc3dvcmQYAyABKAkSDwoHYnVkZGllcxgEIAMoDWIGcHJvdG8z"));
+          "CgdTVUNDRVNTEAASCgoGRkFJTEVEEAEiqwEKB01lc3NhZ2USCwoDdWlkGAEg",
+          "ASgNEhEKCXRpbWVzdGFtcBgCIAEoBBIbCgR0eXBlGAMgASgOMg0uTWVzc2Fn",
+          "ZS5UeXBlEgsKA21zZxgEIAEoCRIMCgRkYXRhGAUgASgMEg0KBXRva2VuGAYg",
+          "ASgJIjkKBFR5cGUSCwoHTUVTU0FHRRAAEggKBEZJTEUQARIMCghJTlBVVElO",
+          "RxACEgwKCEdSQVBISUNTEAMibQoFUmVzZXQSGQoEY29kZRgBIAEoDjILLlJl",
+          "c2V0LkNvZGUSCwoDbXNnGAIgASgJIjwKBENvZGUSEQoNVU5LTk9XTl9FUlJP",
+          "UhAAEhUKEVBST1RPQ09MX01JU01BVENIEAESCgoGS0lDS0VEEAIiiwEKDFVz",
+          "ZXJEYXRhYmFzZRIOCgZtYXhVaWQYASABKA0SIQoFdXNlcnMYAiADKAsyEi5V",
+          "c2VyRGF0YWJhc2UuVXNlchpICgRVc2VyEgsKA3VpZBgBIAEoDRIQCgh1c2Vy",
+          "bmFtZRgCIAEoCRIQCghwYXNzd29yZBgDIAEoCRIPCgdidWRkaWVzGAQgAygN",
+          "YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -62,7 +65,7 @@ public static partial class ChatReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::AddBuddyResponse), global::AddBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::AddBuddyResponse.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyRequest), global::RemoveBuddyRequest.Parser, new[]{ "Uid" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveBuddyResponse), global::RemoveBuddyResponse.Parser, new[]{ "Code" }, null, new[]{ typeof(global::RemoveBuddyResponse.Types.Code) }, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Timestamp", "Msg", "Data" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Message), global::Message.Parser, new[]{ "Uid", "Timestamp", "Type", "Msg", "Data", "Token" }, null, new[]{ typeof(global::Message.Types.Type) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Reset), global::Reset.Parser, new[]{ "Code", "Msg" }, null, new[]{ typeof(global::Reset.Types.Code) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase), global::UserDatabase.Parser, new[]{ "MaxUid", "Users" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::UserDatabase.Types.User), global::UserDatabase.Types.User.Parser, new[]{ "Uid", "Username", "Password", "Buddies" }, null, null, null)})
         }));
@@ -1950,8 +1953,10 @@ public sealed partial class Message : pb::IMessage<Message> {
   public Message(Message other) : this() {
     uid_ = other.uid_;
     timestamp_ = other.timestamp_;
+    type_ = other.type_;
     msg_ = other.msg_;
     data_ = other.data_;
+    token_ = other.token_;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1987,11 +1992,22 @@ public sealed partial class Message : pb::IMessage<Message> {
     }
   }
 
+  /// <summary>Field number for the "type" field.</summary>
+  public const int TypeFieldNumber = 3;
+  private global::Message.Types.Type type_ = 0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Message.Types.Type Type {
+    get { return type_; }
+    set {
+      type_ = value;
+    }
+  }
+
   /// <summary>Field number for the "msg" field.</summary>
-  public const int MsgFieldNumber = 3;
+  public const int MsgFieldNumber = 4;
   private string msg_ = "";
   /// <summary>
-  /// if data exists, msg means file name (for file transportation).
+  /// if type is FILE, msg means file name (for file transportation).
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public string Msg {
@@ -2002,13 +2018,24 @@ public sealed partial class Message : pb::IMessage<Message> {
   }
 
   /// <summary>Field number for the "data" field.</summary>
-  public const int DataFieldNumber = 4;
+  public const int DataFieldNumber = 5;
   private pb::ByteString data_ = pb::ByteString.Empty;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public pb::ByteString Data {
     get { return data_; }
     set {
       data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "token" field.</summary>
+  public const int TokenFieldNumber = 6;
+  private string token_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Token {
+    get { return token_; }
+    set {
+      token_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -2027,8 +2054,10 @@ public sealed partial class Message : pb::IMessage<Message> {
     }
     if (Uid != other.Uid) return false;
     if (Timestamp != other.Timestamp) return false;
+    if (Type != other.Type) return false;
     if (Msg != other.Msg) return false;
     if (Data != other.Data) return false;
+    if (Token != other.Token) return false;
     return true;
   }
 
@@ -2037,8 +2066,10 @@ public sealed partial class Message : pb::IMessage<Message> {
     int hash = 1;
     if (Uid != 0) hash ^= Uid.GetHashCode();
     if (Timestamp != 0UL) hash ^= Timestamp.GetHashCode();
+    if (Type != 0) hash ^= Type.GetHashCode();
     if (Msg.Length != 0) hash ^= Msg.GetHashCode();
     if (Data.Length != 0) hash ^= Data.GetHashCode();
+    if (Token.Length != 0) hash ^= Token.GetHashCode();
     return hash;
   }
 
@@ -2057,13 +2088,21 @@ public sealed partial class Message : pb::IMessage<Message> {
       output.WriteRawTag(16);
       output.WriteUInt64(Timestamp);
     }
+    if (Type != 0) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) Type);
+    }
     if (Msg.Length != 0) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(34);
       output.WriteString(Msg);
     }
     if (Data.Length != 0) {
-      output.WriteRawTag(34);
+      output.WriteRawTag(42);
       output.WriteBytes(Data);
+    }
+    if (Token.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Token);
     }
   }
 
@@ -2076,11 +2115,17 @@ public sealed partial class Message : pb::IMessage<Message> {
     if (Timestamp != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Timestamp);
     }
+    if (Type != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+    }
     if (Msg.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Msg);
     }
     if (Data.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+    }
+    if (Token.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
     }
     return size;
   }
@@ -2096,11 +2141,17 @@ public sealed partial class Message : pb::IMessage<Message> {
     if (other.Timestamp != 0UL) {
       Timestamp = other.Timestamp;
     }
+    if (other.Type != 0) {
+      Type = other.Type;
+    }
     if (other.Msg.Length != 0) {
       Msg = other.Msg;
     }
     if (other.Data.Length != 0) {
       Data = other.Data;
+    }
+    if (other.Token.Length != 0) {
+      Token = other.Token;
     }
   }
 
@@ -2120,17 +2171,39 @@ public sealed partial class Message : pb::IMessage<Message> {
           Timestamp = input.ReadUInt64();
           break;
         }
-        case 26: {
-          Msg = input.ReadString();
+        case 24: {
+          type_ = (global::Message.Types.Type) input.ReadEnum();
           break;
         }
         case 34: {
+          Msg = input.ReadString();
+          break;
+        }
+        case 42: {
           Data = input.ReadBytes();
+          break;
+        }
+        case 50: {
+          Token = input.ReadString();
           break;
         }
       }
     }
   }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the Message message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public enum Type {
+      [pbr::OriginalName("MESSAGE")] Message = 0,
+      [pbr::OriginalName("FILE")] File = 1,
+      [pbr::OriginalName("INPUTING")] Inputing = 2,
+      [pbr::OriginalName("GRAPHICS")] Graphics = 3,
+    }
+
+  }
+  #endregion
 
 }
 

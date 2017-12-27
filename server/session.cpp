@@ -417,6 +417,8 @@ void session::handle_message(Message &q)
     q.set_uid(uid);
     q.set_timestamp(time(nullptr));
 
+    // TODO: check buddy
+
     std::shared_ptr<session> buddy_session = nullptr;
 
     {

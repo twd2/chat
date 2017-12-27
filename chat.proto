@@ -78,11 +78,19 @@ message RemoveBuddyResponse {
 }
 
 message Message {
+  enum Type {
+    MESSAGE = 0;
+    FILE = 1;
+    INPUTING = 2;
+    GRAPHICS = 3;
+  }
   uint32 uid = 1; // source uid for messages from server to client;
                   // destination uid for messages from client to server
   uint64 timestamp = 2;
-  string msg = 3; // if data exists, msg means file name (for file transportation).
-  bytes data = 4;
+  Type type = 3;
+  string msg = 4; // if type is FILE, msg means file name (for file transportation).
+  bytes data = 5;
+  string token = 6;
 }
 
 message Reset {

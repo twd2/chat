@@ -240,6 +240,29 @@ inline bool RemoveBuddyResponse_Code_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<RemoveBuddyResponse_Code>(
     RemoveBuddyResponse_Code_descriptor(), name, value);
 }
+enum Message_Type {
+  Message_Type_MESSAGE = 0,
+  Message_Type_FILE = 1,
+  Message_Type_INPUTING = 2,
+  Message_Type_GRAPHICS = 3,
+  Message_Type_Message_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  Message_Type_Message_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool Message_Type_IsValid(int value);
+const Message_Type Message_Type_Type_MIN = Message_Type_MESSAGE;
+const Message_Type Message_Type_Type_MAX = Message_Type_GRAPHICS;
+const int Message_Type_Type_ARRAYSIZE = Message_Type_Type_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Message_Type_descriptor();
+inline const ::std::string& Message_Type_Name(Message_Type value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Message_Type_descriptor(), value);
+}
+inline bool Message_Type_Parse(
+    const ::std::string& name, Message_Type* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Message_Type>(
+    Message_Type_descriptor(), name, value);
+}
 enum Reset_Code {
   Reset_Code_UNKNOWN_ERROR = 0,
   Reset_Code_PROTOCOL_MISMATCH = 1,
@@ -1942,11 +1965,41 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // nested types ----------------------------------------------------
 
+  typedef Message_Type Type;
+  static const Type MESSAGE =
+    Message_Type_MESSAGE;
+  static const Type FILE =
+    Message_Type_FILE;
+  static const Type INPUTING =
+    Message_Type_INPUTING;
+  static const Type GRAPHICS =
+    Message_Type_GRAPHICS;
+  static inline bool Type_IsValid(int value) {
+    return Message_Type_IsValid(value);
+  }
+  static const Type Type_MIN =
+    Message_Type_Type_MIN;
+  static const Type Type_MAX =
+    Message_Type_Type_MAX;
+  static const int Type_ARRAYSIZE =
+    Message_Type_Type_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Type_descriptor() {
+    return Message_Type_descriptor();
+  }
+  static inline const ::std::string& Type_Name(Type value) {
+    return Message_Type_Name(value);
+  }
+  static inline bool Type_Parse(const ::std::string& name,
+      Type* value) {
+    return Message_Type_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
-  // string msg = 3;
+  // string msg = 4;
   void clear_msg();
-  static const int kMsgFieldNumber = 3;
+  static const int kMsgFieldNumber = 4;
   const ::std::string& msg() const;
   void set_msg(const ::std::string& value);
   #if LANG_CXX11
@@ -1958,9 +2011,9 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* release_msg();
   void set_allocated_msg(::std::string* msg);
 
-  // bytes data = 4;
+  // bytes data = 5;
   void clear_data();
-  static const int kDataFieldNumber = 4;
+  static const int kDataFieldNumber = 5;
   const ::std::string& data() const;
   void set_data(const ::std::string& value);
   #if LANG_CXX11
@@ -1971,6 +2024,20 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::std::string* mutable_data();
   ::std::string* release_data();
   void set_allocated_data(::std::string* data);
+
+  // string token = 6;
+  void clear_token();
+  static const int kTokenFieldNumber = 6;
+  const ::std::string& token() const;
+  void set_token(const ::std::string& value);
+  #if LANG_CXX11
+  void set_token(::std::string&& value);
+  #endif
+  void set_token(const char* value);
+  void set_token(const char* value, size_t size);
+  ::std::string* mutable_token();
+  ::std::string* release_token();
+  void set_allocated_token(::std::string* token);
 
   // uint64 timestamp = 2;
   void clear_timestamp();
@@ -1984,14 +2051,22 @@ class Message : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   ::google::protobuf::uint32 uid() const;
   void set_uid(::google::protobuf::uint32 value);
 
+  // .Message.Type type = 3;
+  void clear_type();
+  static const int kTypeFieldNumber = 3;
+  ::Message_Type type() const;
+  void set_type(::Message_Type value);
+
   // @@protoc_insertion_point(class_scope:Message)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr msg_;
   ::google::protobuf::internal::ArenaStringPtr data_;
+  ::google::protobuf::internal::ArenaStringPtr token_;
   ::google::protobuf::uint64 timestamp_;
   ::google::protobuf::uint32 uid_;
+  int type_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
   friend void ::protobuf_chat_2eproto::InitDefaultsMessageImpl();
@@ -3036,7 +3111,21 @@ inline void Message::set_timestamp(::google::protobuf::uint64 value) {
   // @@protoc_insertion_point(field_set:Message.timestamp)
 }
 
-// string msg = 3;
+// .Message.Type type = 3;
+inline void Message::clear_type() {
+  type_ = 0;
+}
+inline ::Message_Type Message::type() const {
+  // @@protoc_insertion_point(field_get:Message.type)
+  return static_cast< ::Message_Type >(type_);
+}
+inline void Message::set_type(::Message_Type value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:Message.type)
+}
+
+// string msg = 4;
 inline void Message::clear_msg() {
   msg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3089,7 +3178,7 @@ inline void Message::set_allocated_msg(::std::string* msg) {
   // @@protoc_insertion_point(field_set_allocated:Message.msg)
 }
 
-// bytes data = 4;
+// bytes data = 5;
 inline void Message::clear_data() {
   data_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -3140,6 +3229,59 @@ inline void Message::set_allocated_data(::std::string* data) {
   }
   data_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), data);
   // @@protoc_insertion_point(field_set_allocated:Message.data)
+}
+
+// string token = 6;
+inline void Message::clear_token() {
+  token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Message::token() const {
+  // @@protoc_insertion_point(field_get:Message.token)
+  return token_.GetNoArena();
+}
+inline void Message::set_token(const ::std::string& value) {
+  
+  token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Message.token)
+}
+#if LANG_CXX11
+inline void Message::set_token(::std::string&& value) {
+  
+  token_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Message.token)
+}
+#endif
+inline void Message::set_token(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Message.token)
+}
+inline void Message::set_token(const char* value, size_t size) {
+  
+  token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Message.token)
+}
+inline ::std::string* Message::mutable_token() {
+  
+  // @@protoc_insertion_point(field_mutable:Message.token)
+  return token_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Message::release_token() {
+  // @@protoc_insertion_point(field_release:Message.token)
+  
+  return token_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Message::set_allocated_token(::std::string* token) {
+  if (token != NULL) {
+    
+  } else {
+    
+  }
+  token_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), token);
+  // @@protoc_insertion_point(field_set_allocated:Message.token)
 }
 
 // -------------------------------------------------------------------
@@ -3478,6 +3620,11 @@ template <> struct is_proto_enum< ::RemoveBuddyResponse_Code> : ::google::protob
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::RemoveBuddyResponse_Code>() {
   return ::RemoveBuddyResponse_Code_descriptor();
+}
+template <> struct is_proto_enum< ::Message_Type> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Message_Type>() {
+  return ::Message_Type_descriptor();
 }
 template <> struct is_proto_enum< ::Reset_Code> : ::google::protobuf::internal::true_type {};
 template <>
