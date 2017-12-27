@@ -318,10 +318,11 @@ namespace ChatClient
             }
         }
 
-        public void SendMessage(uint destUid, string msg)
+        public void SendMessage(uint destUid, Message.Types.Type type, string msg)
         {
             Message q = new Message();
             q.Uid = destUid;
+            q.Type = type;
             q.Msg = msg;
             q.Data = ByteString.Empty;
             lock (this)
@@ -330,11 +331,27 @@ namespace ChatClient
             }
         }
 
+        public void SendMessage(uint destUid, string msg)
+        {
+            SendMessage(destUid, Message.Types.Type.Message, msg);
+        }
+
+        public void SendInputing(uint destUid)
+        {
+            SendMessage(destUid, Message.Types.Type.Inputing, "");
+        }
+
+        public void SendGraphics(uint destUid, string msg)
+        {
+            SendMessage(destUid, Message.Types.Type.Graphics, msg);
+        }
+
         public void SendFile(uint destUid, string filename)
         {
             FileInfo fi = new FileInfo(filename);
             Message q = new Message();
             q.Uid = destUid;
+            q.Type = Message.Types.Type.File;
             q.Msg = fi.Name;
             using (FileStream fs = fi.OpenRead())
             {

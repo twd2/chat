@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtSend = new System.Windows.Forms.TextBox();
             this.txtSession = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnFile = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtSend
             // 
             this.txtSend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSend.Location = new System.Drawing.Point(16, 356);
-            this.txtSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSend.Location = new System.Drawing.Point(12, 285);
             this.txtSend.Multiline = true;
             this.txtSend.Name = "txtSend";
-            this.txtSend.Size = new System.Drawing.Size(247, 63);
+            this.txtSend.Size = new System.Drawing.Size(297, 51);
             this.txtSend.TabIndex = 0;
+            this.txtSend.TextChanged += new System.EventHandler(this.txtSend_TextChanged);
             // 
             // txtSession
             // 
@@ -51,22 +53,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSession.BackColor = System.Drawing.Color.White;
-            this.txtSession.Location = new System.Drawing.Point(16, 55);
-            this.txtSession.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSession.Location = new System.Drawing.Point(12, 44);
             this.txtSession.Multiline = true;
             this.txtSession.Name = "txtSession";
             this.txtSession.ReadOnly = true;
             this.txtSession.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSession.Size = new System.Drawing.Size(345, 293);
+            this.txtSession.Size = new System.Drawing.Size(371, 235);
             this.txtSession.TabIndex = 1;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.Location = new System.Drawing.Point(272, 356);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSend.Location = new System.Drawing.Point(315, 285);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(91, 64);
+            this.btnSend.Size = new System.Drawing.Size(68, 51);
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "发送(&S)";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -74,27 +74,29 @@
             // 
             // btnFile
             // 
-            this.btnFile.Location = new System.Drawing.Point(16, 15);
-            this.btnFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFile.Location = new System.Drawing.Point(12, 12);
             this.btnFile.Name = "btnFile";
-            this.btnFile.Size = new System.Drawing.Size(169, 32);
+            this.btnFile.Size = new System.Drawing.Size(127, 26);
             this.btnFile.TabIndex = 3;
             this.btnFile.Text = "发送文件(&F)";
             this.btnFile.UseVisualStyleBackColor = true;
             this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // ChatForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 435);
+            this.ClientSize = new System.Drawing.Size(395, 348);
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtSession);
             this.Controls.Add(this.txtSend);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChatForm";
-            this.Text = "ChatForm";
+            this.Text = "与xxxx的聊天 - 正在输入...";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatForm_FormClosing);
             this.Load += new System.EventHandler(this.ChatForm_Load);
             this.ResumeLayout(false);
@@ -108,5 +110,6 @@
         private System.Windows.Forms.TextBox txtSession;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnFile;
+        private System.Windows.Forms.Timer timer1;
     }
 }

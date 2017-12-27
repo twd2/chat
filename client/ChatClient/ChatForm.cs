@@ -14,9 +14,15 @@ namespace ChatClient
 {
     public partial class ChatForm : Form
     {
+        public const double INPUTING_INTERVAL = 1.0;
+
         uint buddyUid;
         string buddyUsername = "";
         bool isInputing = false;
+        DateTime lastReceiveInputing = DateTime.Now;
+        DateTime lastSendInputing =
+            DateTime.Now.Subtract(TimeSpan.FromSeconds(INPUTING_INTERVAL));
+
         public ChatForm(uint buddyUid)
         {
             this.buddyUid = buddyUid;
@@ -26,6 +32,8 @@ namespace ChatClient
         private void ChatForm_Load(object sender, EventArgs e)
         {
             UpdateUsername();
+            timer1.Interval = (int)(INPUTING_INTERVAL * 1000);
+            timer1.Enabled = true;
         }
 
         public void UpdateUsername()
@@ -68,31 +76,58 @@ namespace ChatClient
 
         public void OnMessage(Message m)
         {
-            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            DateTime dt = epoch.Add(TimeSpan.FromTicks((long)m.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
-            if (m.Data.Length != 0)
+            switch (m.Type)
             {
-                string msg = string.Format("{0} ({1}) {2}\n文件：{3}\n",
-                buddyUsername, buddyUid, dt.ToString(),
-                m.Msg);
-                ShowAndLog(msg);
-                using (SaveFileDialog sfd = new SaveFileDialog())
+                case Message.Types.Type.Message:
                 {
-                    sfd.Filter = "所有文件 (*.*)|*.*";
-                    sfd.Title = "收到新文件 " + m.Msg;
-                    sfd.FileName = m.Msg;
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        File.WriteAllBytes(sfd.FileName, m.Data.ToByteArray());
-                    }
+                    DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                    DateTime dt = epoch.Add(TimeSpan.FromTicks((long)m.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
+                    string msg = string.Format("{0} ({1}) {2}\n{3}\n",
+                    buddyUsername, buddyUid, dt.ToString(),
+                    m.Msg);
+                    ShowAndLog(msg);
+                    break;
+                }
+                case Message.Types.Type.File:
+                {
+                    OnFileMessage(m);
+                    break;
+                }
+                case Message.Types.Type.Inputing:
+                {
+                    isInputing = true;
+                    lastReceiveInputing = DateTime.Now;
+                    UpdateTitle();
+                    break;
+                }
+                case Message.Types.Type.Graphics:
+                {
+                    break;
+                }
+                default:
+                {
+                    break;
                 }
             }
-            else
+        }
+
+        private void OnFileMessage(Message m)
+        {
+            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            DateTime dt = epoch.Add(TimeSpan.FromTicks((long)m.Timestamp * TimeSpan.TicksPerSecond)).ToLocalTime();
+            string msg = string.Format("{0} ({1}) {2}\n文件：{3}\n",
+               buddyUsername, buddyUid, dt.ToString(),
+               m.Msg);
+            ShowAndLog(msg);
+            using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                string msg = string.Format("{0} ({1}) {2}\n{3}\n",
-                buddyUsername, buddyUid, dt.ToString(),
-                m.Msg);
-                ShowAndLog(msg);
+                sfd.Filter = "所有文件 (*.*)|*.*";
+                sfd.Title = "收到新文件 " + m.Msg;
+                sfd.FileName = m.Msg;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(sfd.FileName, m.Data.ToByteArray());
+                }
             }
         }
 
@@ -129,6 +164,27 @@ namespace ChatClient
                         }
                     }).Start();
                 }
+            }
+        }
+
+        private void txtSend_TextChanged(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Subtract(lastSendInputing).TotalSeconds > INPUTING_INTERVAL * 0.95)
+            {
+                new Thread(() =>
+                {
+                    Program.session.SendInputing(buddyUid);
+                }).Start();
+                lastSendInputing = DateTime.Now;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (DateTime.Now.Subtract(lastReceiveInputing).TotalSeconds > INPUTING_INTERVAL)
+            {
+                isInputing = false;
+                UpdateTitle();
             }
         }
     }

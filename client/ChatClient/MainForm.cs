@@ -138,12 +138,16 @@ namespace ChatClient
             {
                 Invoke(new Action(() =>
                 {
-                    if (!Program.chatFormMap.ContainsKey(m.Uid))
+                    if (!Program.chatFormMap.ContainsKey(m.Uid) &&
+                        m.Type != Message.Types.Type.Inputing)
                     {
                         Program.chatFormMap[m.Uid] = new ChatForm(m.Uid);
                         Program.chatFormMap[m.Uid].Show();
                     }
-                    Program.chatFormMap[m.Uid].OnMessage(m);
+                    if (Program.chatFormMap.ContainsKey(m.Uid))
+                    {
+                        Program.chatFormMap[m.Uid].OnMessage(m);
+                    }
                 }));
             }).Start();
         }

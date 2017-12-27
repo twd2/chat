@@ -25,7 +25,7 @@ namespace ChatClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.105")]
+        [global::System.Configuration.DefaultSettingValueAttribute("172.16.67.150")]
         public string Server {
             get {
                 return ((string)(this["Server"]));
@@ -49,7 +49,7 @@ namespace ChatClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("d0 ef 55 9e 8d cb 2d da 30 68 13 81 c6 88 51 62 a7 f1 cd d9")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1F 6C B3 CF 6F CF C7 41 7C 5B E3 57 AB EC EE CA 9D AA 53 46")]
         public string Fingerprint {
             get {
                 return ((string)(this["Fingerprint"]));
